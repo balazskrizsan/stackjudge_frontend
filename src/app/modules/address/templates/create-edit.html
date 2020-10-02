@@ -1,0 +1,51 @@
+<div id="map">
+  <input id="address-search"/>
+</div>
+
+<div class="form-group label-floating">
+</div>
+
+<div [formGroup]="form">
+  <div class="form-group" *ngIf="formType == formTypeEnum.EDIT || formType == formTypeEnum.VIEW">
+
+    <label class="control-label">Address</label>
+    <p *ngIf="formFields.fullAddress.value; else addressDisplayElse">
+      <strong>{{formFields.fullAddress.value}}</strong>
+    </p>
+    <ng-template #addressDisplayElse>
+      <p [ngClass]="{'error-box': !form.valid && submitted}"><strong>Please select address on the map!</strong></p>
+    </ng-template>
+  </div>
+
+  <div class="form-group" *ngIf="formType == formTypeEnum.EDIT || formType == formTypeEnum.VIEW">
+    <input type="hidden" class="form-control" id="fullAddress" placeholder="fullAddress" formControlName="fullAddress">
+  </div>
+
+  <div class="form-group" *ngIf="formType == formTypeEnum.EDIT || formType == formTypeEnum.VIEW">
+    <input type="hidden" class="form-control" id="markerLng" placeholder="markerLng" formControlName="markerLng">
+  </div>
+
+  <div class="form-group" *ngIf="formType == formTypeEnum.EDIT || formType == formTypeEnum.VIEW">
+    <input type="hidden" class="form-control" id="markerLat" placeholder="markerLat" formControlName="markerLat">
+  </div>
+
+  <div class="form-group" *ngIf="formType == formTypeEnum.EDIT || formType == formTypeEnum.VIEW">
+    <input
+      type="hidden"
+      class="form-control"
+      id="manualMarkerLng"
+      placeholder="manualMarkerLng"
+      formControlName="manualMarkerLng"
+    >
+  </div>
+
+  <div class="form-group" *ngIf="formType == formTypeEnum.EDIT || formType == formTypeEnum.VIEW">
+    <input
+      type="hidden"
+      class="form-control"
+      id="manualMarkerLat"
+      placeholder="manualMarkerLat"
+      formControlName="manualMarkerLat"
+    >
+  </div>
+</div>

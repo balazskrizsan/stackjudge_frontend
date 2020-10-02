@@ -1,0 +1,94 @@
+<!-- Your Account Personal Information -->
+<div class="container">
+  <div class="row">
+
+    <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+      <div class="ui-block">
+        <div class="ui-block-title">
+          <h3 class="title">Add a Company</h3>
+        </div>
+        <div class="ui-block-content">
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row" formGroupName="company">
+              <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+
+                <div
+                  class="form-group"
+                  *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
+                  [ngClass]="{'has-error': isValidField('name')}"
+                >
+                  <label for="name" class="control-label">Company name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Company name"
+                    formControlName="name"
+                    [ngClass]="{'form-control-danger': isValidField('name')}"
+                  >
+                </div>
+
+                <div
+                  class="form-group"
+                  *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
+                  [ngClass]="{'has-error': isValidField('companySizeId')}"
+                >
+                  <label for="companySizeId" class="control-label">Company Size</label>
+                  <!--                    <select class="selectpicker form-control">-->
+                  <select class="form-control" formControlName="companySizeId" id="companySizeId">
+                    <option [value]="companySizes[companySize]" *ngFor="let companySize of objectKeys(companySizes)">
+                      {{companySize}}
+                    </option>
+                  </select>
+                </div>
+
+                <div
+                  class="form-group"
+                  *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
+                  [ngClass]="{'has-error': isValidField('itSizeId')}"
+                >
+                  <label for="itSizeId" class="control-label">IT Size</label>
+                  <!--                    <select class="selectpicker form-control">-->
+                  <select class="form-control" formControlName="itSizeId" id="itSizeId">
+                    <option [value]="itSizes[itSize]" *ngFor="let itSize of objectKeys(itSizes)">
+                      {{itSize}}
+                    </option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+
+            <h4 class="title">Add HQ Address</h4>
+            <app-address-form
+              formControlName="address"
+              [formType]="formType"
+              [submitted]="submitted"
+            ></app-address-form>
+
+            <div class="row">
+              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                <button type="submit" class="btn btn-primary btn-lg full-width">Create company</button>
+              </div>
+            </div>
+            <div class="row" *ngIf="!form.valid && serverSideError">
+              <p class="error-box"><strong>Unknown error.</strong></p>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12 col-12 responsive-display-none"
+    >
+      <div class="ui-block">
+        <app-left-menu></app-left-menu>
+      </div>
+    </div>
+
+  </div>
+</div>
