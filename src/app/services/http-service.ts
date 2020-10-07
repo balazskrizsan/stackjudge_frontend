@@ -68,11 +68,12 @@ export class HttpService {
       .pipe(catchError(HttpService.handleError));
   }
 
-  public get<T>(url: string): Observable<IResponseEntity<T>> {
+  public get<T>(url: string, httpParams?: HttpParams): Observable<IResponseEntity<T>> {
     const defaultOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'}),
       withCredentials: true,
-      observe: 'response'
+      observe: 'response',
+      params: httpParams
     };
 
     return this.http.get(url, defaultOptions as any)

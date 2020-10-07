@@ -68,6 +68,17 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
     return this.httpService.get<T>(`${environment.backend.api.host}${uri}`);
   }
 
+  get<T>(id: number, requestRelationIds?: number[], uri = ''): Observable<IResponseEntity<T>> {
+    if ('' === uri) {
+      uri = this.getController();
+    }
+
+    return this.httpService.get<T>(
+      `${environment.backend.api.host}${uri}/${id}`,
+      AbstractApiRepository.createHttpParams({requestRelationIds}, new HttpParams(), null)
+    );
+  }
+
   update(updateData): Promise<boolean> {
     return Promise.resolve(false);
   }

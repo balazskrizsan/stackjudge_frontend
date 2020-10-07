@@ -32,9 +32,9 @@ export class ListActionComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.companyService.search<ICompany[]>().subscribe(
+    await this.companyService.search().subscribe(
       response => {
-        this.companies = response.data;
+        this.companies = response.data.companies;
       }
     );
   }

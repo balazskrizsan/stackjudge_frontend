@@ -2,7 +2,9 @@ import {Observable} from 'rxjs';
 import {IResponseEntity} from '../interfaces/i-response-entity';
 
 export interface IAbstractCrudApiRepository {
-  search<T>(uri?: string): Observable<IResponseEntity<T>>;
+  search<T>(uri?: string): Observable<IResponseEntity<T[]>>;
+
+  get<T>(id: number, relationIds?: number[], uri?: string): Observable<IResponseEntity<T>>;
 
   update(updateData): Promise<boolean>;
 
