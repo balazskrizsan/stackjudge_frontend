@@ -7,10 +7,10 @@ export class AddressForms {
   private CruFields: any = {
     id: new FormControl('', []),
     fullAddress: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    markerLng: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    markerLat: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    manualMarkerLng: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    manualMarkerLat: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    markerLng: new FormControl('', [Validators.required, Validators.pattern(/^\d{1,3}\.\d{1,20}/)]),
+    markerLat: new FormControl('', [Validators.required, Validators.pattern(/^\d{1,3}\.\d{1,20}/)]),
+    manualMarkerLng: new FormControl('', [Validators.pattern(/^\d{1,3}\.\d{1,20}/)]),
+    manualMarkerLat: new FormControl('', [Validators.pattern(/^\d{1,3}\.\d{1,20}/)]),
   };
 
   getFields(): any {
