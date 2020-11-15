@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   backend:    {
     api: {
-      host: 'https://localhost:5001/'
+      host: 'http://localhost:8181/'
     }
   }
 };

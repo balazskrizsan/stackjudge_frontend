@@ -44,7 +44,7 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
 
   abstract getController(): string;
 
-  protected post<T>(uri: string = '', postData: HttpParams = new HttpParams()): Observable<IResponseEntity<T>> {
+  protected post<T>(uri: string = '', postData: {} = {}): Observable<IResponseEntity<T>> {
     if ('' === uri) {
       uri = this.getController();
     }
@@ -53,7 +53,7 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
   }
 
   create(updateData: {} = {}): Observable<IResponseEntity<null>> {
-    return this.post<null>('', AbstractApiRepository.createHttpParams(updateData, new HttpParams(), null));
+    return this.post<null>('', updateData);
   }
 
   delete(siteId: number): Promise<boolean> {

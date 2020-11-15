@@ -4,7 +4,6 @@ import {catchError, map} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {IResponseEntity} from '../interfaces/i-response-entity';
 
-
 @Injectable()
 export class HttpService {
   constructor(private http: HttpClient) {
@@ -56,21 +55,21 @@ export class HttpService {
     return of(result);
   }
 
-  public post<T>(url: string, data: HttpParams): Observable<IResponseEntity<T>> {
+  public post<T>(url: string, data: {}): Observable<IResponseEntity<T>> {
     const defaultOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'}),
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
       withCredentials: true,
       observe: 'response'
     };
 
-    return this.http.post(url, data.toString(), defaultOptions as any)
+    return this.http.post(url, JSON.stringify(data), defaultOptions as any)
       .pipe(map(HttpService.handleSuccess))
       .pipe(catchError(HttpService.handleError));
   }
 
   public get<T>(url: string, httpParams?: HttpParams): Observable<IResponseEntity<T>> {
     const defaultOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'}),
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
       withCredentials: true,
       observe: 'response',
       params: httpParams
