@@ -33,7 +33,7 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
         }
 
         if (null !== parent) {
-          key = parent + '[' + key + ']';
+          key = key.match(/\d+/) ? parent : parent + '[' + key + ']';
         }
 
         params = params.append(key, valueOrChild);
@@ -60,15 +60,18 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
     return Promise.resolve(false);
   }
 
-  search<T>(uri = ''): Observable<IResponseEntity<T>> {
+  search<T>(uri = '', requestRelationIds?: number[]): Observable<IResponseEntity<T>> {
     if ('' === uri) {
       uri = this.getController();
     }
 
-    return this.httpService.get<T>(`${environment.backend.api.host}${uri}`);
+    return this.httpService.get<T>(
+      `${environment.backend.api.host}${uri}`,
+      AbstractApiRepository.createHttpParams({requestRelationIds}, new HttpParams(), null)
+    );
   }
 
-  get<T>(id: number, requestRelationIds?: number[], uri = ''): Observable<IResponseEntity<T>> {
+   get<T>(id: number, requestRelationIds?: number[], uri = ''): Observable<IResponseEntity<T>> {
     if ('' === uri) {
       uri = this.getController();
     }

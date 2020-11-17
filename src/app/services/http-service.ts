@@ -69,7 +69,7 @@ export class HttpService {
 
   public get<T>(url: string, httpParams?: HttpParams): Observable<IResponseEntity<T>> {
     const defaultOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'}),
       withCredentials: true,
       observe: 'response',
       params: httpParams
