@@ -4,6 +4,7 @@ import {Forms} from '../forms';
 import {AddressForms} from '../../address/address-forms';
 import {ICompany} from '../interfaces/i-company';
 import {CompanyService} from '../service/company-service';
+import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-enum';
 
 @Component(
   {
@@ -32,7 +33,7 @@ export class ListActionComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.companyService.search().subscribe(
+    await this.companyService.search(1, 2, [CompanyRequestRelationsEnum.STATISTIC]).subscribe(
       response => {
         this.companies = response.data.companies;
       }

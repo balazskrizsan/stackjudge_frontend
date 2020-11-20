@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {IResponseEntity} from '../../../interfaces/i-response-entity';
 import {IListResponse} from '../interfaces/i-list-response';
 import {IGetResponse} from '../interfaces/i-get-response';
-import {ServiceRelations} from '../enums/service-relations';
 
 @Injectable()
 export class CompanyService {
@@ -19,7 +18,7 @@ export class CompanyService {
     return this.repository.get(id, requestRelationIds);
   }
 
-  search(): Observable<IResponseEntity<IListResponse>> {
-    return this.repository.search<IListResponse>('', [ServiceRelations.statistic]);
+  search(page: number, limit: number, companyRequestRelations?: number[]): Observable<IResponseEntity<IListResponse>> {
+    return this.repository.search<IListResponse>(page, limit, '', companyRequestRelations);
   }
 }

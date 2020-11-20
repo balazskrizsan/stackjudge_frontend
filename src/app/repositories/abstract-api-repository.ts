@@ -21,10 +21,10 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
     return value;
   }
 
-  static createHttpParams(postData: {}, params: HttpParams, parent?: string): HttpParams {
-    Object.keys(postData).forEach(
+  static createHttpParams(rawData: {}, params: HttpParams, parent?: string): HttpParams {
+    Object.keys(rawData).forEach(
       (key: string) => {
-        const valueOrChild = AbstractApiRepository.paramOverRider(postData[key]);
+        const valueOrChild = AbstractApiRepository.paramOverRider(rawData[key]);
 
         if ('object' === typeof valueOrChild) {
           params = this.createHttpParams(valueOrChild, params, key);
@@ -60,14 +60,14 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
     return Promise.resolve(false);
   }
 
-  search<T>(uri = '', requestRelationIds?: number[]): Observable<IResponseEntity<T>> {
+  search<T>(page: number, limit: number, uri = '', requestRelationIds?: number[]): Observable<IResponseEntity<T>> {
     if ('' === uri) {
       uri = this.getController();
     }
 
     return this.httpService.get<T>(
       `${environment.backend.api.host}${uri}`,
-      AbstractApiRepository.createHttpParams({requestRelationIds}, new HttpParams(), null)
+      AbstractApiRepository.createHttpParams({page, limit, requestRelationIds}, new HttpParams(), null)
     );
   }
 

@@ -7,7 +7,7 @@ import {CompanyService} from '../service/company-service';
 import {EnumService} from '../../../services/enum-service';
 import {ItSizeEnum} from '../enums/it-size-enum';
 import {CompanySizeEnum} from '../enums/company-size-enum';
-import {ServiceRelations} from '../enums/service-relations';
+import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-enum';
 
 @Component(
   {
@@ -35,7 +35,7 @@ export class ViewActionComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
 
-    await this.companyService.get(id, [ServiceRelations.statistic, ServiceRelations.stack]).subscribe(
+    await this.companyService.get(id, [CompanyRequestRelationsEnum.STATISTIC, CompanyRequestRelationsEnum.STACK]).subscribe(
       response => {
         if (response.success) {
         }
