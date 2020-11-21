@@ -45,10 +45,10 @@
               </div>
               <div class="author-content">
                 <a routerLink="/company/display/{{company.id}}" class="h5 author-name">{{company.name}}</a>
-                <div class="country">6 stacks</div>
-                <div class="country">2 teams</div>
-                <div class="country">15 reviews</div>
-                <div class="country">30 technologies</div>
+                <div class="country">{{companyStatistics[company.id]?.stackCount}} stacks</div>
+                <div class="country">{{companyStatistics[company.id]?.teamsCount}} teams</div>
+                <div class="country">__15 reviews</div>
+                <div class="country">__30 technologies</div>
               </div>
             </div>
 

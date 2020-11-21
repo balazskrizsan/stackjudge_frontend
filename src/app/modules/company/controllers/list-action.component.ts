@@ -5,6 +5,7 @@ import {AddressForms} from '../../address/address-forms';
 import {ICompany} from '../interfaces/i-company';
 import {CompanyService} from '../service/company-service';
 import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-enum';
+import {ICompanyStatistic} from '../interfaces/i-company-statistic';
 
 @Component(
   {
@@ -14,14 +15,8 @@ import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-en
   }
 )
 export class ListActionComponent implements OnInit {
-  companies: ICompany[] = [
-    {
-      id: 0,
-      name: '',
-      companySizeId: 1,
-      itSizeId: 1,
-    }
-  ];
+  companies: ICompany[] = [];
+  companyStatistics: Record<number, ICompanyStatistic>;
 
   public constructor(
     private route: ActivatedRoute,
@@ -36,6 +31,7 @@ export class ListActionComponent implements OnInit {
     await this.companyService.search(1, 2, [CompanyRequestRelationsEnum.STATISTIC]).subscribe(
       response => {
         this.companies = response.data.companies;
+        this.companyStatistics = response.data.companyStatistics;
       }
     );
   }

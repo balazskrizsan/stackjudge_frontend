@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {CompanyRepository} from '../repositories/company-repository';
 import {Observable} from 'rxjs';
 import {IResponseEntity} from '../../../interfaces/i-response-entity';
-import {IListResponse} from '../interfaces/i-list-response';
+import {ISearchResponse} from '../interfaces/i-search-response';
 import {IGetResponse} from '../interfaces/i-get-response';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class CompanyService {
     return this.repository.get(id, requestRelationIds);
   }
 
-  search(page: number, limit: number, companyRequestRelations?: number[]): Observable<IResponseEntity<IListResponse>> {
-    return this.repository.search<IListResponse>(page, limit, '', companyRequestRelations);
+  search(page: number, limit: number, companyRequestRelations?: number[]): Observable<IResponseEntity<ISearchResponse>> {
+    return this.repository.search<ISearchResponse>(page, limit, '', companyRequestRelations);
   }
 }
