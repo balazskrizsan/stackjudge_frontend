@@ -1,0 +1,11 @@
+export enum NavigationEnum {
+  FIRST = 1,
+  SECOND,
+  CURRENT_MINUS_2,
+  CURRENT_MINUS_1,
+  CURRENT,
+  CURRENT_PLUS_1,
+  CURRENT_PLUS_2,
+  LAST_MINUS_1,
+  LAST
+}

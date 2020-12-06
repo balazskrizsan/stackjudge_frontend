@@ -8,7 +8,7 @@ import {ViewActionComponent} from './controllers/view-action.component';
 const routes: Routes = [
   {path: 'create', component: CreateActionComponent},
   {path: 'display/:id', component: ViewActionComponent},
-  {path: '', component: ListActionComponent},
+  {path: ':seekId', component: ListActionComponent}
 ];
 
 @NgModule(

@@ -18,7 +18,8 @@ export class CompanyService {
     return this.repository.get(id, requestRelationIds);
   }
 
-  search(page: number, limit: number, companyRequestRelations?: number[]): Observable<IResponseEntity<ISearchResponse>> {
-    return this.repository.search<ISearchResponse>(page, limit, '', companyRequestRelations);
+  search(seekId: number, limit: number, navigationId?: number, companyRequestRelations?: number[]):
+    Observable<IResponseEntity<ISearchResponse>> {
+    return this.repository.search<ISearchResponse>(seekId, limit, navigationId, '', companyRequestRelations);
   }
 }

@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
 
+    <!-- LEFT MENU -->
+    <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
       <div class="friend-item friend-groups create-group h-75 mb-3">
         <a routerLink="/company/create" class="full-block" data-toggle="modal" data-target="#create-friend-group-1"></a>
         <div class="content">
@@ -16,7 +17,9 @@
         </div>
       </div>
     </div>
+    <!-- /LEFT MENU -->
 
+    <!-- COMPANY LIST -->
     <div *ngFor="let company of companies"
       class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
       <div class="ui-block h-100 mb-0">
@@ -102,6 +105,9 @@
         </div>
       </div>
     </div>
+    <!-- /COMPANY LIST -->
 
   </div>
+
+  <app-paginator [paginatorItems]="paginator" (changePage)="onChangePage($event)"></app-paginator>
 </div>

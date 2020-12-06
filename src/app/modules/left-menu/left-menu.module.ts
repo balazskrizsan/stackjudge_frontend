@@ -11,5 +11,5 @@ import {SharedModule} from '../shared-module';
   declarations: [LeftMenuComponent],
   providers: [],
 })
-export class  LeftMenuComponentModule {
+export class  LeftMenuModule {
 }

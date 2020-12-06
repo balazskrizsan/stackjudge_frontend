@@ -14,16 +14,16 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
       return value ? 1 : 0;
     }
 
-    if (null === value) {
-      return '';
-    }
-
     return value;
   }
 
   static createHttpParams(rawData: {}, params: HttpParams, parent?: string): HttpParams {
     Object.keys(rawData).forEach(
       (key: string) => {
+        if ('undefined' === typeof rawData[key] || null === rawData[key]) {
+          return ;
+        }
+
         const valueOrChild = AbstractApiRepository.paramOverRider(rawData[key]);
 
         if ('object' === typeof valueOrChild) {
@@ -60,18 +60,19 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
     return Promise.resolve(false);
   }
 
-  search<T>(page: number, limit: number, uri = '', requestRelationIds?: number[]): Observable<IResponseEntity<T>> {
+  search<T>(seekId: number, limit: number, navigationId?: number, uri = '', requestRelationIds?: number[]):
+    Observable<IResponseEntity<T>> {
     if ('' === uri) {
       uri = this.getController();
     }
 
     return this.httpService.get<T>(
       `${environment.backend.api.host}${uri}`,
-      AbstractApiRepository.createHttpParams({page, limit, requestRelationIds}, new HttpParams(), null)
+      AbstractApiRepository.createHttpParams({seekId, limit, navigationId, requestRelationIds}, new HttpParams(), null)
     );
   }
 
-   get<T>(id: number, requestRelationIds?: number[], uri = ''): Observable<IResponseEntity<T>> {
+  get<T>(id: number, requestRelationIds?: number[], uri = ''): Observable<IResponseEntity<T>> {
     if ('' === uri) {
       uri = this.getController();
     }

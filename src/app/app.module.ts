@@ -11,7 +11,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpService} from './services/http-service';
 import {LocalStorageService} from './services/local-storage-services';
-import {LeftMenuComponentModule} from './modules/left-menu/left-menu.component.module';
+import {LeftMenuModule} from './modules/left-menu/left-menu.module';
+import {PaginatorModule} from './modules/paginator/paginator.module';
 
 @NgModule(
   {
@@ -30,7 +31,8 @@ import {LeftMenuComponentModule} from './modules/left-menu/left-menu.component.m
       ),
       // NgbModule,
       AddressFormComponentModule,
-      LeftMenuComponentModule
+      LeftMenuModule,
+      PaginatorModule
     ],
     providers: [
       HttpService,
