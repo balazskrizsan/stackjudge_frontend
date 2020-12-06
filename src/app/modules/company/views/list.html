@@ -50,8 +50,8 @@
                 <a routerLink="/company/display/{{company.id}}" class="h5 author-name">{{company.name}}</a>
                 <div class="country">{{companyStatistics[company.id]?.stackCount}} stacks</div>
                 <div class="country">{{companyStatistics[company.id]?.teamsCount}} teams</div>
-                <div class="country">__15 reviews</div>
-                <div class="country">__30 technologies</div>
+                <div class="country">{{companyStatistics[company.id]?.reviewCount}} reviews</div>
+                <div class="country">{{companyStatistics[company.id]?.teamsCount}} technologies</div>
               </div>
             </div>
 
