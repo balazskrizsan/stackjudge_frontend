@@ -62,7 +62,6 @@ export class ListActionComponent implements OnInit {
           this.paginator = response.data.paginator;
           if (null !== navigationId) {
             this.currentSeekId = response.data.newSeekId;
-            console.log(response.data.newSeekId);
             this.location.go('/company/' + response.data.newSeekId);
           }
         }
