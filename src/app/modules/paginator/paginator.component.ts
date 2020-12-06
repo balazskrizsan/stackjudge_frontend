@@ -12,7 +12,8 @@ export class PaginatorComponent {
   @Output() changePage = new EventEmitter<any>(true);
   itemTypeEnum = ItemTypeEnumImport.ItemTypeEnum;
 
-  setPage(navigation: number): void {
+  setPage($event: MouseEvent, navigation: number): void {
+    $event.preventDefault();
     this.changePage.emit(navigation);
   }
 }

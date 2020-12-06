@@ -7,9 +7,10 @@
     >
       <a
         class="page-link"
+        href="#"
         *ngIf="item.typeId == itemTypeEnum.PAGE"
-        (click)="setPage(item.navigation)"
-      >{{item.pageNumber}}:{{item.navigation}}</a>
+        (click)="setPage($event, item.navigation)"
+      >{{item.pageNumber}}</a>
       <a
         class="page-link"
         *ngIf="item.typeId == itemTypeEnum.SPACER"
