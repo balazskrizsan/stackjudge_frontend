@@ -55,14 +55,13 @@ export class HttpService {
     return of(result);
   }
 
-  public post<T>(url: string, data: {}): Observable<IResponseEntity<T>> {
+  public post<T>(url: string, data: FormData): Observable<IResponseEntity<T>> {
     const defaultOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
       withCredentials: true,
       observe: 'response'
     };
 
-    return this.http.post(url, JSON.stringify(data), defaultOptions as any)
+    return this.http.post(url, data, defaultOptions as any)
       .pipe(map(HttpService.handleSuccess))
       .pipe(catchError(HttpService.handleError));
   }

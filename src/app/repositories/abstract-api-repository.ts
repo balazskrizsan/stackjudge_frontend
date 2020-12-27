@@ -9,36 +9,66 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
   protected constructor(private httpService: HttpService) {
   }
 
-  private static paramOverRider(value: any): any {
-    if ('boolean' === typeof value) {
-      return value ? 1 : 0;
-    }
+  private static paramCleaner(rawData: any): {} {
+    const cleanData = {};
 
-    return value;
-  }
-
-  static createHttpParams(rawData: {}, params: HttpParams, parent?: string): HttpParams {
     Object.keys(rawData).forEach(
       (key: string) => {
-        if ('undefined' === typeof rawData[key] || null === rawData[key]) {
-          return ;
+        const valueOrObject = rawData[key];
+
+        if ('undefined' === typeof valueOrObject || null === valueOrObject) {
+          return;
         }
 
-        const valueOrChild = AbstractApiRepository.paramOverRider(rawData[key]);
-
-        if ('object' === typeof valueOrChild) {
-          params = this.createHttpParams(valueOrChild, params, key);
-
-          return params;
+        if ('boolean' === typeof valueOrObject) {
+          cleanData[key] = valueOrObject ? 1 : 0;
         }
 
-        if (null !== parent) {
-          key = key.match(/\d+/) ? parent : parent + '[' + key + ']';
+        if ('object' === typeof valueOrObject) {
+          cleanData[key] = AbstractApiRepository.paramCleaner(valueOrObject);
         }
 
-        params = params.append(key, valueOrChild);
+        cleanData[key] = valueOrObject;
       }
     );
+
+    return cleanData;
+  }
+
+  private static createFormData(rawData: {}): FormData {
+    rawData = AbstractApiRepository.paramCleaner(rawData);
+    const params = new FormData();
+
+    Object.keys(rawData).forEach(
+      (key: string) => {
+        const valueOrObject = rawData[key];
+
+        params.append(key, typeof valueOrObject === 'object' ? JSON.stringify(valueOrObject) : valueOrObject);
+      }
+    );
+
+    return params;
+  }
+
+  private static createHttpParams(rawData: {}): HttpParams {
+    rawData = AbstractApiRepository.paramCleaner(rawData);
+    let params = new HttpParams();
+
+    Object.keys(rawData).forEach(
+      (key: string) => {
+        const valueOrObject = rawData[key];
+
+        if (Array.isArray(valueOrObject)) {
+          valueOrObject.forEach(item => {
+            params = params.append(key, item);
+          });
+          return;
+        }
+
+        params = params.append(key, valueOrObject);
+      }
+    );
+
     return params;
   }
 
@@ -49,7 +79,7 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
       uri = this.getController();
     }
 
-    return this.httpService.post<T>(`${environment.backend.api.host}${uri}`, postData);
+    return this.httpService.post<T>(`${environment.backend.api.host}${uri}`, AbstractApiRepository.createFormData(postData));
   }
 
   create(updateData: {} = {}): Observable<IResponseEntity<null>> {
@@ -68,7 +98,7 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
 
     return this.httpService.get<T>(
       `${environment.backend.api.host}${uri}`,
-      AbstractApiRepository.createHttpParams({seekId, limit, navigationId, requestRelationIds}, new HttpParams(), null)
+      AbstractApiRepository.createHttpParams({seekId, limit, navigationId, requestRelationIds})
     );
   }
 
@@ -79,7 +109,7 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
 
     return this.httpService.get<T>(
       `${environment.backend.api.host}${uri}/${id}`,
-      AbstractApiRepository.createHttpParams({requestRelationIds}, new HttpParams(), null)
+      AbstractApiRepository.createHttpParams({requestRelationIds})
     );
   }
 
