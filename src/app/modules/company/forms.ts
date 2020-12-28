@@ -5,7 +5,7 @@ import {ICompany} from './interfaces/i-company';
 @Injectable()
 export class Forms {
   private CruFields: any = {
-    id: new FormControl('', []),
+    id: new FormControl(null, []),
     name: new FormControl('', [Validators.required, Validators.minLength(5)]),
     companySizeId: new FormControl('', [Validators.required, Validators.minLength(1)]),
     itSizeId: new FormControl('', [Validators.required, Validators.minLength(1)]),

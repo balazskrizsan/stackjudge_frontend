@@ -5,7 +5,7 @@ import {AddressForms} from '../../address/address-forms';
 import {FormTypeEnum} from '../enums/form-type-enum';
 import {ICompany} from '../interfaces/i-company';
 import {CompanyService} from '../service/company-service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {EnumService} from '../../../services/enum-service';
 import {ItSizeEnum} from '../enums/it-size-enum';
 import {CompanySizeEnum} from '../enums/company-size-enum';
@@ -39,13 +39,14 @@ export class CreateActionComponent {
     this.form = this.formBuilder.group({
       company: this.forms.createCruForm(),
       address: [],
+      companyLogo: new FormControl(null)
     });
   }
 
   async onSubmit(): Promise<void> {
     this.submitted = true;
     if (this.form.valid) {
-      await this.companyService.create(this.clearRawValues(this.form.getRawValue())).subscribe(
+      await this.companyService.create(this.form.getRawValue()).subscribe(
         response => {
           if (response.success) {
             // this.router.navigate(['/company']);
@@ -60,22 +61,10 @@ export class CreateActionComponent {
     this.form.markAllAsTouched();
   }
 
-  private clearRawValues(values: any): {} {
-    delete values.company.id;
-
-    if (values.address) {
-      delete values.address.id;
-
-      if (!values.address.manualMarkerLng) {
-        delete values.address.manualMarkerLng;
-      }
-
-      if (!values.address.manualMarkerLat) {
-        delete values.address.manualMarkerLat;
-      }
-    }
-
-    return values;
+  uploadCompanyLogo(event): void {
+    const companyLogo = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({companyLogo});
+    this.form.get('companyLogo').updateValueAndValidity();
   }
 
   isValidField(fieldName: string): boolean {

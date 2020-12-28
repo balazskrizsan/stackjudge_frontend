@@ -22,10 +22,19 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
 
         if ('boolean' === typeof valueOrObject) {
           cleanData[key] = valueOrObject ? 1 : 0;
+
+          return;
+        }
+        if (valueOrObject instanceof File) {
+          cleanData[key] = valueOrObject;
+
+          return;
         }
 
         if ('object' === typeof valueOrObject) {
           cleanData[key] = AbstractApiRepository.paramCleaner(valueOrObject);
+
+          return;
         }
 
         cleanData[key] = valueOrObject;
@@ -43,6 +52,11 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
       (key: string) => {
         const valueOrObject = rawData[key];
 
+        if (valueOrObject instanceof File) {
+          params.append(key, valueOrObject, 'a.jpg');
+
+          return;
+        }
         params.append(key, typeof valueOrObject === 'object' ? JSON.stringify(valueOrObject) : valueOrObject);
       }
     );
@@ -62,6 +76,7 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
           valueOrObject.forEach(item => {
             params = params.append(key, item);
           });
+
           return;
         }
 

@@ -60,6 +60,19 @@
               </div>
             </div>
 
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="file-upload">
+                <label for="upload" class="file-upload__label">Upload Company logo</label>
+                <input
+                  id="upload"
+                  class="file-upload__input"
+                  type="file"
+                  name="file-upload"
+                  (change)="uploadCompanyLogo($event)"
+                >
+              </div>
+            </div>
+
             <h4 class="title">Add HQ Address</h4>
             <app-address-form
               formControlName="address"
