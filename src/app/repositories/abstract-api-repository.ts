@@ -57,6 +57,7 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
 
           return;
         }
+
         params.append(key, typeof valueOrObject === 'object' ? JSON.stringify(valueOrObject) : valueOrObject);
       }
     );
@@ -72,10 +73,12 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
       (key: string) => {
         const valueOrObject = rawData[key];
 
-        if (Array.isArray(valueOrObject)) {
-          valueOrObject.forEach(item => {
-            params = params.append(key, item);
-          });
+        if ('object' === typeof valueOrObject) {
+          Object.keys(valueOrObject).forEach(
+            (subKey) => {
+              params = params.append(key, valueOrObject[subKey]);
+            }
+          );
 
           return;
         }
