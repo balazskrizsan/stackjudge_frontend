@@ -9,6 +9,7 @@ import {ICompanyStatistic} from '../interfaces/i-company-statistic';
 import {IPaginatorItem} from '../../paginator/interfaces/i-paginator-item';
 import {Location} from '@angular/common';
 import {environment} from '../../../../environments/environment';
+import {UrlGeneratorService} from '../service/url-generator-service';
 
 @Component(
   {
@@ -22,6 +23,7 @@ export class ListActionComponent implements OnInit {
   companyStatistics: Record<number, ICompanyStatistic>;
   paginator: Array<IPaginatorItem>;
   currentSeekId = 0;
+  urlGeneratorService = UrlGeneratorService;
   cdnHost = environment.cdn.host;
 
   public constructor(

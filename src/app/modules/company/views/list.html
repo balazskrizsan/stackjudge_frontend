@@ -33,32 +33,37 @@
         <div class="friend-item friend-groups">
           <div class="friend-item-content">
 
-            <div class="more">
-              <svg class="olymp-three-dots-icon">
-                <use xlink:href="#olymp-three-dots-icon"></use>
-              </svg>
-              <ul class="more-dropdown">
-                <li>
-                  <a href="#">Report Profile</a>
-                </li>
-                <li>
-                  <a href="#">Block Profile</a>
-                </li>
-                <li>
-                  <a href="#">Turn Off Notifications</a>
-                </li>
-              </ul>
-            </div>
+<!--            <div class="more">-->
+<!--              <svg class="olymp-three-dots-icon">-->
+<!--                <use xlink:href="#olymp-three-dots-icon"></use>-->
+<!--              </svg>-->
+<!--              <ul class="more-dropdown">-->
+<!--                <li>-->
+<!--                  <a href="#">Report Profile</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a href="#">Block Profile</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a href="#">Turn Off Notifications</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
             <div class="friend-avatar">
+              <a routerLink="{{urlGeneratorService.viewCompany(company.id)}}" class="h5 author-name">
               <div class="author-thumb">
-                <img
-                  loading="lazy"
-                  src="{{cdnHost}}{{company.logoPath}}"
-                  alt=""
-                >
+                  <img
+                    loading="lazy"
+                    src="{{cdnHost}}{{company.logoPath}}"
+                    alt=""
+                  >
               </div>
+              </a>
               <div class="author-content">
-                <a routerLink="/company/display/{{company.id}}" class="h5 author-name">{{company.name}}</a>
+                <a
+                  routerLink="{{urlGeneratorService.viewCompany(company.id)}}"
+                  class="h5 author-name"
+                >{{company.name}}</a>
                 <div class="country">{{companyStatistics[company.id]?.stackCount}} stacks</div>
                 <div class="country">{{companyStatistics[company.id]?.teamsCount}} teams</div>
                 <div class="country">{{companyStatistics[company.id]?.reviewCount}} reviews</div>
