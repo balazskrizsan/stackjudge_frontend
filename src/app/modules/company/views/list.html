@@ -6,7 +6,12 @@
       <div class="friend-item friend-groups create-group h-75 mb-3">
         <a routerLink="/company/create" class="full-block" data-toggle="modal" data-target="#create-friend-group-1"></a>
         <div class="content">
-          <a routerLink="/company/create" class="btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-1">
+          <a
+            routerLink="/company/create"
+            class="btn btn-control bg-blue"
+            data-toggle="modal"
+            data-target="#create-friend-group-1"
+          >
             <svg class="olymp-plus-icon">
               <use xlink:href="#olymp-plus-icon"></use>
             </svg>
@@ -20,8 +25,10 @@
     <!-- /LEFT MENU -->
 
     <!-- COMPANY LIST -->
-    <div *ngFor="let company of companies"
-      class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+    <div
+      *ngFor="let company of companies"
+      class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-3"
+    >
       <div class="ui-block h-100 mb-0">
         <div class="friend-item friend-groups">
           <div class="friend-item-content">
@@ -44,7 +51,11 @@
             </div>
             <div class="friend-avatar">
               <div class="author-thumb">
-                <img loading="lazy" src="img/logo.png" alt="">
+                <img
+                  loading="lazy"
+                  src="https://stack-judge-cdn-dev-eu-central-1.s3.eu-central-1.amazonaws.com/{{company.logoPath}}"
+                  alt=""
+                >
               </div>
               <div class="author-content">
                 <a routerLink="/company/display/{{company.id}}" class="h5 author-name">{{company.name}}</a>
@@ -88,19 +99,19 @@
               </li>
             </ul>
 
-<!--            <div class="control-block-button">-->
-<!--              <a href="#" class="  btn btn-control bg-blue" data-toggle="modal"-->
-<!--                 data-target="#create-friend-group-add-friends">-->
-<!--                <svg class="olymp-happy-faces-icon">-->
-<!--                  <use xlink:href="#olymp-happy-faces-icon"></use>-->
-<!--                </svg>-->
-<!--              </a>-->
-<!--              <a href="#" class="btn btn-control btn-grey-lighter">-->
-<!--                <svg class="olymp-settings-icon">-->
-<!--                  <use xlink:href="#olymp-settings-icon"></use>-->
-<!--                </svg>-->
-<!--              </a>-->
-<!--            </div>-->
+            <!--            <div class="control-block-button">-->
+            <!--              <a href="#" class="  btn btn-control bg-blue" data-toggle="modal"-->
+            <!--                 data-target="#create-friend-group-add-friends">-->
+            <!--                <svg class="olymp-happy-faces-icon">-->
+            <!--                  <use xlink:href="#olymp-happy-faces-icon"></use>-->
+            <!--                </svg>-->
+            <!--              </a>-->
+            <!--              <a href="#" class="btn btn-control btn-grey-lighter">-->
+            <!--                <svg class="olymp-settings-icon">-->
+            <!--                  <use xlink:href="#olymp-settings-icon"></use>-->
+            <!--                </svg>-->
+            <!--              </a>-->
+            <!--            </div>-->
           </div>
         </div>
       </div>

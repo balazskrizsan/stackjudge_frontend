@@ -3,4 +3,5 @@ export interface ICompany {
   name: string;
   companySizeId: number;
   itSizeId: number;
+  logoPath: string;
 }

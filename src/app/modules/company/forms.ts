@@ -40,6 +40,7 @@ export class Forms {
       name: site.name,
       companySizeId: site.companySizeId,
       itSizeId: site.itSizeId,
+      logoPath: site.logoPath
     };
   }
 }
