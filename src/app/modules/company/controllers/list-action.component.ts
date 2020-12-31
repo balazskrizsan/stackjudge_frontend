@@ -8,6 +8,7 @@ import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-en
 import {ICompanyStatistic} from '../interfaces/i-company-statistic';
 import {IPaginatorItem} from '../../paginator/interfaces/i-paginator-item';
 import {Location} from '@angular/common';
+import {environment} from '../../../../environments/environment';
 
 @Component(
   {
@@ -20,7 +21,8 @@ export class ListActionComponent implements OnInit {
   companies: ICompany[] = [];
   companyStatistics: Record<number, ICompanyStatistic>;
   paginator: Array<IPaginatorItem>;
-  currentSeekId = 1;
+  currentSeekId = 0;
+  cdnHost = environment.cdn.host;
 
   public constructor(
     private route: ActivatedRoute,
