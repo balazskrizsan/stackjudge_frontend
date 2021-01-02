@@ -50,18 +50,18 @@
 <!--              </ul>-->
 <!--            </div>-->
             <div class="friend-avatar">
-              <a routerLink="{{urlGeneratorService.viewCompany(company.id)}}" class="h5 author-name">
+              <a routerLink="{{urlGeneratorService.getCompanyView(company)}}" class="h5 author-name">
               <div class="author-thumb">
                   <img
                     loading="lazy"
-                    src="{{cdnHost}}{{company.logoPath}}"
+                    src="{{urlGeneratorService.getCompanyLogo(company)}}"
                     alt=""
                   >
               </div>
               </a>
               <div class="author-content">
                 <a
-                  routerLink="{{urlGeneratorService.viewCompany(company.id)}}"
+                  routerLink="{{urlGeneratorService.getCompanyView(company)}}"
                   class="h5 author-name"
                 >{{company.name}}</a>
                 <div class="country">{{companyStatistics[company.id]?.stackCount}} stacks</div>

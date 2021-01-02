@@ -629,6 +629,7 @@ if the page has a “right panel”, add a class for BODY -- ".page-has-right-pa
 	width: 132px;
 	height: 132px;
 	background-color: #FDFBEE;
+  display: flex;
 
 	img {
 	  border-radius: 0;

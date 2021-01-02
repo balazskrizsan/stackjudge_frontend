@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Forms} from '../forms';
 import {AddressForms} from '../../address/address-forms';
 import {ICompany} from '../interfaces/i-company';
 import {CompanyService} from '../service/company-service';
-import {EnumService} from '../../../services/enum-service';
-import {ItSizeEnum} from '../enums/it-size-enum';
-import {CompanySizeEnum} from '../enums/company-size-enum';
 import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-enum';
+import {ICompanyStatistic} from '../interfaces/i-company-statistic';
+import {UrlGeneratorService} from '../service/url-generator-service';
 
 @Component(
   {
@@ -17,18 +16,13 @@ import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-en
   }
 )
 export class ViewActionComponent implements OnInit {
+  urlGeneratorService = UrlGeneratorService;
   company: ICompany = null;
-  serverSideError = false;
-  itSizes = EnumService.enumAsArrayKV(ItSizeEnum);
-  companySizes = EnumService.enumAsArrayKV(CompanySizeEnum);
-  objectKeys = Object.keys;
+  companyStatistics: ICompanyStatistic = null;
 
   public constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private companyService: CompanyService,
-    protected forms: Forms,
-    protected addressForms: AddressForms
+    private companyService: CompanyService
   ) {
   }
 
@@ -37,9 +31,8 @@ export class ViewActionComponent implements OnInit {
 
     await this.companyService.get(id, [CompanyRequestRelationsEnum.STATISTIC, CompanyRequestRelationsEnum.STACK]).subscribe(
       response => {
-        if (response.success) {
-        }
-        this.serverSideError = true;
+        this.company = response.data.company;
+        this.companyStatistics = response.data.companyStatistics;
       }
     );
   }

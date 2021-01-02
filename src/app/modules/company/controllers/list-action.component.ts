@@ -8,7 +8,6 @@ import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-en
 import {ICompanyStatistic} from '../interfaces/i-company-statistic';
 import {IPaginatorItem} from '../../paginator/interfaces/i-paginator-item';
 import {Location} from '@angular/common';
-import {environment} from '../../../../environments/environment';
 import {UrlGeneratorService} from '../service/url-generator-service';
 
 @Component(
@@ -19,12 +18,11 @@ import {UrlGeneratorService} from '../service/url-generator-service';
   }
 )
 export class ListActionComponent implements OnInit {
+  urlGeneratorService = UrlGeneratorService;
   companies: ICompany[] = [];
   companyStatistics: Record<number, ICompanyStatistic>;
   paginator: Array<IPaginatorItem>;
   currentSeekId = 0;
-  urlGeneratorService = UrlGeneratorService;
-  cdnHost = environment.cdn.host;
 
   public constructor(
     private route: ActivatedRoute,

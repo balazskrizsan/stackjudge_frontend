@@ -1,6 +1,7 @@
 import {ICompany} from './i-company';
+import {ICompanyStatistic} from './i-company-statistic';
 
 export interface IGetResponse {
   company: ICompany;
-  requestRelationIds: Array<number>;
+  companyStatistics?: ICompanyStatistic;
 }
