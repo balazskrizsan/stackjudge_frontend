@@ -11,7 +11,9 @@ import {UrlGeneratorService} from '../service/url-generator-service';
 @Component(
   {
     templateUrl: '../views/view.html',
-    styleUrls: [],
+    styles: [
+      '#company-group-list { width: 100%;}'
+    ],
     providers: [Forms, AddressForms],
   }
 )

@@ -3,86 +3,210 @@
     <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
       <div class="ui-block">
         <div class="top-header">
-          <div class="top-header-thumb" style="height: 500px"><!--@todo: fix -->
+          <div class="top-header-thumb" style="height: 300px"><!--@todo: fix -->
             <img loading="lazy" src="img/top-header1.jpg" alt="nature">
           </div>
           <div class="profile-section">
-<!--            <div class="row">-->
-<!--              <div class="col col-lg-5 col-md-5 col-sm-12 col-12">-->
-<!--                <ul class="profile-menu">-->
-<!--                  <li>-->
-<!--                    <a href="02-ProfilePage.html" class="active">Timeline</a>-->
-<!--                  </li>-->
-<!--                  <li>-->
-<!--                    <a href="05-ProfilePage-About.html">About</a>-->
-<!--                  </li>-->
-<!--                  <li>-->
-<!--                    <a href="06-ProfilePage.html">Friends</a>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </div>-->
-<!--              <div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">-->
-<!--                <ul class="profile-menu">-->
-<!--                  <li>-->
-<!--                    <a href="07-ProfilePage-Photos.html">Photos</a>-->
-<!--                  </li>-->
-<!--                  <li>-->
-<!--                    <a href="09-ProfilePage-Videos.html">Videos</a>-->
-<!--                  </li>-->
-<!--                  <li>-->
-<!--                    <div class="more">-->
-<!--                      <svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg>-->
-<!--                      <ul class="more-dropdown more-with-triangle">-->
-<!--                        <li>-->
-<!--                          <a href="#">Report Profile</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                          <a href="#">Block Profile</a>-->
-<!--                        </li>-->
-<!--                      </ul>-->
-<!--                    </div>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </div>-->
-<!--            </div>-->
+            <div class="row">
+              <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+                <ul class="profile-menu">
+                  <li>
+                    <a href="02-ProfilePage.html" class="active">Timeline</a>
+                  </li>
+                  <li>
+                    <a href="05-ProfilePage-About.html">About</a>
+                  </li>
+                  <li>
+                    <a href="06-ProfilePage.html">Friends</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
+                <ul class="profile-menu">
+                  <li>
+                    <a href="07-ProfilePage-Photos.html">Photos</a>
+                  </li>
+                  <li>
+                    <a href="09-ProfilePage-Videos.html">Videos</a>
+                  </li>
+                  <li>
+                    <div class="more">
+                      <svg class="olymp-three-dots-icon">
+                        <use xlink:href="#olymp-three-dots-icon"></use>
+                      </svg>
+                      <ul class="more-dropdown more-with-triangle">
+                        <li>
+                          <a href="#">Report Profile</a>
+                        </li>
+                        <li>
+                          <a href="#">Block Profile</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-<!--            <div class="control-block-button">-->
-<!--              <a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">-->
-<!--                <svg class="olymp-happy-face-icon"><use xlink:href="#olymp-happy-face-icon"></use></svg>-->
-<!--              </a>-->
+            <div class="control-block-button">
+              <a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
+                <svg class="olymp-happy-face-icon">
+                  <use xlink:href="#olymp-happy-face-icon"></use>
+                </svg>
+              </a>
 
-<!--              <a href="#" class="btn btn-control bg-purple">-->
-<!--                <svg class="olymp-chat-&#45;&#45;messages-icon"><use xlink:href="#olymp-chat-&#45;&#45;messages-icon"></use></svg>-->
-<!--              </a>-->
+              <a href="#" class="btn btn-control bg-purple">
+                <svg class="olymp-chat---messages-icon">
+                  <use xlink:href="#olymp-chat---messages-icon"></use>
+                </svg>
+              </a>
 
-<!--              <div class="btn btn-control bg-primary more">-->
-<!--                <svg class="olymp-settings-icon"><use xlink:href="#olymp-settings-icon"></use></svg>-->
+              <div class="btn btn-control bg-primary more">
+                <svg class="olymp-settings-icon">
+                  <use xlink:href="#olymp-settings-icon"></use>
+                </svg>
 
-<!--                <ul class="more-dropdown more-with-triangle triangle-bottom-right">-->
-<!--                  <li>-->
-<!--                    <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Profile Photo</a>-->
-<!--                  </li>-->
-<!--                  <li>-->
-<!--                    <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header Photo</a>-->
-<!--                  </li>-->
-<!--                  <li>-->
-<!--                    <a href="29-YourAccount-AccountSettings.html">Account Settings</a>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </div>-->
-<!--            </div>-->
+                <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                  <li>
+                    <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Profile Photo</a>
+                  </li>
+                  <li>
+                    <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header Photo</a>
+                  </li>
+                  <li>
+                    <a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="top-header-author">
             <a href="{{urlGeneratorService.getCompanyView(company)}}" class="author-thumb">
               <img loading="lazy" src="{{urlGeneratorService.getCompanyLogo(company)}}" alt="author">
             </a>
             <div class="author-content">
-              <a href="{{urlGeneratorService.getCompanyView(company)}}" class="h4 author-name">James Spiegel</a>
+              <a href="{{urlGeneratorService.getCompanyView(company)}}" class="h4 author-name">{{company.name}}</a>
               <div class="country">San Francisco, CA</div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col col-xl-8 order-xl-2 col-lg-8 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+      <div class="ui-block">
+        <div class="ui-block-title">
+          <h6 class="title">Hobbies and Interests</h6>
+          <a href="#" class="more">
+            <svg class="olymp-three-dots-icon">
+              <use xlink:href="#olymp-three-dots-icon"></use>
+            </svg>
+          </a>
+        </div>
+        <div class="ui-block-content">
+          <div class="row">
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+              <ul class="comments-list" id="company-group-list">
+                <li class="comment-item has-children">
+                  <div class="post__author author vcard inline-items">
+                    <img loading="lazy" src="img/avatar5-sm.jpg" alt="author">
+                    <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group name</a></div>
+                  </div>
+                  <p>review</p>
+                  <ul class="children">
+                    <li class="comment-item">
+                      <div class="post__author author vcard inline-items">
+                        <img loading="lazy" src="img/avatar8-sm.jpg" alt="author">
+                        <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group name</a></div>
+                      </div>
+                      <p>review</p>
+                      <ul class="children">
+                        <li class="comment-item">
+                          <div class="post__author author vcard inline-items">
+                            <img loading="lazy" src="img/avatar8-sm.jpg" alt="author">
+                            <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group name</a>
+                            </div>
+                          </div>
+                          <p>review</p>
+                        </li>
+                        <li class="comment-item">
+                          <div class="post__author author vcard inline-items">
+                            <img loading="lazy" src="img/avatar8-sm.jpg" alt="author">
+                            <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group name</a>
+                            </div>
+                          </div>
+                          <p>review</p>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="comment-item has-children">
+                  <div class="post__author author vcard inline-items">
+                    <img loading="lazy" src="img/avatar5-sm.jpg" alt="author">
+                    <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group name</a></div>
+                  </div>
+                  <p>review</p>
+                  <ul class="children">
+                    <li class="comment-item">
+                      <div class="post__author author vcard inline-items">
+                        <img loading="lazy" src="img/avatar8-sm.jpg" alt="author">
+                        <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group name</a></div>
+                      </div>
+                      <p>review</p>
+                      <ul class="children">
+                        <li class="comment-item">
+                          <div class="post__author author vcard inline-items">
+                            <img loading="lazy" src="img/avatar8-sm.jpg" alt="author">
+                            <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group name</a>
+                            </div>
+                          </div>
+                          <p>review</p>
+                        </li>
+                        <li class="comment-item">
+                          <div class="post__author author vcard inline-items">
+                            <img loading="lazy" src="img/avatar8-sm.jpg" alt="author">
+                            <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group name</a>
+                            </div>
+                          </div>
+                          <p>review</p>
+                          <ul class="children">
+                            <li class="comment-item">
+                              <div class="post__author author vcard inline-items">
+                                <img loading="lazy" src="img/avatar8-sm.jpg" alt="author">
+                                <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group
+                                  name</a>
+                                </div>
+                              </div>
+                              <p>review</p>
+                            </li>
+                            <li class="comment-item">
+                              <div class="post__author author vcard inline-items">
+                                <img loading="lazy" src="img/avatar8-sm.jpg" alt="author">
+                                <div class="author-date"><a class="h6 post__author-name fn" href="#">Stack/Group
+                                  name</a>
+                                </div>
+                              </div>
+                              <p>review</p>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-xl-4 order-xl-1 col-lg-4 order-lg-1 col-md-12 order-md-2 col-sm-12 col-12">
+      qwe asd 123
     </div>
   </div>
 </div>
