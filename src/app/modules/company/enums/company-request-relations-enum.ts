@@ -1,6 +1,6 @@
 export enum CompanyRequestRelationsEnum {
   STATISTIC = 1,
-  STACK,
+  GROUP,
   REFACTOR,
   PAGINATOR
 }

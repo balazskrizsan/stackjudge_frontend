@@ -31,7 +31,7 @@ export class ViewActionComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
 
-    await this.companyService.get(id, [CompanyRequestRelationsEnum.STATISTIC, CompanyRequestRelationsEnum.STACK]).subscribe(
+    await this.companyService.get(id, [CompanyRequestRelationsEnum.STATISTIC, CompanyRequestRelationsEnum.GROUP]).subscribe(
       response => {
         this.company = response.data.company;
         this.companyStatistics = response.data.companyStatistics;
