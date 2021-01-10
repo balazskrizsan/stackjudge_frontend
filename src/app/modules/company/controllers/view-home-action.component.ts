@@ -19,7 +19,7 @@ import {ViewDataRegistryService} from '../service/view-data-registry-service';
     providers: [Forms, AddressForms],
   }
 )
-export class ViewHomeActionComponent implements OnInit{
+export class ViewHomeActionComponent {
   urlGeneratorService = UrlService;
   company: ICompany = null;
   companyStatistics: ICompanyStatistic = null;
@@ -29,9 +29,6 @@ export class ViewHomeActionComponent implements OnInit{
     private router: Router,
     private viewDataRegistryService: ViewDataRegistryService
   ) {
-  }
-
-  ngOnInit(): void {
     this.viewDataRegistryService.get().subscribe(res => {
       this.company = res.company;
       this.companyGroups = res.companyGroups;
