@@ -6,12 +6,13 @@ import {ICompany} from '../interfaces/i-company';
 import {CompanyService} from '../service/company-service';
 import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-enum';
 import {ICompanyStatistic} from '../interfaces/i-company-statistic';
-import {UrlGeneratorService} from '../service/url-generator-service';
+import {UrlService} from '../service/url-service';
 import {IRecursiveGroupTree} from '../interfaces/i-recursive-group-tree';
+import {ViewDataRegistryService} from '../service/view-data-registry-service';
 
 @Component(
   {
-    templateUrl: '../views/view.html',
+    templateUrl: '../views/view-index.html',
     styles: [
       '#company-group-list ul, #company-group-list ul.children { width: 100%; padding-left: 20px; padding-right: 0; margin-right: 0; margin-left: 0}',
       '#company-group-list ul li { width: 100%; padding-right: 0; margin-right: 0; margin-left: 0}',
@@ -20,15 +21,17 @@ import {IRecursiveGroupTree} from '../interfaces/i-recursive-group-tree';
     providers: [Forms, AddressForms],
   }
 )
-export class ViewActionComponent implements OnInit {
-  urlGeneratorService = UrlGeneratorService;
+export class ViewIndexActionComponent implements OnInit {
+  urlGeneratorService = UrlService;
   company: ICompany = null;
   companyStatistics: ICompanyStatistic = null;
   companyGroups: Array<IRecursiveGroupTree> = null;
+  subPageComponent: any = null;
 
   public constructor(
     private route: ActivatedRoute,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private viewDataRegistryService: ViewDataRegistryService
   ) {
   }
 
@@ -40,7 +43,25 @@ export class ViewActionComponent implements OnInit {
         this.company = response.data.company;
         this.companyStatistics = response.data.companyStatistics;
         this.companyGroups = response.data.companyGroups;
+
+        this.viewDataRegistryService.next({
+          company: this.company,
+          companyGroups: this.companyGroups,
+          companyStatistic: this.companyStatistics
+        });
       }
     );
+  }
+
+  routeActivated(componentRef: any): void {
+    this.subPageComponent = componentRef;
+  }
+
+  isActiveUri(currentUri: string): boolean {
+    if (null === this.subPageComponent) {
+      return false;
+    }
+
+    return this.subPageComponent.router.routerState.snapshot.url.split('/')[4] || '' === currentUri;
   }
 }

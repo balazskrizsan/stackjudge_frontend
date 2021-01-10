@@ -13,6 +13,7 @@ import {HttpService} from './services/http-service';
 import {LocalStorageService} from './services/local-storage-services';
 import {LeftMenuModule} from './modules/left-menu/left-menu.module';
 import {PaginatorModule} from './modules/paginator/paginator.module';
+import {ViewDataRegistryService} from './modules/company/service/view-data-registry-service';
 
 @NgModule(
   {
@@ -38,7 +39,8 @@ import {PaginatorModule} from './modules/paginator/paginator.module';
       HttpService,
       LocalStorageService,
       CompanyService,
-      CompanyRepository
+      CompanyRepository,
+      ViewDataRegistryService
     ],
     bootstrap: [AppComponent],
   }

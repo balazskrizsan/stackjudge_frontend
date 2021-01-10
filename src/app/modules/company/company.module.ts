@@ -6,13 +6,15 @@ import {CreateActionComponent} from './controllers/create-action.component';
 import {AddressFormComponentModule} from '../address/address-form.component.module';
 import {LeftMenuModule} from '../left-menu/left-menu.module';
 import {ListActionComponent} from './controllers/list-action.component';
-import {ViewActionComponent} from './controllers/view-action.component';
+import {ViewHomeActionComponent} from './controllers/view-home-action.component';
 import {PaginatorModule} from '../paginator/paginator.module';
+import {ViewStackActionComponent} from './controllers/view-stack-action.component';
+import {ViewIndexActionComponent} from './controllers/view-index-action.component';
 
 @NgModule(
   {
     imports: [CommonModule, RoutingModule, SharedModule, AddressFormComponentModule, LeftMenuModule, PaginatorModule],
-    declarations: [CreateActionComponent, ListActionComponent, ViewActionComponent],
+    declarations: [CreateActionComponent, ListActionComponent, ViewIndexActionComponent, ViewHomeActionComponent, ViewStackActionComponent],
   }
 )
 export class CompanyModule {
