@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   backend: {
     api: {
-      host: 'http://localhost:8181/'
+      host: 'https://stack-judge-prod.herokuapp.com/'
     }
   },
   cdn: {
