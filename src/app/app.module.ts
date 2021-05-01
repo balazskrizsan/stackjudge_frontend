@@ -5,7 +5,6 @@ import {CompanyRepository} from './modules/company/repositories/company-reposito
 import {CompanyService} from './modules/company/service/company-service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PreloadAllModules, RouterModule} from '@angular/router';
-import {CompanyModule} from './modules/company/company.module';
 import {AddressFormComponentModule} from './modules/address/address-form.component.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
@@ -26,7 +25,8 @@ import {ViewDataRegistryService} from './modules/company/service/view-data-regis
       HttpClientModule,
       RouterModule.forRoot(
         [
-          {path: 'company', loadChildren: () => CompanyModule},
+          {path: 'company', loadChildren: () => import('./modules/company/company.module').then(m => m.CompanyModule)},
+          {path: 'account', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule)}
         ],
         {preloadingStrategy: PreloadAllModules}
       ),
