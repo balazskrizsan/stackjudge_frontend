@@ -4,7 +4,11 @@ import {IJwt} from '../interfaces/i-jwt';
 
 @Injectable()
 export class AccountRepository {
-  private jwtKey = 'jwt';
+  private static readonly jwtKey = 'jwt';
+  private static readonly jwtUserIdIndex = 0;
+  private static readonly jwtUsernameIndex = 1;
+
+
   private parsedJwt: null | IJwt = null;
 
   public constructor(private localStorageService: LocalStorageService) {
@@ -12,11 +16,11 @@ export class AccountRepository {
 
   public storeJwt(token: string): void {
     this.parsedJwt = AccountRepository.parseJwt(token);
-    this.localStorageService.set(this.jwtKey, token);
+    this.localStorageService.set(AccountRepository.jwtKey, token);
   }
 
   private getJwt(): string {
-    return this.localStorageService.get(this.jwtKey);
+    return this.localStorageService.get(AccountRepository.jwtKey);
   }
 
   private static parseJwt(token: string): IJwt {
@@ -39,11 +43,11 @@ export class AccountRepository {
   };
 
   public getId(): string {
-    return this.getSubSegment(0);
+    return this.getSubSegment(AccountRepository.jwtUserIdIndex);
   }
 
   public getUsername(): string {
-    return this.getSubSegment(1);
+    return this.getSubSegment(AccountRepository.jwtUsernameIndex);
   }
 
   private getSubSegment(segmentId: number): string {
