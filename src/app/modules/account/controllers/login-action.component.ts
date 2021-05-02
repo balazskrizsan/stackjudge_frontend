@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {AccountService} from '../services/account-service';
 
 @Component(
   {
@@ -8,13 +9,17 @@ import {ActivatedRoute} from '@angular/router';
     providers: [],
   }
 )
-export class LoginActionComponent implements OnInit{
-  public constructor(private activatedRoute: ActivatedRoute) {
+export class LoginActionComponent implements OnInit {
+  public constructor(
+    private activatedRoute: ActivatedRoute,
+    private accountService: AccountService
+  ) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      console.log(params.jwt);
+      //@todo: validate params.jwt
+      this.accountService.storeJwt(params.jwt);
     });
   }
 }
