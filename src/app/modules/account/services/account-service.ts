@@ -12,4 +12,8 @@ export class AccountService {
     console.log(this.accountRepository.getUsername());
     console.log(this.accountRepository.getId());
   }
+
+  public isLoggedIn(): boolean {
+    return this.accountRepository.isLoggedIn();
+  }
 }

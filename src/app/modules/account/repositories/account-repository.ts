@@ -39,6 +39,7 @@ export class AccountRepository {
     } catch (e) {
       console.error('JWT decompile error:', e.message);
       //@todo: handle error
+      return null;
     }
   };
 
@@ -50,9 +51,13 @@ export class AccountRepository {
     return this.getSubSegment(AccountRepository.jwtUsernameIndex);
   }
 
+  isLoggedIn() {
+    return this.parsedJwt !== null;
+  }
+
   private getSubSegment(segmentId: number): string {
     if (this.parsedJwt === null) {
-      this.parsedJwt = AccountRepository.parseJwt(this.getJwt())
+      this.parsedJwt = AccountRepository.parseJwt(this.getJwt());
     }
 
     return this.parsedJwt.sub[segmentId];
