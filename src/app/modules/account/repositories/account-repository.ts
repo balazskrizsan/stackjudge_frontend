@@ -43,7 +43,7 @@ export class AccountRepository {
     }
   };
 
-  public getId(): string {
+  public getUserId(): string {
     return this.getSubSegment(AccountRepository.jwtUserIdIndex);
   }
 

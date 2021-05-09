@@ -9,11 +9,19 @@ export class AccountService {
 
   public storeJwt(token: string): void {
     this.accountRepository.storeJwt(token);
-    console.log(this.accountRepository.getUsername());
-    console.log(this.accountRepository.getId());
+    console.log();
+    console.log(this.accountRepository.getUserId());
   }
 
   public isLoggedIn(): boolean {
     return this.accountRepository.isLoggedIn();
+  }
+
+  public getUsername(): string {
+    return this.accountRepository.getUsername();
+  }
+
+  public getUserId(): string {
+    return this.accountRepository.getUserId();
   }
 }

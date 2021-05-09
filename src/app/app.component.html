@@ -1094,7 +1094,7 @@
         </div>
       </div>
 
-      <div class="author-page author vcard inline-items more">
+      <div class="author-page author vcard inline-items more" *ngIf="getAccountService().isLoggedIn()">
         <div class="author-thumb">
           <img alt="author" src="img/author-page.jpg" class="avatar">
           <span class="icon-status online"></span>
@@ -1205,9 +1205,9 @@
         </div>
         <a href="02-ProfilePage.html" class="author-name fn">
           <div class="author-title">
-            James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="#olymp-dropdown-arrow-icon"></use></svg>
+            {{getAccountService().getUsername()}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="#olymp-dropdown-arrow-icon"></use></svg>
           </div>
-          <span class="author-subtitle">SPACE COWBOY</span>
+<!--          <span class="author-subtitle">SPACE COWBOY</span>-->
         </a>
       </div>
 
