@@ -9,8 +9,6 @@ export class AccountService {
 
   public storeJwt(token: string): void {
     this.accountRepository.storeJwt(token);
-    console.log();
-    console.log(this.accountRepository.getUserId());
   }
 
   public isLoggedIn(): boolean {
