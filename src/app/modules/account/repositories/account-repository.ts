@@ -23,6 +23,10 @@ export class AccountRepository {
     return this.localStorageService.get(AccountRepository.jwtKey);
   }
 
+  public removeJwt(): void {
+    this.localStorageService.delete(AccountRepository.jwtKey);
+  }
+
   private static parseJwt(token: string): IJwt {
     try {
       const base64Url = token.split('.')[1];

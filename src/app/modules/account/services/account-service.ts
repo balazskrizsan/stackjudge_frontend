@@ -22,4 +22,8 @@ export class AccountService {
   public getUserId(): string {
     return this.accountRepository.getUserId();
   }
+
+  public logout(): void {
+    this.accountRepository.removeJwt();
+  }
 }
