@@ -4,6 +4,10 @@ import {Injectable} from '@angular/core';
 export class LocalStorageService {
   private prefix = 'ls';
 
+  private deriveKey(key: string): string {
+    return `${this.prefix}${key}`;
+  }
+
   public set(key: string, value: any): boolean {
     if (value === undefined) {
       value = null;
@@ -19,10 +23,6 @@ export class LocalStorageService {
     return true;
   }
 
-  public deriveKey(key: string): string {
-    return `${this.prefix}${key}`;
-  }
-
   public get<T>(key: string): T {
     const item = localStorage.getItem(this.deriveKey(key));
 
@@ -35,5 +35,9 @@ export class LocalStorageService {
     } catch (e) {
       return null;
     }
+  }
+
+  public delete(key: string): void {
+    localStorage.removeItem(this.deriveKey(key));
   }
 }
