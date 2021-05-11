@@ -1210,6 +1210,9 @@
 <!--          <span class="author-subtitle">SPACE COWBOY</span>-->
         </a>
       </div>
+      <div class="author-page author vcard inline-items more" *ngIf="!getAccountService().isLoggedIn()">
+        <a href="{{fbLoginAndReg}}">login</a>
+      </div>
 
     </div>
   </div>

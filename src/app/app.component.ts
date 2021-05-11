@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AccountService} from './modules/account/services/account-service';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import {AccountService} from './modules/account/services/account-service';
   providers: [AccountService]
 })
 export class AppComponent {
+  fbLoginAndReg = environment.backend.account.fbLoginAndReg;
+
   public constructor(public accountService: AccountService) {
   }
 

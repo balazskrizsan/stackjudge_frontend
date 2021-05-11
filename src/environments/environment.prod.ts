@@ -3,6 +3,9 @@ export const environment = {
   backend: {
     api: {
       host: 'https://stack-judge-prod.herokuapp.com/'
+    },
+    account: {
+      fbLoginAndReg: 'https://stack-judge-prod.herokuapp.com/'
     }
   },
   cdn: {

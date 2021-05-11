@@ -3,6 +3,9 @@ export const environment = {
   backend: {
     api: {
       host: 'https://localhost:8181/'
+    },
+    account: {
+      fbLoginAndReg: 'https://localhost:8181/account/facebook/registration-and-login'
     }
   },
   cdn: {
