@@ -11,7 +11,7 @@ export class LocalStorageService {
   public set(key: string, value: any): boolean {
     if (value === undefined) {
       value = null;
-    } else {
+    } else if (typeof value !== 'string') {
       value = JSON.stringify(value);
     }
 
