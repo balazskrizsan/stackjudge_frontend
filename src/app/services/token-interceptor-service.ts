@@ -1,46 +1,48 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Inject, Injectable, Injector} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-// import {AuthService}                                          from '../modules/auth/services/auth-service';
+// import 'rxjs/add/observable/throw';
+// import 'rxjs/add/operator/catch';
 import {LocalStorageService} from './local-storage-services';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
+import {AccountService} from '../modules/account/services/account-service';
 
 @Injectable()
-@Inject(Router)
-@Inject(LocalStorageService)
 export class TokenInterceptorService implements HttpInterceptor {
   constructor(
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private accountService: AccountService
   ) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-    if (this.localStorageService.get<string>('auth-token')) {
-      req = req.clone(
-        {
-          setHeaders: {
-            'Authorization': this.localStorageService.get('auth-token')
-          }
-        });
+    const jwt = this.accountService.getJwt();
+
+    if (jwt !== '') {
+      req = req.clone({
+        setHeaders: {
+          'Authorization': jwt
+        }
+      });
     }
 
-    return next
-      .handle(req)
-      .catch(
-        (error, caught) => {
-          if (401 === error.status || 403 === error.status) {
-            this.handle401and403Error();
-
-            return Observable.of(error.message);
-          }
-
-          return Observable.throw(error);
-        }
-      ) as any;
+    return next.handle(req);
+    //@todo: add error handling
+    // return next
+    //   .handle(req)
+    //   .catch(
+    //     (error, caught) => {
+    //       if (401 === error.status || 403 === error.status) {
+    //         this.handle401and403Error();
+    //
+    //         return Observable.of(error.message);
+    //       }
+    //
+    //       return Observable.throw(error);
+    //     }
+    //   ) as any;
   }
 
   private handle401and403Error(): void {

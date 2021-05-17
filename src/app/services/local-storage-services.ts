@@ -23,7 +23,7 @@ export class LocalStorageService {
     return true;
   }
 
-  public get<T>(key: string): T {
+  public get(key: string): string|null {
     const item = localStorage.getItem(this.deriveKey(key));
 
     if (!item || item === 'null') {
@@ -31,7 +31,7 @@ export class LocalStorageService {
     }
 
     try {
-      return JSON.parse(item);
+      return item;
     } catch (e) {
       return null;
     }

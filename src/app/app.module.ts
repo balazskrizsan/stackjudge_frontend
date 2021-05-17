@@ -7,7 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PreloadAllModules, RouterModule} from '@angular/router';
 import {AddressFormComponentModule} from './modules/address/address-form.component.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpService} from './services/http-service';
 import {LocalStorageService} from './services/local-storage-services';
 import {LeftMenuModule} from './modules/left-menu/left-menu.module';
@@ -15,6 +15,7 @@ import {PaginatorModule} from './modules/paginator/paginator.module';
 import {ViewDataRegistryService} from './modules/company/service/view-data-registry-service';
 import {AccountService} from './modules/account/services/account-service';
 import {AccountRepository} from './modules/account/repositories/account-repository';
+import {TokenInterceptorService} from './services/token-interceptor-service';
 
 @NgModule(
   {
@@ -44,7 +45,12 @@ import {AccountRepository} from './modules/account/repositories/account-reposito
       CompanyRepository,
       AccountService,
       AccountRepository,
-      ViewDataRegistryService
+      ViewDataRegistryService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptorService,
+        multi: true
+      }
     ],
     bootstrap: [AppComponent],
   }

@@ -19,8 +19,8 @@ export class AccountRepository {
     this.localStorageService.set(AccountRepository.jwtKey, token);
   }
 
-  private getJwt(): string {
-    return this.localStorageService.get(AccountRepository.jwtKey);
+  public getJwt(): string {
+    return this.localStorageService.get(AccountRepository.jwtKey) || '';
   }
 
   public removeJwt(): void {

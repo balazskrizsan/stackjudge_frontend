@@ -11,6 +11,10 @@ export class AccountService {
     this.accountRepository.storeJwt(token);
   }
 
+  public getJwt(): string {
+    return this.accountRepository.getJwt();
+  }
+
   public isLoggedIn(): boolean {
     return this.accountRepository.isLoggedIn();
   }
