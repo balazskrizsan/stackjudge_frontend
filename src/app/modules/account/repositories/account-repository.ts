@@ -56,14 +56,20 @@ export class AccountRepository {
   }
 
   isLoggedIn() {
+    this.updateParsedJwt();
+
     return this.parsedJwt !== null;
   }
 
   private getSubSegment(segmentId: number): string {
+    this.updateParsedJwt();
+
+    return this.parsedJwt.sub[segmentId];
+  }
+
+  private updateParsedJwt(): void {
     if (this.parsedJwt === null) {
       this.parsedJwt = AccountRepository.parseJwt(this.getJwt());
     }
-
-    return this.parsedJwt.sub[segmentId];
   }
 }
