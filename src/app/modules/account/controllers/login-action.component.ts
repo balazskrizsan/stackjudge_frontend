@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from '../services/account-service';
 
 @Component(
@@ -11,6 +11,7 @@ import {AccountService} from '../services/account-service';
 )
 export class LoginActionComponent implements OnInit {
   public constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private accountService: AccountService
   ) {
@@ -20,6 +21,8 @@ export class LoginActionComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       //@todo: validate params.jwt
       this.accountService.storeJwt(params.jwt);
+
+      this.router.navigate(['/']);
     });
   }
 }
