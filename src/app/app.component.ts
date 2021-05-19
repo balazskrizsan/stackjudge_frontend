@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from './modules/account/services/account-service';
 import {environment} from '../environments/environment';
+import {IUser} from './modules/account/interfaces/i-user';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,15 @@ import {environment} from '../environments/environment';
   styleUrls: ['./app.component.scss'],
   providers: [AccountService]
 })
-export class AppComponent {
-  fbLoginAndReg = environment.backend.account.fbLoginAndReg;
+export class AppComponent implements OnInit{
+  fbLoginAndRegistrationUrl = environment.backend.account.fbLoginAndRegistrationUrl;
+  user: IUser|null;
 
   public constructor(public accountService: AccountService) {
   }
 
-  getAccountService(): AccountService {
-    return this.accountService;
+  ngOnInit(): void {
+    this.accountService.getStateAsObservable$().subscribe(user =>  this.user = user);
+    this.accountService.refresh();
   }
 }

@@ -1,33 +1,120 @@
 import {Injectable} from '@angular/core';
 import {AccountRepository} from '../repositories/account-repository';
+import {AccountState} from '../states/account-state';
+import {IJwt} from '../interfaces/i-jwt';
+import {IUser} from '../interfaces/i-user';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class AccountService {
+  private static readonly jwtUserIdIndex = 0;
+  private static readonly jwtUsernameIndex = 1;
 
-  public constructor(private accountRepository: AccountRepository) {
+  public constructor(
+    private accountRepository: AccountRepository,
+    private accountState: AccountState
+  ) {
   }
 
-  public storeJwt(token: string): void {
-    this.accountRepository.storeJwt(token);
+  public getStateAsObservable$(): Observable<IUser | null> {
+    return this.accountState.getAsObservable$();
   }
 
   public getJwt(): string {
     return this.accountRepository.getJwt();
   }
 
-  public isLoggedIn(): boolean {
-    return this.accountRepository.isLoggedIn();
+  public storeJwt(token: string): void {
+    this.accountRepository.storeJwt(token);
+    this.updateState(token);
   }
 
-  public getUsername(): string {
-    return this.accountRepository.getUsername();
+  public refresh(): void {
+    this.updateState(this.accountRepository.getJwt());
   }
 
-  public getUserId(): string {
-    return this.accountRepository.getUserId();
+  private updateState(token: string): void {
+    const parsedJwt: IJwt = AccountService.parseJwt(token);
+
+    if (null === parsedJwt) {
+      this.accountState.setState(null);
+      //@todo: display error
+
+      return;
+    }
+
+    this.accountState.setState({
+      userId: parsedJwt.sub ? this.getUserIdFromJwtSub(parsedJwt.sub) : 0,
+      username: parsedJwt.sub ? this.getUsernameFromJwtSub(parsedJwt.sub) : '',
+      jwt: token,
+      parsedJwt: parsedJwt
+    });
+  }
+
+  private static parseJwt(token: string): IJwt {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = JSON.parse(
+        decodeURIComponent(
+          atob(base64).split('').map(function(c) {
+              return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }
+          ).join('')
+        )
+      );
+
+      jsonPayload.sub = jsonPayload.sub.split(',');
+
+      return jsonPayload;
+    } catch (e) {
+      console.error('JWT decompile error:', e.message);
+      return null;
+    }
+  };
+
+  private getUsernameFromJwtSub(sub: Array<string>): string {
+    return sub[AccountService.jwtUsernameIndex];
+  }
+
+  private getUserIdFromJwtSub(sub: Array<string>): number {
+    return Number(sub[AccountService.jwtUserIdIndex]);
+  }
+
+  public isLoggedIn(): Promise<boolean> {
+    return new Promise<boolean>(
+      resolve => {
+        this.accountState.getAsObservable$().subscribe((user: IUser) => {
+          !user ? resolve(false) : resolve(true);
+        });
+      }
+    );
+  }
+
+  public getUsername(): Promise<string> {
+    return new Promise<string>(
+      resolve => {
+        this.accountState.getAsObservable$().subscribe((user: IUser) => {
+          !user.username ? resolve('') : resolve(user.username);
+          //@todo: error handling
+        });
+      }
+    );
+  }
+
+  public getUserId(): Promise<number> {
+    return new Promise<number>(
+      resolve => {
+        this.accountState.getAsObservable$().subscribe((user: IUser) => {
+          !user.userId ? resolve(0) : resolve(Number(user.userId));
+          //@todo: error handling
+        });
+      }
+    );
   }
 
   public logout(): void {
     this.accountRepository.removeJwt();
+    this.accountState.setState(null);
   }
 }

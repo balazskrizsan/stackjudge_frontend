@@ -16,6 +16,7 @@ import {ViewDataRegistryService} from './modules/company/service/view-data-regis
 import {AccountService} from './modules/account/services/account-service';
 import {AccountRepository} from './modules/account/repositories/account-repository';
 import {TokenInterceptorService} from './services/token-interceptor-service';
+import {AccountState} from './modules/account/states/account-state';
 
 @NgModule(
   {
@@ -45,6 +46,7 @@ import {TokenInterceptorService} from './services/token-interceptor-service';
       CompanyRepository,
       AccountService,
       AccountRepository,
+      AccountState,
       ViewDataRegistryService,
       {
         provide: HTTP_INTERCEPTORS,
