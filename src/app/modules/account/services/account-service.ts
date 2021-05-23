@@ -69,6 +69,7 @@ export class AccountService {
       return jsonPayload;
     } catch (e) {
       console.error('JWT decompile error:', e.message);
+
       return null;
     }
   };
@@ -83,33 +84,27 @@ export class AccountService {
 
   public isLoggedIn(): Promise<boolean> {
     return new Promise<boolean>(
-      resolve => {
-        this.accountState.getAsObservable$().subscribe((user: IUser) => {
-          !user ? resolve(false) : resolve(true);
-        });
-      }
+      resolve => this.accountState
+        .getAsObservable$()
+        .subscribe((user: IUser) => user ? resolve(true) : resolve(false))
     );
   }
 
   public getUsername(): Promise<string> {
     return new Promise<string>(
-      resolve => {
-        this.accountState.getAsObservable$().subscribe((user: IUser) => {
-          !user.username ? resolve('') : resolve(user.username);
-          //@todo: error handling
-        });
-      }
+      resolve => this.accountState
+        .getAsObservable$()
+        .subscribe((user: IUser) => user.username ? resolve(user.username) : resolve(''))
+      //@todo: error handling
     );
   }
 
   public getUserId(): Promise<number> {
     return new Promise<number>(
-      resolve => {
-        this.accountState.getAsObservable$().subscribe((user: IUser) => {
-          !user.userId ? resolve(0) : resolve(Number(user.userId));
-          //@todo: error handling
-        });
-      }
+      resolve => this.accountState
+        .getAsObservable$()
+        .subscribe((user: IUser) => user.userId ? resolve(Number(user.userId)) : resolve(0))
+      //@todo: error handling
     );
   }
 
