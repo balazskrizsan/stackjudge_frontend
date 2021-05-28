@@ -23,13 +23,13 @@ export class TokenInterceptorService implements HttpInterceptor {
     if (jwt !== '') {
       req = req.clone({
         setHeaders: {
-          'Authorization': jwt
+          Authorization: 'Bearer ' + jwt
         }
       });
     }
 
     return next.handle(req);
-    //@todo: add error handling
+    // todo: add error handling
     // return next
     //   .handle(req)
     //   .catch(
