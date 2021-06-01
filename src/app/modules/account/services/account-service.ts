@@ -35,11 +35,11 @@ export class AccountService {
   }
 
   private updateState(token: string): void {
-    const parsedJwt: IJwt = AccountService.parseJwt(token);
+    const parsedJwt: IJwt = this.parseJwt(token);
 
     if (null === parsedJwt) {
       this.accountState.setState(null);
-      //@todo: display error
+      // @todo: display error
 
       return;
     }
@@ -52,16 +52,16 @@ export class AccountService {
     });
   }
 
-  private static parseJwt(token: string): IJwt {
+  private parseJwt(token: string): IJwt {
     try {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
       const jsonPayload = JSON.parse(
         decodeURIComponent(
-          atob(base64).split('').map(function(c) {
-              return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }
-          ).join('')
+          atob(base64)
+            .split('')
+            .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+            .join('')
         )
       );
 
@@ -100,7 +100,7 @@ export class AccountService {
       resolve => this.accountState
         .getAsObservable$()
         .subscribe((user: IUser) => user.username ? resolve(user.username) : resolve(''))
-      //@todo: error handling
+      // @todo: error handling
     );
   }
 
@@ -109,7 +109,7 @@ export class AccountService {
       resolve => this.accountState
         .getAsObservable$()
         .subscribe((user: IUser) => user.userId ? resolve(Number(user.userId)) : resolve(0))
-      //@todo: error handling
+      // @todo: error handling
     );
   }
 

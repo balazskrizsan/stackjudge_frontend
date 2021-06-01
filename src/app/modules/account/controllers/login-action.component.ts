@@ -19,7 +19,7 @@ export class LoginActionComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      //@todo: validate params.jwt
+      // @todo: validate params.jwt
       this.accountService.storeJwt(params.jwt);
 
       this.router.navigate(['/']);
