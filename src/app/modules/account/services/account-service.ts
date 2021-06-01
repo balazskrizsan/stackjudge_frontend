@@ -47,8 +47,9 @@ export class AccountService {
     this.accountState.setState({
       userId: parsedJwt.sub ? this.getUserIdFromJwtSub(parsedJwt.sub) : 0,
       username: parsedJwt.sub ? this.getUsernameFromJwtSub(parsedJwt.sub) : '',
+      profilePictureUrl: parsedJwt.sub ? this.getProfilePictureUrlFromJwtSub(parsedJwt.sub) : '',
       jwt: token,
-      parsedJwt: parsedJwt
+      parsedJwt
     });
   }
 
