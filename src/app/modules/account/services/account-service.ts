@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 export class AccountService {
   private static readonly jwtUserIdIndex = 0;
   private static readonly jwtUsernameIndex = 1;
+  private static readonly jwtProfilePictureUrlIndex = 2;
 
   public constructor(
     private accountRepository: AccountRepository,
@@ -72,14 +73,18 @@ export class AccountService {
 
       return null;
     }
-  };
+  }
+
+  private getUserIdFromJwtSub(sub: Array<string>): number {
+    return Number(sub[AccountService.jwtUserIdIndex]);
+  }
 
   private getUsernameFromJwtSub(sub: Array<string>): string {
     return sub[AccountService.jwtUsernameIndex];
   }
 
-  private getUserIdFromJwtSub(sub: Array<string>): number {
-    return Number(sub[AccountService.jwtUserIdIndex]);
+  private getProfilePictureUrlFromJwtSub(sub: Array<string>): string {
+    return sub[AccountService.jwtProfilePictureUrlIndex];
   }
 
   public isLoggedIn(): Promise<boolean> {
