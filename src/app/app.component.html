@@ -763,8 +763,6 @@
       </div>
     </form>
 
-    <a href="#" class="link-find-friend">Find Friends</a>
-
     <div class="control-block">
 
       <div class="control-icon more has-items">
@@ -1173,13 +1171,13 @@
         </div>
         <a href="02-ProfilePage.html" class="author-name fn">
           <div class="author-title">
-            {{user.username}}]<svg class="olymp-dropdown-arrow-icon"><use xlink:href="#olymp-dropdown-arrow-icon"></use></svg>
+            {{user.username}}<svg class="olymp-dropdown-arrow-icon"><use xlink:href="#olymp-dropdown-arrow-icon"></use></svg>
           </div>
 <!--          <span class="author-subtitle">SPACE COWBOY</span>-->
         </a>
       </div>
       <div class="author-page author vcard inline-items more" *ngIf="user === null">
-        <a href="{{fbLoginAndRegistrationUrl}}">login</a>
+        <a href="{{fbLoginAndRegistrationUrl}}" class="btn btn-primary btn-sm">Login</a>
       </div>
 
     </div>
