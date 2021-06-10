@@ -2,7 +2,9 @@
   <div class="row">
 
     <!-- LEFT MENU -->
-    <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+    <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12"
+         style="min-height: 500px"
+    ><!-- @todo: fix later -->
       <div class="friend-item friend-groups create-group h-75 mb-3">
         <a routerLink="/company/create" class="full-block" data-toggle="modal" data-target="#create-friend-group-1"></a>
         <div class="content">
@@ -28,7 +30,8 @@
     <div
       *ngFor="let company of companies"
       class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-3"
-    >
+      style="min-height: 500px"
+    ><!-- @todo: fix later -->
       <div class="ui-block h-100 mb-0">
         <div class="friend-item friend-groups">
           <div class="friend-item-content">
