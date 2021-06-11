@@ -1,4 +1,4 @@
-<div class="container" id="company-group-list">
+<div class="container" id="company-group-list" *ngIf="company !== null">
   <div class="row">
     <div class="col col-xl-8 order-xl-2 col-lg-8 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
       <div class="ui-block">
@@ -49,8 +49,88 @@
         </div>
       </div>
     </div>
-    <div class="col col-xl-4 order-xl-1 col-lg-4 order-lg-1 col-md-12 order-md-2 col-sm-12 col-12">
-      qwe asd 123
+
+    <div class="col col-xl-4 order-xl-1 col-lg-4 order-lg-1 col-md-12 order-md-2 col-sm-12 col-12" id="company-info">
+      <div class="ui-block">
+        <div class="ui-block-title">
+          <h6 class="title">Company Info</h6>
+        </div>
+        <div class="ui-block-content">
+          <ul class="widget w-personal-info">
+            <li>
+              <span class="title">Company Name</span>
+              <span class="text">{{company.name}}</span>
+            </li>
+            <li>
+              <span class="title">HQ Address</span>
+              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
+            </li>
+            <li>
+              <span class="title">Office Addresses</span>
+              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
+            </li>
+            <li>
+              <span class="title">&nbsp;</span>
+              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
+            </li>
+            <li>
+              <span class="title">&nbsp;</span>
+              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
+            </li>
+            <li>
+              <span class="title">&nbsp;</span>
+              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
+            </li>
+          </ul>
+        </div>
+        <div class="ui-block-title">
+          <h6 class="title">Company Statistic</h6>
+        </div>
+
+        <div class="ui-block-content">
+          <div class="chart-with-statistic">
+            <ul class="statistics-list-count">
+              <li>
+                <div class="points">
+									<span>
+										<span class="statistics-point bg-purple"></span>
+										Stacks
+									</span>
+                </div>
+                <div class="count-stat">{{companyStatistics.stackCount}}</div>
+              </li>
+              <li>
+                <div class="points">
+									<span>
+										<span class="statistics-point bg-breez"></span>
+										Teams
+									</span>
+                </div>
+                <div class="count-stat">{{companyStatistics.teamsCount}}</div>
+              </li>
+              <li>
+                <div class="points">
+									<span>
+										<span class="statistics-point bg-primary"></span>
+										Reviews
+									</span>
+                </div>
+                <div class="count-stat">{{companyStatistics.reviewCount}}</div>
+              </li>
+              <li>
+                <div class="points">
+									<span>
+										<span class="statistics-point bg-yellow"></span>
+										Technologies
+									</span>
+                </div>
+                <div class="count-stat">{{companyStatistics.technologiesCount}}</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
