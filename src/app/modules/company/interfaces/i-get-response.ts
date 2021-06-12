@@ -4,6 +4,6 @@ import {IRecursiveGroupTree} from './i-recursive-group-tree';
 
 export interface IGetResponse {
   company: ICompany;
-  companyStatistics?: ICompanyStatistic;
+  companyStatistic?: ICompanyStatistic;
   companyGroups?: Array<IRecursiveGroupTree>;
 }

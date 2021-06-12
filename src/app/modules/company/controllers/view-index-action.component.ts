@@ -41,7 +41,7 @@ export class ViewIndexActionComponent implements OnInit {
     await this.companyService.get(id, [CompanyRequestRelationsEnum.STATISTIC, CompanyRequestRelationsEnum.GROUP]).subscribe(
       response => {
         this.company = response.data.company;
-        this.companyStatistics = response.data.companyStatistics;
+        this.companyStatistics = response.data.companyStatistic;
         this.companyGroups = response.data.companyGroups;
 
         this.viewDataRegistryService.next({
