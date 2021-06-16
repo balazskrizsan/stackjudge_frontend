@@ -17,6 +17,7 @@ import {AccountService} from './modules/account/services/account-service';
 import {AccountRepository} from './modules/account/repositories/account-repository';
 import {TokenInterceptorService} from './services/token-interceptor-service';
 import {AccountState} from './modules/account/states/account-state';
+import {ModalsModule} from './modules/modals/modals.module';
 
 @NgModule(
   {
@@ -37,7 +38,8 @@ import {AccountState} from './modules/account/states/account-state';
       // NgbModule,
       AddressFormComponentModule,
       LeftMenuModule,
-      PaginatorModule
+      PaginatorModule,
+      ModalsModule,
     ],
     providers: [
       HttpService,

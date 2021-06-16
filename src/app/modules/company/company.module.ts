@@ -10,10 +10,11 @@ import {ViewHomeActionComponent} from './controllers/view-home-action.component'
 import {PaginatorModule} from '../paginator/paginator.module';
 import {ViewStackActionComponent} from './controllers/view-stack-action.component';
 import {ViewIndexActionComponent} from './controllers/view-index-action.component';
+import {ModalsModule} from '../modals/modals.module';
 
 @NgModule(
   {
-    imports: [CommonModule, RoutingModule, SharedModule, AddressFormComponentModule, LeftMenuModule, PaginatorModule],
+    imports: [CommonModule, RoutingModule, SharedModule, AddressFormComponentModule, LeftMenuModule, PaginatorModule, ModalsModule],
     declarations: [CreateActionComponent, ListActionComponent, ViewIndexActionComponent, ViewHomeActionComponent, ViewStackActionComponent],
   }
 )

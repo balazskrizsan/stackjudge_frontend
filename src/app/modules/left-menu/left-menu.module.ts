@@ -9,7 +9,6 @@ import {SharedModule} from '../shared-module';
   imports: [CommonModule, RoutingModule, SharedModule, ReactiveFormsModule],
   exports: [ReactiveFormsModule, LeftMenuComponent],
   declarations: [LeftMenuComponent],
-  providers: [],
 })
-export class  LeftMenuModule {
+export class LeftMenuModule {
 }

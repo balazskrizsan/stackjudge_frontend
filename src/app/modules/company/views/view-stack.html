@@ -23,6 +23,9 @@
                     <a class="h6 post__author-name fn" href="#">{{group.recursiveGroup.name}}</a>
                   </div>
                 </div>
+                <a (click)="openWriteStackReviewModal({groupId: 123})">=REVIEW MODAL=</a> |
+                <a href="#" class="btn btn-primary btn-sm">Write review</a>
+                <a data-toggle="modal" data-target="#popup-write-rewiev" href="#" class="btn btn-breez btn-sm">Open Popup</a>
                 <p>review</p>
 
                 <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: group.children };"></ng-container>
