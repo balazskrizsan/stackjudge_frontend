@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Forms} from '../forms';
 import {AddressForms} from '../../address/address-forms';
@@ -9,6 +9,8 @@ import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {ModalService} from '../../modals/model-service';
 import {ModalIdEnum} from '../../modals/enums/modal-id-enum';
 import {IWriteStackReviewConfig} from '../../modals/interfaces/i-write-stack-review-config';
+import {IUser} from '../../account/interfaces/i-user';
+import {AccountService} from '../../account/services/account-service';
 
 @Component(
   {
@@ -21,15 +23,17 @@ import {IWriteStackReviewConfig} from '../../modals/interfaces/i-write-stack-rev
     providers: [Forms, AddressForms],
   }
 )
-export class ViewStackActionComponent {
+export class ViewStackActionComponent implements OnInit, OnDestroy {
   company: ICompany = null;
   companyStatistics: ICompanyStatistic = null;
   companyGroups: Array<IRecursiveGroupTree> = null;
+  user: IUser | null;
 
   public constructor(
     private router: Router,
     private viewDataRegistryService: ViewDataRegistryService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private accountService: AccountService
   ) {
     this.viewDataRegistryService.get().subscribe(res => {
       this.company = res.company;
@@ -38,7 +42,19 @@ export class ViewStackActionComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.accountService.getStateAsObservable$().subscribe(user => this.user = user);
+  }
+
+  ngOnDestroy(): void {
+    // @todo: do we need unsub?
+  }
+
   public openWriteStackReviewModal(config: IWriteStackReviewConfig): void {
-    this.modalService.open(ModalIdEnum.write_stack_review, config);
+    this.modalService.open(ModalIdEnum.WRITE_STACK_REVIEW, config);
+  }
+
+  public isLoggedIn(): boolean {
+    return this.user !== null;
   }
 }

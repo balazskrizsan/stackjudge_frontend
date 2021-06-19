@@ -1,4 +1,4 @@
 export enum ModalIdEnum {
-  'login',
-  'write_stack_review'
+  LOGIN,
+  WRITE_STACK_REVIEW
 }

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalService} from './model-service';
 import {IModal} from './interfaces/i-modal';
 import {ModalIdEnum} from './enums/modal-id-enum';
@@ -7,12 +7,11 @@ import {ModalIdEnum} from './enums/modal-id-enum';
   selector: 'app-login-modal',
   template: ''
 })
-export class LoginModelComponent implements IModal, OnInit
-{
+export class LoginModelComponent implements IModal, OnInit {
   public id: number;
 
-  constructor(private modalService: ModalService, private modalContainer: ElementRef) {
-    this.id = ModalIdEnum.login;
+  constructor(private modalService: ModalService) {
+    this.id = ModalIdEnum.LOGIN;
   }
 
   ngOnInit(): void {

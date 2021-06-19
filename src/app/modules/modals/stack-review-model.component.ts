@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalService} from './model-service';
 import {IModal} from './interfaces/i-modal';
 import {ModalIdEnum} from './enums/modal-id-enum';
@@ -11,8 +11,8 @@ export class StackReviewModelComponent implements IModal, OnInit {
   public id: number;
   public isModalVisible = false;
 
-  constructor(private modalService: ModalService, private modalContainer: ElementRef) {
-    this.id = ModalIdEnum.write_stack_review;
+  constructor(private modalService: ModalService) {
+    this.id = ModalIdEnum.WRITE_STACK_REVIEW;
   }
 
   ngOnInit(): void {

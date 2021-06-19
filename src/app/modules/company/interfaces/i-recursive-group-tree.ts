@@ -1,4 +1,4 @@
-import {IRecursiveGroup} from './i-recursive-group';
+import {IRecursiveGroup} from '../../group/interfaces/i-recursive-group';
 
 export interface IRecursiveGroupTree {
   recursiveGroup: IRecursiveGroup;
