@@ -14,29 +14,32 @@
               <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
 
                 <div
-                  class="form-group"
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
                   [ngClass]="{'has-error': isValidField('name')}"
+                  class="form-group"
                 >
                   <label for="name" class="control-label">Company name</label>
                   <input
+                    formControlName="name"
+                    [ngClass]="{'form-control-danger': isValidField('name')}"
                     type="text"
                     class="form-control"
                     id="name"
                     placeholder="Company name"
-                    formControlName="name"
-                    [ngClass]="{'form-control-danger': isValidField('name')}"
                   >
                 </div>
 
                 <div
-                  class="form-group"
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
                   [ngClass]="{'has-error': isValidField('companySizeId')}"
+                  class="form-group"
                 >
                   <label for="companySizeId" class="control-label">Company Size</label>
                   <!--                    <select class="selectpicker form-control">-->
-                  <select class="form-control" formControlName="companySizeId" id="companySizeId">
+                  <select
+                    formControlName="companySizeId"
+                    class="form-control" id="companySizeId"
+                  >
                     <option [value]="companySizes[companySize]" *ngFor="let companySize of objectKeys(companySizes)">
                       {{companySize}}
                     </option>
@@ -44,13 +47,16 @@
                 </div>
 
                 <div
-                  class="form-group"
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
                   [ngClass]="{'has-error': isValidField('itSizeId')}"
+                  class="form-group"
                 >
                   <label for="itSizeId" class="control-label">IT Size</label>
                   <!--                    <select class="selectpicker form-control">-->
-                  <select class="form-control" formControlName="itSizeId" id="itSizeId">
+                  <select
+                    formControlName="itSizeId"
+                    class="form-control" id="itSizeId"
+                  >
                     <option [value]="itSizes[itSize]" *ngFor="let itSize of objectKeys(itSizes)">
                       {{itSize}}
                     </option>
@@ -64,11 +70,11 @@
               <div class="file-upload">
                 <label for="upload" class="file-upload__label">Upload Company logo</label>
                 <input
+                  (change)="uploadCompanyLogo($event)"
                   id="upload"
                   class="file-upload__input"
                   type="file"
                   name="file-upload"
-                  (change)="uploadCompanyLogo($event)"
                 >
               </div>
             </div>

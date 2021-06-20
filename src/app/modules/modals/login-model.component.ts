@@ -5,7 +5,7 @@ import {ModalIdEnum} from './enums/modal-id-enum';
 
 @Component({
   selector: 'app-login-modal',
-  template: ''
+  template: '',
 })
 export class LoginModelComponent implements IModal, OnInit {
   public id: number;

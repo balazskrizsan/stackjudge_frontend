@@ -18,6 +18,8 @@ import {AccountRepository} from './modules/account/repositories/account-reposito
 import {TokenInterceptorService} from './services/token-interceptor-service';
 import {AccountState} from './modules/account/states/account-state';
 import {ModalsModule} from './modules/modals/modals.module';
+import {ReviewService} from './modules/review/services/review-service';
+import {ReviewRepository} from './modules/review/repositories/review-repository';
 
 @NgModule(
   {
@@ -35,7 +37,6 @@ import {ModalsModule} from './modules/modals/modals.module';
         ],
         {preloadingStrategy: PreloadAllModules}
       ),
-      // NgbModule,
       AddressFormComponentModule,
       LeftMenuModule,
       PaginatorModule,
@@ -46,6 +47,8 @@ import {ModalsModule} from './modules/modals/modals.module';
       LocalStorageService,
       CompanyService,
       CompanyRepository,
+      ReviewService,
+      ReviewRepository,
       AccountService,
       AccountRepository,
       AccountState,
