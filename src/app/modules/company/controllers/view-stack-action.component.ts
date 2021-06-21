@@ -11,6 +11,7 @@ import {ModalIdEnum} from '../../modals/enums/modal-id-enum';
 import {IWriteStackReviewConfig} from '../../modals/interfaces/i-write-stack-review-config';
 import {IUser} from '../../account/interfaces/i-user';
 import {AccountService} from '../../account/services/account-service';
+import {IReview} from '../../review/interfaces/i-review';
 
 @Component(
   {
@@ -18,7 +19,10 @@ import {AccountService} from '../../account/services/account-service';
     styles: [
       '#company-group-list ul, #company-group-list ul.children { width: 100%; padding-left: 20px; padding-right: 0; margin-right: 0; margin-left: 0}',
       '#company-group-list ul li { width: 100%; padding-right: 0; margin-right: 0; margin-left: 0}',
-      '#company-group-list ul#company-group-list-top-level {padding-left: 0}'
+      '#company-group-list ul#company-group-list-top-level {padding-left: 0}',
+      'article.post { padding: 5px 0 5px 30px; border: 0; }',
+      'article.post p { margin: 5px 0; }',
+      'article.post .post__author { margin: 0; }',
     ],
     providers: [Forms, AddressForms],
   }
@@ -27,6 +31,7 @@ export class ViewStackActionComponent implements OnInit, OnDestroy {
   company: ICompany = null;
   companyStatistics: ICompanyStatistic = null;
   companyGroups: Array<IRecursiveGroupTree> = null;
+  companyReviews: Array<Array<IReview>>;
   user: IUser | null;
 
   public constructor(
@@ -39,6 +44,7 @@ export class ViewStackActionComponent implements OnInit, OnDestroy {
       this.company = res.company;
       this.companyGroups = res.companyGroups;
       this.companyStatistics = res.companyStatistic;
+      this.companyReviews = res.companyReviews;
     });
   }
 

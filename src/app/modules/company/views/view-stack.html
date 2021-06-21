@@ -20,7 +20,7 @@
                 <div class="post__author author vcard inline-items">
                   <img loading="lazy" src="img/avatar5-sm.jpg" alt="author">
                   <div class="author-date">
-                    <a class="h6 post__author-name fn" href="#">{{group.recursiveGroup.name}}</a>
+                    <h3 class="h6 post__author-name fn" href="#">{{group.recursiveGroup.name}}</h3>
                   </div>
                 </div>
                 <a
@@ -28,11 +28,29 @@
                   [hidden]="!isLoggedIn()"
                   class="btn btn-primary btn-sm"
                 >Add a review</a>
-                <p>review</p>
+
+                <article
+                  *ngFor="let review of companyReviews[1]"
+                  class="hentry post"
+                >
+                  <div class="post__author author vcard inline-items">
+                    <img loading="lazy" src="img/author-page.jpg" alt="author">
+                    <div class="author-date">
+                      <a class="h6 post__author-name fn" href="02-ProfilePage.html">userId#{{review.createdBy}}</a>
+                      <div class="post__date">
+                        <time class="published" datetime="2017-03-24T18:18">
+                          {{review.createdAt}}
+                        </time>
+                      </div>
+                    </div>
+                  </div>
+                  <p>{{review.review}}</p>
+                </article>
 
                 <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: group.children };"></ng-container>
               </li>
             </ul>
+
             <ng-template #treeView let-companyGroups>
               <ul class="children" style="padding-right: 0;">
                 <li
@@ -55,6 +73,7 @@
                 </li>
               </ul>
             </ng-template>
+
           </div>
         </div>
       </div>

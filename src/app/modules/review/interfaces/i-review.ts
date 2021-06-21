@@ -6,4 +6,6 @@ export interface IReview {
   visibility: VisibilityEnum;
   rate: number;
   review: string;
+  createdAt: string;
+  createdBy: number;
 }

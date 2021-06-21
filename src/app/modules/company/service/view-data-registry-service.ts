@@ -7,7 +7,8 @@ export class ViewDataRegistryService {
   private data$ = new BehaviorSubject<IViewDataRegistry>({
     company: null,
     companyStatistic: null,
-    companyGroups: null
+    companyGroups: null,
+    companyReviews: null
   });
 
   next(data: IViewDataRegistry): void {
