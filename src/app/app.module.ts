@@ -20,6 +20,7 @@ import {AccountState} from './modules/account/states/account-state';
 import {ModalsModule} from './modules/modals/modals.module';
 import {ReviewService} from './modules/review/services/review-service';
 import {ReviewRepository} from './modules/review/repositories/review-repository';
+import {ReviewModule} from './modules/review/review-module';
 
 @NgModule(
   {
@@ -41,6 +42,7 @@ import {ReviewRepository} from './modules/review/repositories/review-repository'
       LeftMenuModule,
       PaginatorModule,
       ModalsModule,
+      ReviewModule,
     ],
     providers: [
       HttpService,

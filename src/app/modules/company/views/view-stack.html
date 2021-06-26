@@ -29,23 +29,7 @@
                   class="btn btn-primary btn-sm"
                 >Add a review</a>
 
-                <article
-                  *ngFor="let review of companyReviews[1]"
-                  class="hentry post"
-                >
-                  <div class="post__author author vcard inline-items">
-                    <img loading="lazy" src="img/author-page.jpg" alt="author">
-                    <div class="author-date">
-                      <a class="h6 post__author-name fn" href="02-ProfilePage.html">userId#{{review.createdBy}}</a>
-                      <div class="post__date">
-                        <time class="published" datetime="2017-03-24T18:18">
-                          {{review.createdAt}}
-                        </time>
-                      </div>
-                    </div>
-                  </div>
-                  <p>{{review.review}}</p>
-                </article>
+                <app-display-small *ngFor="let review of companyReviews[1]" [review]="review"></app-display-small>
 
                 <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: group.children };"></ng-container>
               </li>
