@@ -10,6 +10,7 @@ import {UrlService} from '../service/url-service';
 import {IRecursiveGroupTree} from '../interfaces/i-recursive-group-tree';
 import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {IReview} from '../../review/interfaces/i-review';
+import {IUser} from '../../account/interfaces/i-user';
 
 @Component(
   {
@@ -28,6 +29,7 @@ export class ViewIndexActionComponent implements OnInit {
   companyStatistics: ICompanyStatistic = null;
   companyGroups: Array<IRecursiveGroupTree> = null;
   companyReviews: Array<Array<IReview>> = null;
+  companyUsers: Array<IUser> = null;
   subPageComponent: any = null;
 
   public constructor(
@@ -49,12 +51,14 @@ export class ViewIndexActionComponent implements OnInit {
         this.companyStatistics = response.data.companyStatistic;
         this.companyGroups = response.data.companyGroups;
         this.companyReviews = response.data.companyReviews;
+        this.companyUsers = response.data.companyUsers;
 
         this.viewDataRegistryService.next({
           company: this.company,
           companyGroups: this.companyGroups,
           companyStatistic: this.companyStatistics,
-          companyReviews: this.companyReviews
+          companyReviews: this.companyReviews,
+          companyUsers: this.companyUsers
         });
       }
     );

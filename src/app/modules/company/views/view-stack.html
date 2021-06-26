@@ -29,7 +29,11 @@
                   class="btn btn-primary btn-sm"
                 >Add a review</a>
 
-                <app-display-small *ngFor="let review of companyReviews[1]" [review]="review"></app-display-small>
+                <app-display-small
+                  *ngFor="let review of companyReviews[1]"
+                  [review]="review"
+                  [user]="companyUsers[review.createdBy]"
+                ></app-display-small>
 
                 <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: group.children };"></ng-container>
               </li>

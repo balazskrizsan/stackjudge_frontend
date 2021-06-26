@@ -3,7 +3,7 @@ import {ModalService} from './model-service';
 import {IModal} from './interfaces/i-modal';
 import {ModalIdEnum} from './enums/modal-id-enum';
 import {AccountService} from '../account/services/account-service';
-import {IUser} from '../account/interfaces/i-user';
+import {ICurrentUser} from '../account/interfaces/i-current-user';
 import {FormGroup} from '@angular/forms';
 import {StackReviewForm} from './forms/stack-review-form';
 import {ReviewService} from '../review/services/review-service';
@@ -17,7 +17,7 @@ import {IWriteStackReviewConfig} from './interfaces/i-write-stack-review-config'
 export class StackReviewModelComponent implements IModal, OnInit {
   public id: number;
   public isModalVisible = false;
-  public user: IUser | null = null;
+  public user: ICurrentUser | null = null;
   private config: IWriteStackReviewConfig;
   public form: FormGroup;
 

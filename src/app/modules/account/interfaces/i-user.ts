@@ -1,9 +1,5 @@
-import {IJwt} from './i-jwt';
-
 export interface IUser {
-  userId: number;
-  username: string;
+  id: number;
   profilePictureUrl: string;
-  jwt: string;
-  parsedJwt: IJwt;
+  username: string;
 }

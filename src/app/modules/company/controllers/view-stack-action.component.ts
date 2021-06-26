@@ -9,9 +9,10 @@ import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {ModalService} from '../../modals/model-service';
 import {ModalIdEnum} from '../../modals/enums/modal-id-enum';
 import {IWriteStackReviewConfig} from '../../modals/interfaces/i-write-stack-review-config';
-import {IUser} from '../../account/interfaces/i-user';
+import {ICurrentUser} from '../../account/interfaces/i-current-user';
 import {AccountService} from '../../account/services/account-service';
 import {IReview} from '../../review/interfaces/i-review';
+import {IUser} from '../../account/interfaces/i-user';
 
 @Component(
   {
@@ -24,7 +25,8 @@ export class ViewStackActionComponent implements OnInit, OnDestroy {
   companyStatistics: ICompanyStatistic = null;
   companyGroups: Array<IRecursiveGroupTree> = null;
   companyReviews: Array<Array<IReview>>;
-  user: IUser | null;
+  companyUsers: Array<IUser>;
+  user: ICurrentUser | null;
 
   public constructor(
     private router: Router,
@@ -37,6 +39,7 @@ export class ViewStackActionComponent implements OnInit, OnDestroy {
       this.companyGroups = res.companyGroups;
       this.companyStatistics = res.companyStatistic;
       this.companyReviews = res.companyReviews;
+      this.companyUsers = res.companyUsers;
     });
   }
 

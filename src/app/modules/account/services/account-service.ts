@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AccountRepository} from '../repositories/account-repository';
 import {AccountState} from '../states/account-state';
 import {IJwt} from '../interfaces/i-jwt';
-import {IUser} from '../interfaces/i-user';
+import {ICurrentUser} from '../interfaces/i-current-user';
 import {Observable} from 'rxjs';
 
 @Injectable()
@@ -17,7 +17,7 @@ export class AccountService {
   ) {
   }
 
-  public getStateAsObservable$(): Observable<IUser | null> {
+  public getStateAsObservable$(): Observable<ICurrentUser | null> {
     return this.accountState.getAsObservable$();
   }
 
@@ -92,7 +92,7 @@ export class AccountService {
     return new Promise<boolean>(
       resolve => this.accountState
         .getAsObservable$()
-        .subscribe((user: IUser) => user ? resolve(true) : resolve(false))
+        .subscribe((user: ICurrentUser) => user ? resolve(true) : resolve(false))
     );
   }
 
@@ -100,7 +100,7 @@ export class AccountService {
     return new Promise<string>(
       resolve => this.accountState
         .getAsObservable$()
-        .subscribe((user: IUser) => user.username ? resolve(user.username) : resolve(''))
+        .subscribe((user: ICurrentUser) => user.username ? resolve(user.username) : resolve(''))
       // @todo: error handling
     );
   }
@@ -109,7 +109,7 @@ export class AccountService {
     return new Promise<number>(
       resolve => this.accountState
         .getAsObservable$()
-        .subscribe((user: IUser) => user.userId ? resolve(Number(user.userId)) : resolve(0))
+        .subscribe((user: ICurrentUser) => user.userId ? resolve(Number(user.userId)) : resolve(0))
       // @todo: error handling
     );
   }

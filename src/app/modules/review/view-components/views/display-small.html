@@ -1,8 +1,8 @@
 <article class="hentry post">
   <div class="post__author author vcard inline-items">
-    <img loading="lazy" src="img/author-page.jpg" alt="author">
+    <img loading="lazy" src="{{user.profilePictureUrl}}" alt="author">
     <div class="author-date">
-      <a class="h6 post__author-name fn" href="02-ProfilePage.html">userId#{{review.createdBy}}</a>
+      <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{user.username}}</a>
       <div class="post__date">
         <time class="published" datetime="2017-03-24T18:18">{{review.createdAt}}</time>
       </div>
