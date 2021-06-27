@@ -12,12 +12,10 @@ import {AccountService} from '../../account/services/account-service';
 import {IReview} from '../../review/interfaces/i-review';
 import {IUser} from '../../account/interfaces/i-user';
 
-@Component(
-  {
-    templateUrl: '../views/view-stack.html',
-    providers: [Forms, AddressForms],
-  }
-)
+@Component({
+  templateUrl: '../views/view-stack.html',
+  providers: [Forms, AddressForms],
+})
 export class ViewStackActionComponent implements OnInit, OnDestroy {
   company: ICompany = null;
   companyStatistics: ICompanyStatistic = null;

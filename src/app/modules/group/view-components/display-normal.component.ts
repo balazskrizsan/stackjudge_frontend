@@ -13,7 +13,7 @@ import {ICurrentUser} from '../../account/interfaces/i-current-user';
   selector: 'app-group-display-normal',
   templateUrl: './views/display-normal.html',
   styles: [
-    'ul.children {padding-right: 0;}'
+    'ul.children {padding-right: 0}',
   ]
 })
 export class DisplayNormalComponent implements OnInit {

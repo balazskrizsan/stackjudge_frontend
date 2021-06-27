@@ -10,21 +10,19 @@
       <img loading="lazy" src="img/avatar5-sm.jpg" alt="author">
       <div class="author-date">
         <h3 class="h6 post__author-name fn" href="#">{{recursiveGroupTree.recursiveGroup.name}}</h3>
+        <a
+          (click)="openWriteStackReviewModal({groupId: recursiveGroupTree.recursiveGroup.id})"
+          [hidden]="!isLoggedIn()"
+          class="link"
+        >Add a review {{recursiveGroupTree.recursiveGroup.id}}</a>
       </div>
     </div>
-
-    <a
-      (click)="openWriteStackReviewModal({groupId: recursiveGroupTree.recursiveGroup.id})"
-      [hidden]="!isLoggedIn()"
-      class="btn btn-primary btn-sm"
-    >Add a review {{recursiveGroupTree.recursiveGroup.id}}</a>
 
     <app-display-small
       *ngFor="let review of reviews[recursiveGroupTree.recursiveGroup.id]"
       [review]="review"
       [user]="reviewUsers[review.createdBy]"
     ></app-display-small>
-
 
     <app-group-display-normal
       [recursiveGroupTrees]="recursiveGroupTree.children"
