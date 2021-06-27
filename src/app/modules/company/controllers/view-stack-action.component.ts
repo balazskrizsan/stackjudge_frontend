@@ -7,8 +7,6 @@ import {ICompanyStatistic} from '../interfaces/i-company-statistic';
 import {IRecursiveGroupTree} from '../interfaces/i-recursive-group-tree';
 import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {ModalService} from '../../modals/model-service';
-import {ModalIdEnum} from '../../modals/enums/modal-id-enum';
-import {IWriteStackReviewConfig} from '../../modals/interfaces/i-write-stack-review-config';
 import {ICurrentUser} from '../../account/interfaces/i-current-user';
 import {AccountService} from '../../account/services/account-service';
 import {IReview} from '../../review/interfaces/i-review';
@@ -49,13 +47,5 @@ export class ViewStackActionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // @todo: do we need unsub?
-  }
-
-  public openWriteStackReviewModal(config: IWriteStackReviewConfig): void {
-    this.modalService.open(ModalIdEnum.WRITE_STACK_REVIEW, config);
-  }
-
-  public isLoggedIn(): boolean {
-    return this.user !== null;
   }
 }

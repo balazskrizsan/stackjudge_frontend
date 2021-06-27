@@ -12,55 +12,14 @@
         </div>
         <div class="ui-block-content">
           <div class="row">
-            <ul class="comments-list" id="company-group-list-top-level">
-              <li
-                *ngFor="let group of companyGroups"
-                class="comment-item has-children"
-              >
-                <div class="post__author author vcard inline-items">
-                  <img loading="lazy" src="img/avatar5-sm.jpg" alt="author">
-                  <div class="author-date">
-                    <h3 class="h6 post__author-name fn" href="#">{{group.recursiveGroup.name}}</h3>
-                  </div>
-                </div>
-                <a
-                  (click)="openWriteStackReviewModal({groupId: group.recursiveGroup.id})"
-                  [hidden]="!isLoggedIn()"
-                  class="btn btn-primary btn-sm"
-                >Add a review</a>
 
-                <app-display-small
-                  *ngFor="let review of companyReviews[1]"
-                  [review]="review"
-                  [user]="companyUsers[review.createdBy]"
-                ></app-display-small>
-
-                <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: group.children };"></ng-container>
-              </li>
-            </ul>
-
-            <ng-template #treeView let-companyGroups>
-              <ul class="children" style="padding-right: 0;">
-                <li
-                  *ngFor="let group of companyGroups"
-                  class="comment-item has-children"
-                >
-                  <div class="post__author author vcard inline-items">
-                    <img loading="lazy" src="img/avatar5-sm.jpg" alt="author">
-                    <div class="author-date">
-                      <a class="h6 post__author-name fn" href="#">{{group.recursiveGroup.name}}</a>
-                    </div>
-                  </div>
-                  <a
-                    (click)="openWriteStackReviewModal({groupId: group.recursiveGroup.id})"
-                    [hidden]="!isLoggedIn()"
-                    class="btn btn-primary btn-sm"
-                  >Write review</a>
-                  <p>review</p>
-                  <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: group.children };"></ng-container>
-                </li>
-              </ul>
-            </ng-template>
+            <app-group-display-normal
+              [recursiveGroupTrees]="companyGroups"
+              [reviews]="companyReviews"
+              [reviewUsers]="companyUsers"
+              [level]="'top'"
+              style="width: 100%"
+            ></app-group-display-normal>
 
           </div>
         </div>

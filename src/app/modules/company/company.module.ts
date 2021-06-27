@@ -11,7 +11,7 @@ import {PaginatorModule} from '../paginator/paginator.module';
 import {ViewStackActionComponent} from './controllers/view-stack-action.component';
 import {ViewIndexActionComponent} from './controllers/view-index-action.component';
 import {ModalsModule} from '../modals/modals.module';
-import {ReviewModule} from '../review/review-module';
+import {GroupModule} from '../group/group.module';
 
 @NgModule(
   {
@@ -23,9 +23,15 @@ import {ReviewModule} from '../review/review-module';
       LeftMenuModule,
       PaginatorModule,
       ModalsModule,
-      ReviewModule,
+      GroupModule
     ],
-    declarations: [CreateActionComponent, ListActionComponent, ViewIndexActionComponent, ViewHomeActionComponent, ViewStackActionComponent],
+    declarations: [
+      CreateActionComponent,
+      ListActionComponent,
+      ViewIndexActionComponent,
+      ViewHomeActionComponent,
+      ViewStackActionComponent
+    ],
   }
 )
 export class CompanyModule {

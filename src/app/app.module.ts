@@ -21,6 +21,7 @@ import {ModalsModule} from './modules/modals/modals.module';
 import {ReviewService} from './modules/review/services/review-service';
 import {ReviewRepository} from './modules/review/repositories/review-repository';
 import {ReviewModule} from './modules/review/review-module';
+import {GroupModule} from './modules/group/group.module';
 
 @NgModule(
   {
@@ -43,6 +44,7 @@ import {ReviewModule} from './modules/review/review-module';
       PaginatorModule,
       ModalsModule,
       ReviewModule,
+      GroupModule,
     ],
     providers: [
       HttpService,
