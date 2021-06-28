@@ -1,6 +1,5 @@
 <ul
   [ngClass]="level == 'top'? 'comments-list' : 'children'"
-  id="company-group-list-top-level"
 >
   <li
     *ngFor="let recursiveGroupTree of recursiveGroupTrees"

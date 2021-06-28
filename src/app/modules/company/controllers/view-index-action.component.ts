@@ -15,11 +15,6 @@ import {IUser} from '../../account/interfaces/i-user';
 @Component(
   {
     templateUrl: '../views/view-index.html',
-    styles: [
-      '#company-group-list ul, #company-group-list ul.children { width: 100%; padding-left: 20px; padding-right: 0; margin-right: 0; margin-left: 0}',
-      '#company-group-list ul li { width: 100%; padding-right: 0; margin-right: 0; margin-left: 0}',
-      '#company-group-list ul#company-group-list-top-level {padding-left: 0}'
-    ],
     providers: [Forms, AddressForms],
   }
 )

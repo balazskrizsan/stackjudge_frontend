@@ -12,9 +12,6 @@ import {ICurrentUser} from '../../account/interfaces/i-current-user';
 @Component({
   selector: 'app-group-display-normal',
   templateUrl: './views/display-normal.html',
-  styles: [
-    'ul.children {padding-right: 0}',
-  ]
 })
 export class DisplayNormalComponent implements OnInit {
   @Input() recursiveGroupTrees: Array<IRecursiveGroupTree>;
