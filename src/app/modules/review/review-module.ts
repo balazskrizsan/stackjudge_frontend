@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
 import {DisplaySmallComponent} from './view-components/display-small.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
-  imports: [],
+  imports: [CommonModule],
   exports: [DisplaySmallComponent],
   declarations: [DisplaySmallComponent]
 })

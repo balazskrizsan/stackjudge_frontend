@@ -1,8 +1,29 @@
 <article class="hentry post">
   <div class="post__author author vcard inline-items">
-    <img loading="lazy" src="{{user.profilePictureUrl}}" alt="author">
+
+    <img
+      *ngIf="isReviewerVisible(); else defaultLogo"
+      loading="lazy" src="{{user.profilePictureUrl}}" alt="{{user.username}}"
+    >
+    <ng-template #defaultLogo>
+      <img src="/assets/img/logo-colored.png" alt="no photo to display"/>
+    </ng-template>
+
     <div class="author-date">
-      <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{user.username}}</a>
+      <a
+        *ngIf="isReviewerVisible()"
+        class="h6 post__author-name fn" href="#"
+      >{{user.username}}</a>
+      <span *ngIf="hasReviewTrackedReviewer()">
+        <a
+          *ngIf="isCurrentUserLoggedIn(); else showLoginUrl"
+          (click)="showReviewer(review.createdBy);"
+          class="link"
+        >Show reviewer</a>
+        <ng-template #showLoginUrl>
+          <a href="{{loginUrl}}" class="link">Register or login to see the name</a>
+        </ng-template>
+      </span>
       <div class="post__date">
         <time class="published" datetime="2017-03-24T18:18">{{review.createdAt}}</time>
       </div>

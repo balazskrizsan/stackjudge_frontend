@@ -12,12 +12,10 @@ import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {IReview} from '../../review/interfaces/i-review';
 import {IUser} from '../../account/interfaces/i-user';
 
-@Component(
-  {
-    templateUrl: '../views/view-index.html',
-    providers: [Forms, AddressForms],
-  }
-)
+@Component({
+  templateUrl: '../views/view-index.html',
+  providers: [Forms, AddressForms],
+})
 export class ViewIndexActionComponent implements OnInit {
   urlGeneratorService = UrlService;
   company: ICompany = null;

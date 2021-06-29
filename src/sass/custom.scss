@@ -1,5 +1,12 @@
-a.link {
+a.highlighted-link {
   color: $primary-color;
+  cursor: pointer;
+  display: inline;
+  font-weight: bold;
+}
+
+a.link {
+  color: $grey;
   cursor: pointer;
   display: inline;
   font-weight: bold;
