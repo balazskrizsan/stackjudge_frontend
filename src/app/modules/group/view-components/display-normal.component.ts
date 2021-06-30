@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IRecursiveGroupTree} from '../../company/interfaces/i-recursive-group-tree';
 import {IUser} from '../../account/interfaces/i-user';
 import {IReview} from '../../review/interfaces/i-review';
-import {IWriteStackReviewConfig} from '../../modals/interfaces/i-write-stack-review-config';
+import {IWriteGroupReviewConfig} from '../../modals/interfaces/i-write-group-review-config';
 import {ModalIdEnum} from '../../modals/enums/modal-id-enum';
 import {Router} from '@angular/router';
 import {ModalService} from '../../modals/model-service';
@@ -32,7 +32,7 @@ export class DisplayNormalComponent implements OnInit {
     this.accountService.getStateAsObservable$().subscribe(user => this.user = user);
   }
 
-  public openWriteStackReviewModal(config: IWriteStackReviewConfig): void {
+  public openWriteStackReviewModal(config: IWriteGroupReviewConfig): void {
     this.modalService.open(ModalIdEnum.WRITE_STACK_REVIEW, config);
   }
 

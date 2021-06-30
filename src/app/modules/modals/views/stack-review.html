@@ -51,7 +51,7 @@
                   <option value="0">Please select</option>
                   <option value="1">Everybody (Even search engines)</option>
                   <option value="2">Registered</option>
-                  <option value="3">Tracked (You will see the viewer name)</option>
+                  <option value="3">Protected (You will see the viewer name)</option>
                 </select>
               </div>
 
@@ -92,3 +92,8 @@
     </div>
   </div>
 </div>
+
+<div
+  [style.display]="!isModalVisible ? 'none' : 'block'"
+  class="modal-backdrop fade show"
+></div>

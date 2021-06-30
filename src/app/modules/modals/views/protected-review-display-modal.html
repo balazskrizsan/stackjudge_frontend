@@ -1,0 +1,32 @@
+<div
+  [style.display]="!isModalVisible ? 'none' : 'block'"
+  class="modal fade show"
+  id="popup-write-rewiev"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="popup-write-rewiev"
+  aria-hidden="true"
+>
+  <div class="modal-dialog window-popup popup-write-rewiev" role="document">
+    <div class="modal-content">
+            <span
+              (click)="close()"
+              class="close icon-close" data-dismiss="modal" aria-label="Close"
+            ><!-- @todo: add mouse pointer -->
+              <svg class="olymp-close-icon">
+                <use xlink:href="#olymp-close-icon"></use>
+              </svg>
+            </span>
+
+      <div class="modal-header">
+        <h6 class="title">View protected reviewer</h6>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div
+  [style.display]="!isModalVisible ? 'none' : 'block'"
+  class="modal-backdrop fade show"
+></div>

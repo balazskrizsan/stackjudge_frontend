@@ -5,6 +5,8 @@ import {VisibilityEnum} from '../enums/visibility-enum';
 import {ICurrentUser} from '../../account/interfaces/i-current-user';
 import {AccountService} from '../../account/services/account-service';
 import {environment} from '../../../../environments/environment';
+import {ModalService} from '../../modals/model-service';
+import {ModalIdEnum} from '../../modals/enums/modal-id-enum';
 
 @Component({
   selector: 'app-display-small',
@@ -19,7 +21,10 @@ export class DisplaySmallComponent implements OnInit {
 
   private currentUser: ICurrentUser = null;
 
-  constructor(private accountService: AccountService) {
+  constructor(
+    private accountService: AccountService,
+    private modalService: ModalService
+  ) {
   }
 
   ngOnInit(): void {
@@ -47,5 +52,6 @@ export class DisplaySmallComponent implements OnInit {
   }
 
   showReviewer(createdBy: number): void {
+    this.modalService.open(ModalIdEnum.PROTECTED_REVIEW_DISPLAY, {});
   }
 }

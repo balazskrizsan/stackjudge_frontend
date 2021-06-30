@@ -18,6 +18,6 @@ export class ModalService {
       return;
     }
 
-    modal.open(id, config);
+    modal.open(config);
   }
 }

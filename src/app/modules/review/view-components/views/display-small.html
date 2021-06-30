@@ -19,7 +19,7 @@
           *ngIf="isCurrentUserLoggedIn(); else showLoginUrl"
           (click)="showReviewer(review.createdBy);"
           class="link"
-        >Show reviewer</a>
+        >Show protected reviewer</a>
         <ng-template #showLoginUrl>
           <a href="{{loginUrl}}" class="link">Register or login to see the name</a>
         </ng-template>

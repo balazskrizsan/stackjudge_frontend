@@ -7,7 +7,7 @@ import {ICurrentUser} from '../account/interfaces/i-current-user';
 import {FormGroup} from '@angular/forms';
 import {StackReviewForm} from './forms/stack-review-form';
 import {ReviewService} from '../review/services/review-service';
-import {IWriteStackReviewConfig} from './interfaces/i-write-stack-review-config';
+import {IWriteGroupReviewConfig} from './interfaces/i-write-group-review-config';
 
 @Component({
   selector: 'app-stack-review-modal',
@@ -18,7 +18,7 @@ export class StackReviewModelComponent implements IModal, OnInit {
   public id: number;
   public isModalVisible = false;
   public user: ICurrentUser | null = null;
-  private config: IWriteStackReviewConfig;
+  private config: IWriteGroupReviewConfig;
   public form: FormGroup;
 
   constructor(
@@ -36,7 +36,7 @@ export class StackReviewModelComponent implements IModal, OnInit {
     this.accountService.getStateAsObservable$().subscribe(user => this.user = user);
   }
 
-  open(id: number, config: IWriteStackReviewConfig): void {
+  open(config: IWriteGroupReviewConfig): void {
     if (!this.user) {
       console.error('StackReviewModelComponent.open() without user');
 

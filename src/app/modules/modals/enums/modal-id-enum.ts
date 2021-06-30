@@ -1,4 +1,4 @@
 export enum ModalIdEnum {
-  LOGIN,
+  PROTECTED_REVIEW_DISPLAY,
   WRITE_STACK_REVIEW
 }
