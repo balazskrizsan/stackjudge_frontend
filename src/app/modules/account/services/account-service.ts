@@ -4,6 +4,8 @@ import {AccountState} from '../states/account-state';
 import {IJwt} from '../interfaces/i-jwt';
 import {ICurrentUser} from '../interfaces/i-current-user';
 import {Observable} from 'rxjs';
+import {IResponseEntity} from '../../../interfaces/i-response-entity';
+import {IUser} from '../interfaces/i-user';
 
 @Injectable()
 export class AccountService {
@@ -117,5 +119,9 @@ export class AccountService {
   public logout(): void {
     this.accountRepository.removeJwt();
     this.accountState.setState(null);
+  }
+
+  public getUserByReviewId(reviewId: number): Observable<IResponseEntity<IUser>> {
+    return this.accountRepository.getByReviewId(reviewId);
   }
 }

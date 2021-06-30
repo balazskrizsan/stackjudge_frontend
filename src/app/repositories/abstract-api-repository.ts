@@ -6,7 +6,10 @@ import {Observable} from 'rxjs';
 import {IResponseEntity} from '../interfaces/i-response-entity';
 
 export abstract class AbstractApiRepository implements IAbstractCrudApiRepository {
-  protected constructor(private httpService: HttpService) {
+  httpService: HttpService;
+
+  protected constructor(httpService: HttpService) {
+    this.httpService = httpService;
   }
 
   private static paramCleaner(rawData: any): {} {

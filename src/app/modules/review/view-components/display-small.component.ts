@@ -52,6 +52,6 @@ export class DisplaySmallComponent implements OnInit {
   }
 
   showReviewer(createdBy: number): void {
-    this.modalService.open(ModalIdEnum.PROTECTED_REVIEW_DISPLAY, {});
+    this.modalService.open(ModalIdEnum.PROTECTED_REVIEW_DISPLAY, {review: this.review});
   }
 }

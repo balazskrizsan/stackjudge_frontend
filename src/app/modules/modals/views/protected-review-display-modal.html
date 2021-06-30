@@ -22,6 +22,21 @@
         <h6 class="title">View protected reviewer</h6>
       </div>
 
+      <div class="modal-body">
+        <div *ngIf="!user || !review; else displayUser">
+          <p class="warning">
+            The review writer will be noticed about the action. Your name and profile will be visible.
+          </p>
+          <button (click)="loadUserForReview()" class="btn btn-primary btn-sm">Display</button>
+        </div>
+        <ng-template #displayUser>
+          <app-review-display-small
+            [user]="user"
+            [review]="review"
+          ></app-review-display-small>
+        </ng-template>
+      </div>
+
     </div>
   </div>
 </div>

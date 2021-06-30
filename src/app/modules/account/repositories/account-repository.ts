@@ -1,11 +1,24 @@
 import {Injectable} from '@angular/core';
 import {LocalStorageService} from '../../../services/local-storage-services';
+import {AbstractApiRepository} from '../../../repositories/abstract-api-repository';
+import {HttpService} from '../../../services/http-service';
+import {IUser} from '../interfaces/i-user';
+import {IResponseEntity} from '../../../interfaces/i-response-entity';
+import {Observable} from 'rxjs';
 
 @Injectable()
-export class AccountRepository {
+export class AccountRepository extends AbstractApiRepository {
   private static readonly jwtKey = 'jwt';
 
-  public constructor(private localStorageService: LocalStorageService) {
+  constructor(
+    httpService: HttpService,
+    private localStorageService: LocalStorageService
+  ) {
+    super(httpService);
+  }
+
+  public getController(): string {
+    return 'account';
   }
 
   public storeJwt(token: string): void {
@@ -18,5 +31,9 @@ export class AccountRepository {
 
   public removeJwt(): void {
     this.localStorageService.delete(AccountRepository.jwtKey);
+  }
+
+  public getByReviewId(reviewId: number): Observable<IResponseEntity<IUser>> {
+    return this.get<IUser>(reviewId, [], this.getController() + '/get-by-review-id');
   }
 }
