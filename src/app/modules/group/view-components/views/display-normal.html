@@ -17,11 +17,11 @@
       </div>
     </div>
 
-    <app-display-small
+    <app-review-display-small
       *ngFor="let review of reviews[recursiveGroupTree.recursiveGroup.id]"
       [review]="review"
       [user]="reviewUsers[review.createdBy]"
-    ></app-display-small>
+    ></app-review-display-small>
 
     <app-group-display-normal
       [recursiveGroupTrees]="recursiveGroupTree.children"

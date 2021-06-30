@@ -9,7 +9,7 @@ import {ModalService} from '../../modals/model-service';
 import {ModalIdEnum} from '../../modals/enums/modal-id-enum';
 
 @Component({
-  selector: 'app-display-small',
+  selector: 'app-review-display-small',
   templateUrl: './views/display-small.html',
   styleUrls: ['./styles/display-small.scss'],
 })
