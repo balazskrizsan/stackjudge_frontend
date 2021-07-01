@@ -48,10 +48,10 @@ export class DisplaySmallComponent implements OnInit {
   }
 
   hasReviewTrackedReviewer(): boolean {
-    return this.review.visibility === VisibilityEnum.TRACKED;
+    return this.review.visibility === VisibilityEnum.PROTECTED;
   }
 
-  showReviewer(createdBy: number): void {
+  showReviewer(): void {
     this.modalService.open(ModalIdEnum.PROTECTED_REVIEW_DISPLAY, {review: this.review});
   }
 }

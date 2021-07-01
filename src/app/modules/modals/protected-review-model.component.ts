@@ -31,11 +31,16 @@ export class ProtectedReviewModelComponent implements IModal, OnInit {
 
   public open(config: IProtectedReviewConfig): void {
     this.isModalVisible = true;
-    this.review = config.review;
+    this.review = { ...config.review};
   }
 
   public close(): void {
     this.isModalVisible = false;
+    this.reset();
+  }
+
+  public reset(): void {
+    this.user = null;
   }
 
   public loadUserForReview(): void {

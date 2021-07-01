@@ -17,7 +17,7 @@
       <span *ngIf="hasReviewTrackedReviewer()">
         <a
           *ngIf="isCurrentUserLoggedIn(); else showLoginUrl"
-          (click)="showReviewer(review.createdBy);"
+          (click)="showReviewer()"
           class="link"
         >Show protected reviewer</a>
         <ng-template #showLoginUrl>
