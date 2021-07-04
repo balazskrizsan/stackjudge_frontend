@@ -23,7 +23,7 @@ export class HeaderDisplayComponent implements OnInit {
     this.accountService.getStateAsObservable$().subscribe(user => {
       this.user = user;
 
-      if (this.user) {
+      if (this.isLoggedIn()) {
         this.subscription = this.interval$.subscribe(() => this.notificationService.searchMyNotifications().subscribe());
       } else if (this.subscription instanceof Subscription) {
         this.subscription.unsubscribe();
