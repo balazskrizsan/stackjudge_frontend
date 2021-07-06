@@ -3,6 +3,7 @@ import {AccountService} from '../../account/services/account-service';
 import {ICurrentUser} from '../../account/interfaces/i-current-user';
 import {NotificationService} from '../services/notification-service';
 import {interval, Subscription} from 'rxjs';
+import {INotificationResponse} from '../interfaces/i-notification-response';
 
 @Component({
   selector: 'app-notification-header-display',
@@ -12,6 +13,8 @@ export class HeaderDisplayComponent implements OnInit {
   private user: ICurrentUser;
   private interval$ = interval(30000);
   private subscription: Subscription;
+
+  notificationInfo: INotificationResponse = null;
 
   public constructor(
     private accountService: AccountService,
@@ -24,9 +27,16 @@ export class HeaderDisplayComponent implements OnInit {
       this.user = user;
 
       if (this.isLoggedIn()) {
-        this.subscription = this.interval$.subscribe(() => this.notificationService.searchMyNotifications().subscribe());
+        this.subscription = this
+          .interval$
+          .subscribe(() => this
+            .notificationService
+            .searchMyNotifications()
+            .subscribe(n => this.notificationInfo = n.data)
+          );
       } else if (this.subscription instanceof Subscription) {
         this.subscription.unsubscribe();
+        this.notificationInfo = null;
       }
     });
   }
