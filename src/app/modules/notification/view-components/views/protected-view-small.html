@@ -1,0 +1,31 @@
+<div *ngIf="data">
+  <div *ngIf="user" class="author-thumb">
+    <img loading="lazy" src="{{user.profilePictureUrl}}" width="34" height="34" alt="author">
+  </div>
+
+  <div class="notification-event">
+    <div>
+      <a
+        *ngIf="user; else unknownUser"
+        href="#" class="h6 notification-friend">{{user.username}}</a>
+      <ng-template #unknownUser><strong>Deleted user</strong></ng-template>
+      viewed your review.
+    </div>
+    <span class="notification-date">
+      <time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time>
+    </span>
+  </div>
+
+  <span class="notification-icon">
+    <svg class="olymp-comments-post-icon"><use xlink:href="#olymp-comments-post-icon"></use></svg>
+  </span>
+
+  <div class="more">
+    <svg class="olymp-three-dots-icon">
+      <use xlink:href="#olymp-three-dots-icon"></use>
+    </svg>
+    <svg class="olymp-little-delete">
+      <use xlink:href="#olymp-little-delete"></use>
+    </svg>
+  </div>
+</div>

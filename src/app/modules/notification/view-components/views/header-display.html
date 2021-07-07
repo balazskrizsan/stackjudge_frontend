@@ -2,7 +2,9 @@
   *ngIf="null !== notificationInfo"
   class="control-icon more has-items"
 >
-  <svg class="olymp-thunder-icon"><use xlink:href="#olymp-thunder-icon"></use></svg>
+  <svg class="olymp-thunder-icon">
+    <use xlink:href="#olymp-thunder-icon"></use>
+  </svg>
 
   <div
     *ngIf="notificationInfo.hasNew"
@@ -18,30 +20,24 @@
     <div class="mCustomScrollbar" data-mcs-theme="dark">
       <ul class="notification-list">
 
-        <li *ngFor="let notification of notificationInfo.notifications">
-          <div class="author-thumb"><img loading="lazy" src="img/avatar62-sm.jpg" alt="author"></div>
-          <div class="notification-event">
-            <div>
-              <a href="#" class="h6 notification-friend">Mathilda Brinker</a>
-              commented on <a href="#" class="notification-link">your review</a>.
-            </div>
-            <span class="notification-date">
-              <time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time>
-            </span>
-          </div>
-          <span class="notification-icon">
-            <svg class="olymp-comments-post-icon"><use xlink:href="#olymp-comments-post-icon"></use></svg>
-          </span>
-
-          <div class="more">
-            <svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg>
-            <svg class="olymp-little-delete"><use xlink:href="#olymp-little-delete"></use></svg>
-          </div>
-        </li><!-- /ngFor -->
+        <ng-container
+          *ngFor="let notification of notificationInfo.notifications"
+        >
+          <li
+            *ngIf="getDataAsIDataProtectedReview(notification.data)
+             && notificationInfo.users[getDataAsIDataProtectedReview(notification.data).viewerUserId]"
+          >
+            <app-notification-protected-view-small
+              style="width: 100%"
+              [data]="getDataAsIDataProtectedReview(notification.data)"
+              [user]="notificationInfo.users[getDataAsIDataProtectedReview(notification.data).viewerUserId]"
+            ></app-notification-protected-view-small>
+          </li><!-- /ngFor -->
+        </ng-container>
 
       </ul>
     </div>
 
-    <a href="#" class="view-all bg-primary">View All Notifications</a>
+    <!--    <a href="#" class="view-all bg-primary">View All Notifications</a>-->
   </div>
 </div>

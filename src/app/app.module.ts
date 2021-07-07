@@ -22,7 +22,7 @@ import {ReviewService} from './modules/review/services/review-service';
 import {ReviewRepository} from './modules/review/repositories/review-repository';
 import {ReviewModule} from './modules/review/review-module';
 import {GroupModule} from './modules/group/group.module';
-import {NotificationModul} from './modules/notification/notification.modul';
+import {NotificationModule} from './modules/notification/notification.module';
 import {NotificationService} from './modules/notification/services/notification-service';
 import {NotificationRepository} from './modules/notification/repositories/notification-repository';
 
@@ -48,7 +48,7 @@ import {NotificationRepository} from './modules/notification/repositories/notifi
       ModalsModule,
       ReviewModule,
       GroupModule,
-      NotificationModul,
+      NotificationModule,
     ],
     providers: [
       HttpService,
