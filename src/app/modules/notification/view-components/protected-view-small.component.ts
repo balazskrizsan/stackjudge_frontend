@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IDataProtectedReview} from '../interfaces/i-data-protected-review';
 import {IUser} from '../../account/interfaces/i-user';
 import {INotification} from '../interfaces/i-notification';
@@ -9,6 +9,7 @@ import {INotification} from '../interfaces/i-notification';
   styleUrls: ['./styles/protected-view-small.scss']
 })
 export class NotificationProtectedViewSmallComponent implements OnInit {
+  @Output() markAsReadEvent = new EventEmitter<number>();
   @Input() notification: INotification;
   @Input() users: Array<IUser>;
   data: IDataProtectedReview = null;
@@ -19,5 +20,9 @@ export class NotificationProtectedViewSmallComponent implements OnInit {
       this.data = this.notification.data as IDataProtectedReview;
       this.viewUser = this.users[this.data.viewerUserId] || null;
     }
+  }
+
+  markAsRead(id: number): void {
+    this.markAsReadEvent.emit(id);
   }
 }

@@ -65,4 +65,8 @@ export class NotificationHeaderDisplayComponent implements OnInit {
 
     return true;
   }
+
+  markAsRead(id: number): void {
+    console.log(id);
+  }
 }

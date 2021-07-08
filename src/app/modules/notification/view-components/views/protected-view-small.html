@@ -22,6 +22,11 @@
 
   <div class="more">
     <svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg>
-    <svg class="olymp-little-delete"><use xlink:href="#olymp-little-delete"></use></svg>
+    <svg
+      (click)="markAsRead(notification.id)"
+      class="olymp-little-delete"
+    >
+      <use xlink:href="#olymp-little-delete"></use>
+    </svg>
   </div>
 </div>

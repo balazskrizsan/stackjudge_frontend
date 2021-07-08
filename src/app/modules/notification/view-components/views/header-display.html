@@ -29,6 +29,7 @@
             <app-notification-protected-view-small
               [notification]="notification"
               [users]="notificationInfo.users"
+              (markAsReadEvent)="markAsRead($event)"
               style="width: 100%"
             ></app-notification-protected-view-small>
           </li><!-- /ngFor -->
