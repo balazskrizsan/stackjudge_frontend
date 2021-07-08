@@ -10,20 +10,28 @@
         href="#" class="h6 notification-friend">{{viewUser.username}}</a>
       <ng-template #unknownUser><strong>Deleted user</strong></ng-template>
       viewed your review.
+      <br />
+      <a
+        *ngIf="notification.viewedAt === null"
+        (click)="markAsRead(notification.id)"
+        class="link"
+      >Mark as read</a>
     </div>
     <span class="notification-date">
       <time class="entry-date updated" datetime="{{data.viewerUserId}}"></time>
     </span>
   </div>
 
-  <span class="notification-icon">
+  <span
+    [ngClass]="notification.viewedAt? '' : 'notification-icon-primary-color'"
+    class="notification-icon"
+  >
     <svg class="olymp-comments-post-icon"><use xlink:href="#olymp-comments-post-icon"></use></svg>
   </span>
 
   <div class="more">
-    <svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg>
     <svg
-      (click)="markAsRead(notification.id)"
+      (click)="delete(notification.id)"
       class="olymp-little-delete"
     >
       <use xlink:href="#olymp-little-delete"></use>

@@ -10,6 +10,7 @@ import {INotification} from '../interfaces/i-notification';
 })
 export class NotificationProtectedViewSmallComponent implements OnInit {
   @Output() markAsReadEvent = new EventEmitter<number>();
+  @Output() deleteEvent = new EventEmitter<number>();
   @Input() notification: INotification;
   @Input() users: Array<IUser>;
   data: IDataProtectedReview = null;
@@ -24,5 +25,9 @@ export class NotificationProtectedViewSmallComponent implements OnInit {
 
   markAsRead(id: number): void {
     this.markAsReadEvent.emit(id);
+  }
+
+  delete(id: number): void {
+    this.deleteEvent.emit(id);
   }
 }

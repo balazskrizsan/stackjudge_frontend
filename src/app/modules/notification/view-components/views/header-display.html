@@ -7,9 +7,9 @@
   </svg>
 
   <div
-    *ngIf="notificationInfo.hasNew"
+    *ngIf="newCount > 0"
     class="label-avatar bg-primary"
-  >{{notificationInfo.newCount}}</div>
+  >{{newCount}}</div>
 
   <div class="more-dropdown more-with-triangle triangle-top-center">
     <div class="ui-block-title ui-block-title-small">
@@ -30,6 +30,7 @@
               [notification]="notification"
               [users]="notificationInfo.users"
               (markAsReadEvent)="markAsRead($event)"
+              (deleteEvent)="delete($event)"
               style="width: 100%"
             ></app-notification-protected-view-small>
           </li><!-- /ngFor -->

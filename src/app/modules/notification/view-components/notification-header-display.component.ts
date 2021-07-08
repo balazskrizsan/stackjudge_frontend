@@ -22,6 +22,7 @@ export class NotificationHeaderDisplayComponent implements OnInit {
   private subscription: Subscription;
 
   notificationInfo: INotificationResponse = null;
+  newCount = 0;
 
   public constructor(
     private accountService: AccountService,
@@ -47,7 +48,10 @@ export class NotificationHeaderDisplayComponent implements OnInit {
     this
       .notificationService
       .searchMyNotifications()
-      .subscribe(n => this.notificationInfo = n.data);
+      .subscribe(n => {
+        this.notificationInfo = n.data;
+        this.updateView();
+      });
   }
 
   private isLoggedIn(): boolean {
@@ -66,7 +70,23 @@ export class NotificationHeaderDisplayComponent implements OnInit {
     return true;
   }
 
+  private updateView(): void {
+    this.newCount = this.notificationInfo.notifications.filter(n => n.viewedAt === null).length;
+  }
+
+  delete(id: number): void {
+    this.notificationService.delete(id).subscribe();
+
+    this.notificationInfo.notifications = this.notificationInfo.notifications.filter(n => n.id !== id);
+
+    this.updateView();
+  }
+
   markAsRead(id: number): void {
-    console.log(id);
+    this.notificationService.markAsRead(id).subscribe();
+
+    this.notificationInfo.notifications.filter(n => n.id === id).pop().viewedAt = Date.now().toString();
+
+    this.updateView();
   }
 }

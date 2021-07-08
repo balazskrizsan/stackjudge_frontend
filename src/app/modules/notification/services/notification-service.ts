@@ -14,4 +14,12 @@ export class NotificationService {
     Observable<IResponseEntity<INotificationResponse>> {
     return this.notificationRepository.searchMyNotifications(limit);
   }
+
+  public markAsRead(id: number): Observable<IResponseEntity<boolean>> {
+    return this.notificationRepository.markAsRead(id);
+  }
+
+  public delete(id: number): Observable<IResponseEntity<boolean>> {
+    return this.notificationRepository.del(id);
+  }
 }

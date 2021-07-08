@@ -20,4 +20,12 @@ export class NotificationRepository extends AbstractApiRepository {
     Observable<IResponseEntity<INotificationResponse>> {
     return this.getWithoutId<INotificationResponse>([], {limit}, this.getController() + '/search-my-notifications');
   }
+
+  public markAsRead(id: number): Observable<IResponseEntity<boolean>> {
+    return this.get(id, [], this.getController() + '/mark-as-read');
+  }
+
+  public del(id: number): Observable<IResponseEntity<boolean>> {
+    return this.get(id, [], this.getController() + '/mark-as-read');
+  }
 }
