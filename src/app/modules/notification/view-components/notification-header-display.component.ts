@@ -5,6 +5,8 @@ import {NotificationService} from '../services/notification-service';
 import {INotificationResponse} from '../interfaces/i-notification-response';
 import {interval, Subscription} from 'rxjs';
 import {IDataProtectedReview} from '../interfaces/i-data-protected-review';
+import {INotification} from '../interfaces/i-notification';
+import {NotificationTypeEnum} from '../enums/notification-type-enum';
 
 @Component({
   selector: 'app-notification-header-display',
@@ -52,7 +54,15 @@ export class NotificationHeaderDisplayComponent implements OnInit {
     return this.user !== null;
   }
 
-  getDataAsIDataProtectedReview(data: {}): IDataProtectedReview {
-    return data as IDataProtectedReview;
+  isValidNotification(notification: INotification): boolean {
+    if (notification.type === NotificationTypeEnum.PROTECTED_VIEW) {
+      const data = notification.data as IDataProtectedReview;
+
+      if (!data.viewerUserId) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }

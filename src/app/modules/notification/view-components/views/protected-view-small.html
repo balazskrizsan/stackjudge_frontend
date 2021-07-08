@@ -1,18 +1,18 @@
 <div *ngIf="data">
-  <div *ngIf="user" class="author-thumb">
-    <img loading="lazy" src="{{user.profilePictureUrl}}" width="34" height="34" alt="author">
+  <div *ngIf="viewUser" class="author-thumb">
+    <img src="{{viewUser.profilePictureUrl}}" alt="{{viewUser.username}}" loading="lazy" width="34" height="34" />
   </div>
 
   <div class="notification-event">
     <div>
       <a
-        *ngIf="user; else unknownUser"
-        href="#" class="h6 notification-friend">{{user.username}}</a>
+        *ngIf="viewUser; else unknownUser"
+        href="#" class="h6 notification-friend">{{viewUser.username}}</a>
       <ng-template #unknownUser><strong>Deleted user</strong></ng-template>
       viewed your review.
     </div>
     <span class="notification-date">
-      <time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time>
+      <time class="entry-date updated" datetime="{{data.viewerUserId}}"></time>
     </span>
   </div>
 
@@ -21,11 +21,7 @@
   </span>
 
   <div class="more">
-    <svg class="olymp-three-dots-icon">
-      <use xlink:href="#olymp-three-dots-icon"></use>
-    </svg>
-    <svg class="olymp-little-delete">
-      <use xlink:href="#olymp-little-delete"></use>
-    </svg>
+    <svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg>
+    <svg class="olymp-little-delete"><use xlink:href="#olymp-little-delete"></use></svg>
   </div>
 </div>

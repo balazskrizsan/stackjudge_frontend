@@ -1,5 +1,5 @@
 <div
-  *ngIf="null !== notificationInfo"
+  *ngIf="notificationInfo"
   class="control-icon more has-items"
 >
   <svg class="olymp-thunder-icon">
@@ -24,13 +24,12 @@
           *ngFor="let notification of notificationInfo.notifications"
         >
           <li
-            *ngIf="getDataAsIDataProtectedReview(notification.data)
-             && notificationInfo.users[getDataAsIDataProtectedReview(notification.data).viewerUserId]"
+            *ngIf="isValidNotification(notification)"
           >
             <app-notification-protected-view-small
+              [notification]="notification"
+              [users]="notificationInfo.users"
               style="width: 100%"
-              [data]="getDataAsIDataProtectedReview(notification.data)"
-              [user]="notificationInfo.users[getDataAsIDataProtectedReview(notification.data).viewerUserId]"
             ></app-notification-protected-view-small>
           </li><!-- /ngFor -->
         </ng-container>
