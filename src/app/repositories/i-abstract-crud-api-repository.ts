@@ -10,5 +10,5 @@ export interface IAbstractCrudApiRepository {
 
   create(updateData: {}): Observable<IResponseEntity<null>>;
 
-  delete(siteId: number): Promise<boolean>;
+  abstractDelete(siteId: number): Observable<IResponseEntity<boolean>>;
 }

@@ -78,4 +78,17 @@ export class HttpService {
       .pipe(map(HttpService.handleSuccess))
       .pipe(catchError(HttpService.handleError));
   }
+
+  public delete<T>(url: string, httpParams?: HttpParams): Observable<IResponseEntity<T>> {
+    const defaultOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'}),
+      withCredentials: true,
+      observe: 'response',
+      params: httpParams
+    };
+
+    return this.http.delete(url, defaultOptions as any)
+      .pipe(map(HttpService.handleSuccess))
+      .pipe(catchError(HttpService.handleError));
+  }
 }

@@ -107,8 +107,11 @@ export abstract class AbstractApiRepository implements IAbstractCrudApiRepositor
     return this.post<null>('', updateData);
   }
 
-  delete(siteId: number): Promise<boolean> {
-    return Promise.resolve(false);
+  abstractDelete(idParam, actionParam = ''): Observable<IResponseEntity<boolean>> {
+    const controller = this.getController();
+    const action = actionParam === '' ?  '' : '/' + actionParam;
+
+    return this.httpService.delete(`${environment.backend.api.host}${controller}${action}/${idParam}`);
   }
 
   search<T>(seekId: number, limit: number, navigationId?: number, uri = '', requestRelationIds?: number[]):

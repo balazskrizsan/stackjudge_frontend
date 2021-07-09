@@ -26,6 +26,6 @@ export class NotificationRepository extends AbstractApiRepository {
   }
 
   public del(id: number): Observable<IResponseEntity<boolean>> {
-    return this.get(id, [], this.getController() + '/mark-as-read');
+    return this.abstractDelete(id);
   }
 }
