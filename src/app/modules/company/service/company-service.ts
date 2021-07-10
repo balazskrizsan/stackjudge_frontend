@@ -15,11 +15,11 @@ export class CompanyService {
   }
 
   get(id: number, requestRelationIds?: number[]): Observable<IResponseEntity<IGetResponse>> {
-    return this.repository.get(id, requestRelationIds);
+    return this.repository.abstractGet(id, '', requestRelationIds);
   }
 
   search(seekId: number, limit: number, navigationId?: number, companyRequestRelations?: number[]):
     Observable<IResponseEntity<ISearchResponse>> {
-    return this.repository.search<ISearchResponse>(seekId, limit, navigationId, '', companyRequestRelations);
+    return this.repository.abstractSeekSearch<ISearchResponse>(seekId, limit, navigationId, companyRequestRelations);
   }
 }

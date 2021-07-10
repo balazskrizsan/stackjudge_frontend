@@ -18,14 +18,14 @@ export class NotificationRepository extends AbstractApiRepository {
 
   public searchMyNotifications(limit: NotificationSearchLimitEnum = NotificationSearchLimitEnum.DEFAULT):
     Observable<IResponseEntity<INotificationResponse>> {
-    return this.getWithoutId<INotificationResponse>([], {limit}, this.getController() + '/search-my-notifications');
+    return this.abstractOffsetSearch<INotificationResponse>(null, limit, 'search-my-notifications');
   }
 
   public markAsRead(id: number): Observable<IResponseEntity<boolean>> {
-    return this.get(id, [], this.getController() + '/mark-as-read');
+    return this.abstractGet(id,  '/mark-as-read');
   }
 
-  public del(id: number): Observable<IResponseEntity<boolean>> {
+  public delete(id: number): Observable<IResponseEntity<boolean>> {
     return this.abstractDelete(id);
   }
 }

@@ -20,6 +20,6 @@ export class NotificationService {
   }
 
   public delete(id: number): Observable<IResponseEntity<boolean>> {
-    return this.notificationRepository.del(id);
+    return this.notificationRepository.delete(id);
   }
 }

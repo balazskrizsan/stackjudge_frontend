@@ -34,6 +34,6 @@ export class AccountRepository extends AbstractApiRepository {
   }
 
   public getByReviewId(reviewId: number): Observable<IResponseEntity<IUser>> {
-    return this.get<IUser>(reviewId, [], this.getController() + '/get-by-review-id');
+    return this.abstractGet<IUser>(reviewId, 'get-by-review-id');
   }
 }
