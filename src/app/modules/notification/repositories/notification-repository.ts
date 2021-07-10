@@ -22,7 +22,7 @@ export class NotificationRepository extends AbstractApiRepository {
   }
 
   public markAsRead(id: number): Observable<IResponseEntity<boolean>> {
-    return this.abstractGet(id,  '/mark-as-read');
+    return this.abstractGet(id,  'mark-as-read');
   }
 
   public delete(id: number): Observable<IResponseEntity<boolean>> {
