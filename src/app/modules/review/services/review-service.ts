@@ -10,6 +10,6 @@ export class ReviewService {
   }
 
   public create(review: IReview): Observable<IResponseEntity<null>> {
-    return this.reviewRepository.create(review);
+    return this.reviewRepository.abstractPost(review);
   }
 }

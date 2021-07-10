@@ -11,7 +11,7 @@ export class CompanyService {
   }
 
   create(updateData: {}): Observable<IResponseEntity<null>> {
-    return this.repository.create(updateData);
+    return this.repository.abstractPost(updateData);
   }
 
   get(id: number, requestRelationIds?: number[]): Observable<IResponseEntity<IGetResponse>> {
