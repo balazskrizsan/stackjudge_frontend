@@ -54,6 +54,10 @@ export class NotificationHeaderDisplayComponent implements OnInit {
       });
   }
 
+  private updateView(): void {
+    this.newCount = this.notificationInfo.notifications.filter(n => n.viewedAt === null).length;
+  }
+
   private isLoggedIn(): boolean {
     return this.user !== null;
   }
@@ -68,10 +72,6 @@ export class NotificationHeaderDisplayComponent implements OnInit {
     }
 
     return true;
-  }
-
-  private updateView(): void {
-    this.newCount = this.notificationInfo.notifications.filter(n => n.viewedAt === null).length;
   }
 
   delete(id: number): void {

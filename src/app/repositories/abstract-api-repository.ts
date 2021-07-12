@@ -7,7 +7,7 @@ import {HttpHelperService} from '../services/http-helper-service';
 export abstract class AbstractApiRepository {
   httpService: HttpService;
 
-  abstract getController(): string;
+  public abstract getController(): string;
 
   protected constructor(httpService: HttpService) {
     this.httpService = httpService;

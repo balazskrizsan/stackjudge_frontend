@@ -7,7 +7,7 @@ import {INotificationResponse} from '../interfaces/i-notification-response';
 
 @Injectable()
 export class NotificationService {
-  constructor(private notificationRepository: NotificationRepository) {
+  public constructor(private notificationRepository: NotificationRepository) {
   }
 
   public searchMyNotifications(limit: NotificationSearchLimitEnum = NotificationSearchLimitEnum.DEFAULT):

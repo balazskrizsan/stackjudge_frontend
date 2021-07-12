@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
 export class AccountRepository extends AbstractApiRepository {
   private static readonly jwtKey = 'jwt';
 
-  constructor(
+  public constructor(
     httpService: HttpService,
     private localStorageService: LocalStorageService
   ) {

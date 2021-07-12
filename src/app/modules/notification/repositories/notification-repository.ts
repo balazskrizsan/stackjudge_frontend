@@ -12,7 +12,7 @@ export class NotificationRepository extends AbstractApiRepository {
     super(httpService);
   }
 
-  getController(): string {
+  public getController(): string {
     return 'notification';
   }
 

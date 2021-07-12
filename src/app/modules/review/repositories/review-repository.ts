@@ -4,11 +4,11 @@ import {AbstractApiRepository} from '../../../repositories/abstract-api-reposito
 
 @Injectable()
 export class ReviewRepository extends AbstractApiRepository{
-  constructor(httpService: HttpService) {
+  public constructor(httpService: HttpService) {
     super(httpService);
   }
 
-  getController(): string {
+  public getController(): string {
     return 'review';
   }
 }
