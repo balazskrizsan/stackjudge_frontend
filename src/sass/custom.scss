@@ -28,3 +28,10 @@ a.link {
 .notification-icon-primary-color svg {
   fill: $primary-color;
 }
+
+.modal-close {
+  cursor: pointer;
+}
+.modal-close svg {
+  fill: $primary-color;
+}
