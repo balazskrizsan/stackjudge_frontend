@@ -9,6 +9,6 @@ export const environment = {
     }
   },
   cdn: {
-    host: 'https://stack-judge-cdn-dev-eu-central-1.s3.eu-central-1.amazonaws.com/'
+    host: 'https://stackjudge-cdn-dev-eu-central-1.s3.eu-central-1.amazonaws.com/'
   }
 };
