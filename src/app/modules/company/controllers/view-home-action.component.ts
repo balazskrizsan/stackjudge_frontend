@@ -7,6 +7,8 @@ import {ICompanyStatistic} from '../interfaces/i-company-statistic';
 import {IRecursiveGroupTree} from '../interfaces/i-recursive-group-tree';
 import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {IAddress} from '../../address/interfaces/i-address';
+import {IReview} from '../../review/interfaces/i-review';
+import {IUser} from '../../account/interfaces/i-user';
 
 declare let google: any;
 
@@ -22,6 +24,8 @@ export class ViewHomeActionComponent {
   public companyStatistics: ICompanyStatistic = null;
   public companyGroups: Array<IRecursiveGroupTree> = null;
   public companyAddresses: Array<IAddress> = null;
+  companyReviews: Array<Array<IReview>> = null;
+  companyUsers: Array<IUser> = null;
   @ViewChildren('maps')
   public maps!: QueryList<ElementRef<HTMLLIElement>>;
 
@@ -34,6 +38,8 @@ export class ViewHomeActionComponent {
       this.companyGroups = res.companyGroups;
       this.companyStatistics = res.companyStatistic;
       this.companyAddresses = res.companyAddresses;
+      this.companyReviews = res.companyReviews;
+      this.companyUsers = res.companyUsers;
     });
 
     // @todo: create listener for the ngif

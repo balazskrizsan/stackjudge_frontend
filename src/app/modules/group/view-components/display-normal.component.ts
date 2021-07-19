@@ -14,10 +14,16 @@ import {ICurrentUser} from '../../account/interfaces/i-current-user';
   templateUrl: './views/display-normal.html',
 })
 export class DisplayNormalComponent implements OnInit {
-  @Input() recursiveGroupTrees: Array<IRecursiveGroupTree>;
-  @Input() reviews: Array<Array<IReview>>;
-  @Input() reviewUsers: Array<IUser>;
-  @Input() level: string;
+  @Input()
+  public recursiveGroupTrees: Array<IRecursiveGroupTree>;
+  @Input()
+  public reviews: Array<Array<IReview>>;
+  @Input()
+  public reviewUsers: Array<IUser>;
+  @Input()
+  public level: string;
+  @Input()
+  public showReviews: boolean;
 
   private user: ICurrentUser;
 
@@ -28,7 +34,7 @@ export class DisplayNormalComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.accountService.getStateAsObservable$().subscribe(user => this.user = user);
   }
 
@@ -38,5 +44,19 @@ export class DisplayNormalComponent implements OnInit {
 
   public isLoggedIn(): boolean {
     return this.user !== null;
+  }
+
+  public getReviews(): Array<Array<IReview>>
+  {
+    if (!this.showReviews) {
+      return [];
+    }
+
+    return this.reviews;
+  }
+
+  public getReviewsByGroupId(groupId: number): Array<IReview>
+  {
+    return this.getReviews()[groupId];
   }
 }
