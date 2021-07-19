@@ -11,6 +11,7 @@ import {ICurrentUser} from '../../account/interfaces/i-current-user';
 import {AccountService} from '../../account/services/account-service';
 import {IReview} from '../../review/interfaces/i-review';
 import {IUser} from '../../account/interfaces/i-user';
+import {IAddress} from '../../address/interfaces/i-address';
 
 @Component({
   templateUrl: '../views/view-stack.html',
@@ -22,6 +23,7 @@ export class ViewStackActionComponent implements OnInit, OnDestroy {
   companyGroups: Array<IRecursiveGroupTree> = null;
   companyReviews: Array<Array<IReview>>;
   companyUsers: Array<IUser>;
+  companyAddresses: Array<IAddress>;
   user: ICurrentUser | null;
 
   public constructor(
@@ -36,6 +38,7 @@ export class ViewStackActionComponent implements OnInit, OnDestroy {
       this.companyStatistics = res.companyStatistic;
       this.companyReviews = res.companyReviews;
       this.companyUsers = res.companyUsers;
+      this.companyAddresses = res.companyAddresses;
     });
   }
 

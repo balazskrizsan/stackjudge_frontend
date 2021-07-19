@@ -1,29 +1,29 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
 import {Router} from '@angular/router';
 import {Forms} from '../forms';
 import {AddressForms} from '../../address/address-forms';
 import {ICompany} from '../interfaces/i-company';
 import {ICompanyStatistic} from '../interfaces/i-company-statistic';
-import {UrlService} from '../service/url-service';
 import {IRecursiveGroupTree} from '../interfaces/i-recursive-group-tree';
 import {ViewDataRegistryService} from '../service/view-data-registry-service';
+import {IAddress} from '../../address/interfaces/i-address';
+
+declare let google: any;
 
 @Component(
   {
     templateUrl: '../views/view-home.html',
-    styles: [
-      '#company-group-list ul, #company-group-list ul.children { width: 100%; padding-left: 20px; padding-right: 0; margin-right: 0; margin-left: 0}',
-      '#company-group-list ul li { width: 100%; padding-right: 0; margin-right: 0; margin-left: 0}',
-      '#company-group-list ul#company-group-list-top-level {padding-left: 0}'
-    ],
+    styleUrls: ['../styles/styles.scss'],
     providers: [Forms, AddressForms],
   }
 )
 export class ViewHomeActionComponent {
-  urlGeneratorService = UrlService;
-  company: ICompany = null;
-  companyStatistics: ICompanyStatistic = null;
-  companyGroups: Array<IRecursiveGroupTree> = null;
+  public company: ICompany = null;
+  public companyStatistics: ICompanyStatistic = null;
+  public companyGroups: Array<IRecursiveGroupTree> = null;
+  public companyAddresses: Array<IAddress> = null;
+  @ViewChildren('maps')
+  public maps!: QueryList<ElementRef<HTMLLIElement>>;
 
   public constructor(
     private router: Router,
@@ -33,6 +33,45 @@ export class ViewHomeActionComponent {
       this.company = res.company;
       this.companyGroups = res.companyGroups;
       this.companyStatistics = res.companyStatistic;
+      this.companyAddresses = res.companyAddresses;
+    });
+
+    // @todo: create listener for the ngif
+    setTimeout(() => {
+      this.initMaps();
+    }, 500);
+  }
+
+  private initMaps(): void {
+    this.maps.forEach((map, i) => {
+      const address = this.companyAddresses[i];
+
+      const position = {lat: address.markerLat, lng: address.markerLng};
+      const mapOptions = {
+        center: position,
+        zoom: 16,
+        scrollwheel: false,
+        noClear: true,
+        mapTypeId: 'satellite',
+        streetViewControl: false,
+        rotateControl: false,
+        zoomControl: true,
+        mapTypeControl: true,
+        fullscreenControl: true,
+        disableDefaultUI: true,
+        mapTypeControlOptions: {mapTypeIds: []},
+        scaleControl: false,
+        keyboardShortcuts: false
+      };
+      const mapDiv = map.nativeElement.children.namedItem('map-' + address.id);
+
+      const googleMap = new google.maps.Map(mapDiv, mapOptions);
+      const marker = new google.maps.Marker({
+        position,
+        map,
+        title: 'Office'
+      });
+      marker.setMap(googleMap);
     });
   }
 }

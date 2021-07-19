@@ -55,33 +55,21 @@
         <div class="ui-block-title">
           <h6 class="title">Company Info</h6>
         </div>
-        <div class="ui-block-content">
-          <ul class="widget w-personal-info">
-            <li>
-              <span class="title">Company Name</span>
-              <span class="text">{{company.name}}</span>
-            </li>
-            <li>
-              <span class="title">HQ Address</span>
-              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
-            </li>
-            <li>
-              <span class="title">Office Addresses</span>
-              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
-            </li>
-            <li>
-              <span class="title">&nbsp;</span>
-              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
-            </li>
-            <li>
-              <span class="title">&nbsp;</span>
-              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
-            </li>
-            <li>
-              <span class="title">&nbsp;</span>
-              <span class="text">Budapest, Deák Ferenc tér 1, 1052</span>
+        <div class="ui-block-content left-map-wrapper">
+
+          <ul class="left-map">
+            <li
+              #maps
+              *ngFor="let address of companyAddresses"
+            >
+              <div id="map-{{address.id}}" class="left-map-content-content"
+              ></div>
+              <div>
+                <span class="title">{{address.fullAddress}}</span>
+              </div>
             </li>
           </ul>
+
         </div>
         <div class="ui-block-title">
           <h6 class="title">Company Statistic</h6>

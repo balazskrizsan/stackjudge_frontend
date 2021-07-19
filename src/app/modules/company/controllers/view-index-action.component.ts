@@ -11,6 +11,7 @@ import {IRecursiveGroupTree} from '../interfaces/i-recursive-group-tree';
 import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {IReview} from '../../review/interfaces/i-review';
 import {IUser} from '../../account/interfaces/i-user';
+import {IAddress} from '../../address/interfaces/i-address';
 
 @Component({
   templateUrl: '../views/view-index.html',
@@ -23,6 +24,7 @@ export class ViewIndexActionComponent implements OnInit {
   companyGroups: Array<IRecursiveGroupTree> = null;
   companyReviews: Array<Array<IReview>> = null;
   companyUsers: Array<IUser> = null;
+  companyAddresses: Array<IAddress> = null;
   subPageComponent: any = null;
 
   public constructor(
@@ -35,23 +37,27 @@ export class ViewIndexActionComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
 
-    await this.companyService.get(
-      id,
-      [CompanyRequestRelationsEnum.STATISTIC, CompanyRequestRelationsEnum.GROUP, CompanyRequestRelationsEnum.REVIEW]
-    ).subscribe(
+    await this.companyService.get(id, [
+      CompanyRequestRelationsEnum.STATISTIC,
+      CompanyRequestRelationsEnum.GROUP,
+      CompanyRequestRelationsEnum.REVIEW,
+      CompanyRequestRelationsEnum.ADDRESS
+    ]).subscribe(
       response => {
         this.company = response.data.company;
         this.companyStatistics = response.data.companyStatistic;
         this.companyGroups = response.data.companyGroups;
         this.companyReviews = response.data.companyReviews;
         this.companyUsers = response.data.companyUsers;
+        this.companyAddresses = response.data.companyAddresses;
 
         this.viewDataRegistryService.next({
           company: this.company,
           companyGroups: this.companyGroups,
           companyStatistic: this.companyStatistics,
           companyReviews: this.companyReviews,
-          companyUsers: this.companyUsers
+          companyUsers: this.companyUsers,
+          companyAddresses: this.companyAddresses
         });
       }
     );
