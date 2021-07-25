@@ -7,8 +7,7 @@ import {ICompany} from '../interfaces/i-company';
 import {CompanyService} from '../service/company-service';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {EnumService} from '../../../services/enum-service';
-import {ItSizeEnum} from '../enums/it-size-enum';
-import {CompanySizeEnum} from '../enums/company-size-enum';
+import {PeopleSizeEnum} from '../enums/people-size-enum';
 
 @Component(
   {
@@ -18,15 +17,14 @@ import {CompanySizeEnum} from '../enums/company-size-enum';
   }
 )
 export class CreateActionComponent {
-  formTypeEnum = FormTypeEnum;
-  company: ICompany = null;
-  formType = FormTypeEnum.VIEW;
-  form: FormGroup;
-  submitted = false;
-  serverSideError = false;
-  itSizes = EnumService.enumAsArrayKV(ItSizeEnum);
-  companySizes = EnumService.enumAsArrayKV(CompanySizeEnum);
-  objectKeys = Object.keys;
+  public formTypeEnum = FormTypeEnum;
+  public company: ICompany = null;
+  public formType = FormTypeEnum.VIEW;
+  public form: FormGroup;
+  public submitted = false;
+  public serverSideError = false;
+  public peopleSizes = EnumService.enumAsArrayKV(PeopleSizeEnum);
+  public objectKeys = Object.keys;
 
   public constructor(
     private route: ActivatedRoute,

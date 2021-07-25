@@ -16,7 +16,7 @@
                 <div
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
                   [ngClass]="{'has-error': isValidField('name')}"
-                  class="form-group"
+                  class="form-group label-floating is-select"
                 >
                   <label for="name" class="control-label">Company name</label>
                   <input
@@ -32,16 +32,16 @@
                 <div
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
                   [ngClass]="{'has-error': isValidField('companySizeId')}"
-                  class="form-group"
+                  class="form-group label-floating is-select"
                 >
-                  <label for="companySizeId" class="control-label">Company Size</label>
+                  <label class="control-label">Company Size</label>
                   <!--                    <select class="selectpicker form-control">-->
                   <select
                     formControlName="companySizeId"
-                    class="form-control" id="companySizeId"
+                    class="selectpicker form-control"
                   >
-                    <option [value]="companySizes[companySize]" *ngFor="let companySize of objectKeys(companySizes)">
-                      {{companySize}}
+                    <option [value]="peopleSizes[peopleSize]" *ngFor="let peopleSize of objectKeys(peopleSizes)">
+                      {{peopleSize}}
                     </option>
                   </select>
                 </div>
@@ -49,16 +49,16 @@
                 <div
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
                   [ngClass]="{'has-error': isValidField('itSizeId')}"
-                  class="form-group"
+                  class="form-group label-floating is-select"
                 >
-                  <label for="itSizeId" class="control-label">IT Size</label>
+                  <label class="control-label">IT Size</label>
                   <!--                    <select class="selectpicker form-control">-->
                   <select
                     formControlName="itSizeId"
-                    class="form-control" id="itSizeId"
+                    class="selectpicker form-control"
                   >
-                    <option [value]="itSizes[itSize]" *ngFor="let itSize of objectKeys(itSizes)">
-                      {{itSize}}
+                    <option [value]="peopleSizes[peopleSize]" *ngFor="let peopleSize of objectKeys(peopleSizes)">
+                      {{peopleSize}}
                     </option>
                   </select>
                 </div>

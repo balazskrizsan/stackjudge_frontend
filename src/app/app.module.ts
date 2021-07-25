@@ -25,6 +25,8 @@ import {GroupModule} from './modules/group/group.module';
 import {NotificationModule} from './modules/notification/notification.module';
 import {NotificationService} from './modules/notification/services/notification-service';
 import {NotificationRepository} from './modules/notification/repositories/notification-repository';
+import {GroupService} from './modules/group/services/group-service';
+import {GroupRepository} from './modules/group/repositories/group-repository';
 
 @NgModule(
   {
@@ -62,6 +64,8 @@ import {NotificationRepository} from './modules/notification/repositories/notifi
       AccountState,
       NotificationService,
       NotificationRepository,
+      GroupService,
+      GroupRepository,
       ViewDataRegistryService,
       {
         provide: HTTP_INTERCEPTORS,

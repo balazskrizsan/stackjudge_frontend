@@ -1,4 +1,4 @@
-export enum IGroupTypeEnum {
+export enum GroupTypeEnum {
   PROJECT = 1,
   TEAM,
   STACK,

@@ -10,15 +10,15 @@ export class CompanyService {
   public constructor(private repository: CompanyRepository) {
   }
 
-  create(updateData: {}): Observable<IResponseEntity<null>> {
+  public create(updateData: {}): Observable<IResponseEntity<null>> {
     return this.repository.abstractPost(updateData);
   }
 
-  get(id: number, requestRelationIds?: number[]): Observable<IResponseEntity<IGetResponse>> {
+  public get(id: number, requestRelationIds?: number[]): Observable<IResponseEntity<IGetResponse>> {
     return this.repository.abstractGet(id, '', requestRelationIds);
   }
 
-  search(seekId: number, limit: number, navigationId?: number, companyRequestRelations?: number[]):
+  public search(seekId: number, limit: number, navigationId?: number, companyRequestRelations?: number[]):
     Observable<IResponseEntity<ISearchResponse>> {
     return this.repository.abstractSeekSearch<ISearchResponse>(seekId, limit, navigationId, companyRequestRelations);
   }

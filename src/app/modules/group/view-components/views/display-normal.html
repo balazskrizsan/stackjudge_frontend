@@ -1,3 +1,13 @@
+<a
+  *ngIf="isPopupsAvailable()"
+  (click)="openAddGroupModal({
+            groupId: null,
+            companyId: company.id
+          })"
+  style="padding-left: 25px"
+  class="highlighted-link"
+>Add group</a>
+
 <ul
   [ngClass]="level == 'top'? 'comments-list' : 'children'"
 >
@@ -9,12 +19,30 @@
       <img loading="lazy" src="img/avatar5-sm.jpg" alt="author">
       <div class="author-date">
         <h3 class="h6 post__author-name fn" href="#">{{recursiveGroupTree.recursiveGroup.name}}</h3>
-        <a
-          *ngIf="showReviews"
-          (click)="openWriteStackReviewModal({groupId: recursiveGroupTree.recursiveGroup.id})"
-          [hidden]="!isLoggedIn()"
-          class="highlighted-link"
-        >Add a review</a>
+        <span
+          *ngIf="isPopupsAvailable()"
+        >
+          <a
+            (click)="openWriteStackReviewModal({groupId: recursiveGroupTree.recursiveGroup.id})"
+            class="highlighted-link"
+          >Add a review</a>
+          |
+          <a
+            (click)="openAddGroupModal({
+              groupId: recursiveGroupTree.recursiveGroup.id,
+              companyId: company.id
+            })"
+            class="highlighted-link"
+          >Add group</a>
+          |
+          <a
+            (click)="openAddTechnologyModal({
+              groupId: recursiveGroupTree.recursiveGroup.id,
+              companyId: company.id
+            })"
+            class="highlighted-link"
+          >Add technology</a>
+        </span>
       </div>
     </div>
 
@@ -25,9 +53,11 @@
     ></app-review-display-small>
 
     <app-group-display-normal
+      [company]="company"
       [recursiveGroupTrees]="recursiveGroupTree.children"
       [reviews]="getReviews()"
       [reviewUsers]="reviewUsers"
+      [showReviews]="showReviews"
       [level]="'child'"
     ></app-group-display-normal>
 

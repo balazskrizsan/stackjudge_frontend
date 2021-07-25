@@ -8,12 +8,16 @@ import {Router} from '@angular/router';
 import {ModalService} from '../../modals/model-service';
 import {AccountService} from '../../account/services/account-service';
 import {ICurrentUser} from '../../account/interfaces/i-current-user';
+import {IAddGroupConfig} from '../../modals/interfaces/i-add-group-config';
+import {ICompany} from '../../company/interfaces/i-company';
 
 @Component({
   selector: 'app-group-display-normal',
   templateUrl: './views/display-normal.html',
 })
 export class DisplayNormalComponent implements OnInit {
+  @Input()
+  public company: ICompany;
   @Input()
   public recursiveGroupTrees: Array<IRecursiveGroupTree>;
   @Input()
@@ -42,8 +46,20 @@ export class DisplayNormalComponent implements OnInit {
     this.modalService.open(ModalIdEnum.WRITE_STACK_REVIEW, config);
   }
 
+  public openAddGroupModal(config: IAddGroupConfig): void {
+    this.modalService.open(ModalIdEnum.ADD_GROUP, config);
+  }
+
+  public openAddTechnologyModal(config: IAddGroupConfig): void {
+    this.modalService.open(ModalIdEnum.ADD_GROUP_TECHNOLOGY, config);
+  }
+
   public isLoggedIn(): boolean {
     return this.user !== null;
+  }
+
+  public isPopupsAvailable(): boolean {
+    return this.isLoggedIn() && this.showReviews;
   }
 
   public getReviews(): Array<Array<IReview>>
