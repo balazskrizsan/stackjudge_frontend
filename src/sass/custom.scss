@@ -35,3 +35,11 @@ a.link {
 .modal-close svg {
   fill: $primary-color;
 }
+
+.form-group.has-error input {
+  border-color: #b94a48;
+}
+
+.form-group.has-error label {
+  color: #b94a48;
+}

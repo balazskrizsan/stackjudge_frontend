@@ -83,8 +83,8 @@ input, .form-control {
   background-color: #f92552;
   color: $white-color;
   font-size: 9px;
-  right: 20px;
-  top: 19px;
+  right: 2px;
+  top: 45px;
 }
 
 select.form-control {
@@ -796,7 +796,7 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
 
 @media (max-width: 1199px) {
   .form-group.has-error:after {
-    top: 14px;
+    top: 35px;
   }
 }
 

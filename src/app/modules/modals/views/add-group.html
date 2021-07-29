@@ -31,7 +31,8 @@
             <div class="col col-xl-12 col-lg-12 col-md-12">
 
               <div
-                class="form-group label-floating is-select"
+                [ngClass]="{'has-error': hasValidationError('typeId')}"
+                class="form-group"
               >
                 <label class="control-label">Group type</label>
                 <select
@@ -45,7 +46,10 @@
                 </select>
               </div>
 
-              <div class="form-group label-floating">
+              <div
+                [ngClass]="{'has-error': hasValidationError('name')}"
+                class="form-group"
+              >
                 <label class="control-label">Name</label>
                 <input
                   formControlName="name"
@@ -54,7 +58,8 @@
               </div>
 
               <div
-                class="form-group label-floating is-select"
+                [ngClass]="{'has-error': hasValidationError('groupSizeId')}"
+                class="form-group"
               >
                 <label class="control-label">Group Size</label>
                 <select
