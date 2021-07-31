@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractForm} from '../../../forms/abstract-form';
 
 @Injectable()
-export class AddGroupTechnologyForm {
-  private CruFields: any = {
+export class AddGroupTechnologyForm extends AbstractForm {
+  private CruFields = {
     name: new FormControl('', [Validators.required, Validators.minLength(1)]),
     groupSizeId: new FormControl(0, [Validators.required, Validators.pattern(/^[1-7]$/)]),
   };
@@ -19,13 +20,5 @@ export class AddGroupTechnologyForm {
         groupSizeId: this.CruFields.groupSizeId,
       }
     );
-  }
-
-  public getFieldValue(field: string): string {
-    return this.getField(field).value;
-  }
-
-  public getField(field: string): FormControl {
-    return this.CruFields[field];
   }
 }

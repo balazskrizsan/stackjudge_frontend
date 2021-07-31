@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IAddress} from './interfaces/i-address';
+import {AbstractForm} from '../../forms/abstract-form';
 
 @Injectable()
-export class AddressForms {
+export class AddressForms extends AbstractForm{
   private CruFields: any = {
     id: new FormControl('', []),
     fullAddress: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -13,11 +14,11 @@ export class AddressForms {
     manualMarkerLat: new FormControl('', [Validators.pattern(/^\d{1,3}\.\d{1,20}/)]),
   };
 
-  getFields(): any {
+  public getFields(): any {
     return this.CruFields;
   }
 
-  createCruForm(): FormGroup {
+  public createCruForm(): FormGroup {
     return new FormGroup(
       {
         id: this.CruFields.id,
@@ -30,15 +31,7 @@ export class AddressForms {
     );
   }
 
-  getFieldValue(field: string): string {
-    return this.getField(field).value;
-  }
-
-  getField(field: string): FormControl {
-    return this.CruFields[field];
-  }
-
-  createPatchMap(address: IAddress): IAddress {
+  public createPatchMap(address: IAddress): IAddress {
     return {
       id: address.id,
       fullAddress: address.fullAddress,
