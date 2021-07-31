@@ -1,9 +1,8 @@
-import {AfterViewInit, Component, forwardRef, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, forwardRef, Input, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {AddressForms} from './address-forms';
 import {FormTypeEnum} from '../company/enums/form-type-enum';
-import {EventEmitter} from 'events';
 
 declare let google: any;
 
@@ -27,14 +26,16 @@ const resolvedPromise = Promise.resolve(null);
   ]
 })
 export class AddressFormComponent implements ControlValueAccessor, OnDestroy, OnInit {
-  @Input() formType;
-  @Input() submitted;
-  formTypeEnum = FormTypeEnum;
-  form: FormGroup;
-  formFields;
-  subscriptions: Subscription[] = [];
+  @Input()
+  public formType;
+  @Input()
+  public submitted;
+  public formTypeEnum = FormTypeEnum;
+  public form: FormGroup;
+  public formFields;
+  public subscriptions: Subscription[] = [];
 
-  constructor(private formBuilder: FormBuilder, private forms: AddressForms) {
+  public constructor(private formBuilder: FormBuilder, private forms: AddressForms) {
     this.formFields = forms.getFields();
     this.form = this.formBuilder.group(this.formFields);
 
@@ -46,7 +47,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, On
     );
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initMap();
 
     resolvedPromise.then(() => {
@@ -54,7 +55,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, On
     });
   }
 
-  initMap(): void {
+  public initMap(): void {
     const position = {lat: 47.497912, lng: 19.040235};
     const mapOptions = {
       center: position,
@@ -98,14 +99,14 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, On
     });
   }
 
-  setManualPosition(lat: number, lng: number): void {
+  public setManualPosition(lat: number, lng: number): void {
     this.form.patchValue({
       manualMarkerLat: lat,
       manualMarkerLng: lng,
     });
   }
 
-  setBasicAddress(markerLat, markerLng, fullAddress): void {
+  public setBasicAddress(markerLat, markerLng, fullAddress): void {
     this.form.patchValue({
       markerLng,
       markerLat,
@@ -123,7 +124,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, On
     this.onTouched();
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
@@ -132,11 +133,11 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, On
   onTouched: any = () => {
   }
 
-  registerOnChange(fn): void {
+  public registerOnChange(fn): void {
     this.onChange = fn;
   }
 
-  writeValue(value): void {
+  public writeValue(value): void {
     if (value) {
       this.value = value;
     }
@@ -146,11 +147,11 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, On
     }
   }
 
-  registerOnTouched(fn): void {
+  public registerOnTouched(fn): void {
     this.onTouched = fn;
   }
 
-  validate(_: FormControl): any {
+  public validate(_: FormControl): any {
     return this.form.valid ? null : {passwords: {valid: false}};
   }
 }
