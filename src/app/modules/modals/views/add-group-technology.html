@@ -24,13 +24,17 @@
 
       <div class="modal-body">
         <form
-          [formGroup]="form" (ngSubmit)="onSubmit()"
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
           class="form-write-rewiev"
         >
           <div class="row">
             <div class="col col-xl-12 col-lg-12 col-md-12">
 
-              <div class="form-group label-floating">
+              <div
+                [ngClass]="{'has-error': hasValidationError('name')}"
+                class="form-group"
+              >
                 <label class="control-label">Name</label>
                 <input
                   formControlName="name"
@@ -39,7 +43,8 @@
               </div>
 
               <div
-                class="form-group label-floating is-select"
+                [ngClass]="{'has-error': hasValidationError('groupSizeId')}"
+                class="form-group"
               >
                 <label class="control-label">Members on technology</label>
                 <select

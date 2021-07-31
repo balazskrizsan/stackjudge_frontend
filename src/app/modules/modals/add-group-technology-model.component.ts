@@ -91,9 +91,9 @@ export class AddGroupTechnologyModelComponent implements IModal, OnInit {
   }
 
   // @todo: ngClass error not working properly
-  public isValidField(fieldName: string): boolean {
+  public hasValidationError(fieldName: string): boolean {
     const field = this.addGroupTechnologyForm.getField(fieldName);
 
-    return field.invalid && (field.touched);
+    return field.invalid && field.touched;
   }
 }
