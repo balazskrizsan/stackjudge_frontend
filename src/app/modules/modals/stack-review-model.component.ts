@@ -18,10 +18,10 @@ export class StackReviewModelComponent implements IModal, OnInit {
   public id: number;
   public isModalVisible = false;
   public user: ICurrentUser | null = null;
-  private config: IWriteGroupReviewConfig;
   public form: FormGroup;
+  private config: IWriteGroupReviewConfig;
 
-  constructor(
+  public constructor(
     private modalService: ModalService,
     private accountService: AccountService,
     private reviewService: ReviewService,
@@ -31,12 +31,12 @@ export class StackReviewModelComponent implements IModal, OnInit {
     this.form = stackReviewForm.createCruForm();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.modalService.add(this);
     this.accountService.getStateAsObservable$().subscribe(user => this.user = user);
   }
 
-  open(config: IWriteGroupReviewConfig): void {
+  public open(config: IWriteGroupReviewConfig): void {
     if (!this.user) {
       console.error('StackReviewModelComponent.open() without user');
 
@@ -46,13 +46,13 @@ export class StackReviewModelComponent implements IModal, OnInit {
     this.isModalVisible = true;
   }
 
-  close(): void {
+  public close(): void {
     this.isModalVisible = false;
     // @todo: reset form (view)
     this.form.reset();
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (false === this.isModalVisible) {
       return;
     }
@@ -78,9 +78,9 @@ export class StackReviewModelComponent implements IModal, OnInit {
   }
 
   // @todo: ngClass error not working properly
-  isValidField(fieldName: string): boolean {
+  public hasValidationError(fieldName: string): boolean {
     const field = this.stackReviewForm.getField(fieldName);
 
-    return field.invalid && (field.touched);
+    return field.invalid && field.touched;
   }
 }

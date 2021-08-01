@@ -29,7 +29,7 @@
         >
           <div class="row">
             <div class="col col-xl-12 col-lg-12 col-md-12">
-              <div class="form-group label-floating">
+              <div class="form-group">
                 <label class="control-label">Name</label>
                 <input
                   value="{{user?.username}}"
@@ -40,8 +40,8 @@
 
             <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
               <div
-                [ngClass]="{'has-error': isValidField('visibility')}"
-                class="form-group label-floating is-select"
+                [ngClass]="{'has-error': hasValidationError('visibility')}"
+                class="form-group"
               >
                 <label class="control-label">Visibility</label>
                 <select
@@ -56,8 +56,8 @@
               </div>
 
               <div
-                [ngClass]="{'has-error': isValidField('rate')}"
-                class="form-group label-floating is-select"
+                [ngClass]="{'has-error': hasValidationError('rate')}"
+                class="form-group"
               >
                 <label class="control-label">Rate</label>
                 <select
@@ -74,9 +74,10 @@
               </div>
 
               <div
-                [ngClass]="{'has-error': isValidField('review')}"
-                class="form-group label-floating"
+                [ngClass]="{'has-error': hasValidationError('review')}"
+                class="form-group"
               >
+                <label class="control-label">Review</label>
                 <textarea
                   formControlName="review"
                   class="form-control" placeholder="Your detailed review"

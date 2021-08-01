@@ -36,7 +36,8 @@ a.link {
   fill: $primary-color;
 }
 
-.form-group.has-error input {
+.form-group.has-error input,
+.form-group.has-error textarea {
   border-color: #b94a48;
 }
 
