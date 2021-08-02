@@ -9,19 +9,21 @@
         </div>
         <div class="ui-block-content">
 
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form
+            [formGroup]="form"
+            (ngSubmit)="onSubmit()"
+          >
             <div class="row" formGroupName="company">
               <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
 
                 <div
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
-                  [ngClass]="{'has-error': isValidField('name')}"
-                  class="form-group label-floating is-select"
+                  [ngClass]="{'has-error': hasValidationError('name')}"
+                  class="form-group"
                 >
                   <label for="name" class="control-label">Company name</label>
                   <input
                     formControlName="name"
-                    [ngClass]="{'form-control-danger': isValidField('name')}"
                     type="text"
                     class="form-control"
                     id="name"
@@ -31,11 +33,10 @@
 
                 <div
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
-                  [ngClass]="{'has-error': isValidField('companySizeId')}"
-                  class="form-group label-floating is-select"
+                  [ngClass]="{'has-error': hasValidationError('companySizeId')}"
+                  class="form-group"
                 >
                   <label class="control-label">Company Size</label>
-                  <!--                    <select class="selectpicker form-control">-->
                   <select
                     formControlName="companySizeId"
                     class="selectpicker form-control"
@@ -48,8 +49,8 @@
 
                 <div
                   *ngIf="formType === formTypeEnum.EDIT || formType === formTypeEnum.VIEW"
-                  [ngClass]="{'has-error': isValidField('itSizeId')}"
-                  class="form-group label-floating is-select"
+                  [ngClass]="{'has-error': hasValidationError('itSizeId')}"
+                  class="form-group"
                 >
                   <label class="control-label">IT Size</label>
                   <select

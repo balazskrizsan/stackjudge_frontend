@@ -41,7 +41,7 @@ export class CreateActionComponent {
     });
   }
 
-  async onSubmit(): Promise<void> {
+  public async onSubmit(): Promise<void> {
     this.submitted = true;
     if (this.form.valid) {
       await this.companyService.create(this.form.getRawValue()).subscribe(
@@ -59,15 +59,15 @@ export class CreateActionComponent {
     this.form.markAllAsTouched();
   }
 
-  uploadCompanyLogo(event): void {
+  public uploadCompanyLogo(event): void {
     const companyLogo = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({companyLogo});
     this.form.get('companyLogo').updateValueAndValidity();
   }
 
-  isValidField(fieldName: string): boolean {
+  public hasValidationError(fieldName: string): boolean {
     const field = this.forms.getField(fieldName);
 
-    return field.invalid && (field.touched);
+    return field.invalid && field.touched;
   }
 }
