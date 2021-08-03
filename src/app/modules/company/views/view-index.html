@@ -3,9 +3,7 @@
     <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
       <div class="ui-block">
         <div class="top-header">
-          <div class="top-header-thumb" style="height: 300px"><!--@todo: fix -->
-            <img loading="lazy" src="img/top-header1.jpg" alt="nature">
-          </div>
+          <div class="top-header-thumb" [ngStyle]="{'background-image': 'url(' + mapUrl + ') '}"></div>
           <div class="profile-section">
             <div class="row">
               <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
@@ -88,7 +86,10 @@
               <img loading="lazy" src="{{urlGeneratorService.getCompanyLogoUrl(company)}}" alt="author">
             </a>
             <div class="author-content">
-              <a href="{{urlGeneratorService.getCompanyHomeViewUri(company)}}" class="h4 author-name">{{company.name}}</a>
+              <a
+                href="{{urlGeneratorService.getCompanyHomeViewUri(company)}}"
+                class="h4 author-name"
+              >{{company.name}}</a>
               <div class="country">San Francisco, CA</div>
             </div>
           </div>

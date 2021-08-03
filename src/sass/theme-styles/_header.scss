@@ -537,24 +537,27 @@ if the page has a “right panel”, add a class for BODY -- ".page-has-right-pa
 }
 
 .top-header-thumb {
-	position: relative;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  background-position: 50% 0;
 
   img {
-	display: block;
-	width: 100%;
-	border-radius: 5px 5px 0 0;
-	overflow: hidden;
+    display: block;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
   }
 
   &:after {
-	content: '';
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	box-shadow: inset 0px -120px 55px -30px rgba(0,0,0,0.5);
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px -120px 55px -30px rgba(0, 0, 0, 0.5);
   }
 
 }
@@ -616,29 +619,28 @@ if the page has a “right panel”, add a class for BODY -- ".page-has-right-pa
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  bottom: 15px;
+  bottom: 40px;
   text-align: center;
-  max-width: 200px;
   z-index: 4;
+  white-space: nowrap;
 
   .author-thumb {
-	border-radius: 100%;
-	border: 6px solid $white-color;
-	margin: 0 auto;
-	overflow: hidden;
-	width: 132px;
-	height: 132px;
-	background-color: #FDFBEE;
-  display: flex;
+    margin: 0 auto;
+    overflow: hidden;
+    max-height: 150px;
+    background: linear-gradient(rgba(0, 0, 0, 0) 1%, rgba(255, 255, 255, 255) 50%);
+    display: flex;
+    padding: 15px;
+    max-width: 200px;
 
-	img {
-	  border-radius: 0;
-	  display: block;
-	}
+    img {
+      border-radius: 0;
+      display: block;
+    }
   }
 
   .author-name {
-	font-weight: 700;
+    font-weight: 700;
   }
 }
 

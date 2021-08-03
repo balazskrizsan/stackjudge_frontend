@@ -26,6 +26,7 @@ export class ViewIndexActionComponent implements OnInit {
   companyUsers: Array<IUser> = null;
   companyAddresses: Array<IAddress> = null;
   subPageComponent: any = null;
+  mapUrl: string = null;
 
   public constructor(
     private route: ActivatedRoute,
@@ -34,7 +35,7 @@ export class ViewIndexActionComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit(): Promise<void> {
+  public async ngOnInit(): Promise<void> {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
 
     await this.companyService.get(id, [
@@ -51,6 +52,8 @@ export class ViewIndexActionComponent implements OnInit {
         this.companyUsers = response.data.companyUsers;
         this.companyAddresses = response.data.companyAddresses;
 
+        this.generateStaticMapUrl();
+
         this.viewDataRegistryService.next({
           company: this.company,
           companyGroups: this.companyGroups,
@@ -63,11 +66,28 @@ export class ViewIndexActionComponent implements OnInit {
     );
   }
 
-  routeActivated(componentRef: any): void {
+  private generateStaticMapUrl(): void {
+    if (!this.companyAddresses[0])
+    {
+      return;
+    }
+    const address = this.companyAddresses[0];
+
+    this.mapUrl = 'https://maps.googleapis.com/maps/api/staticmap'
+      + `?size=1300x220`
+      + `&scale=2`
+      + `&maptype=satellite`
+      + `&center=${address.markerLat},${address.markerLng}`
+      + `&markers=size:small%7Ccolor:red%7C${address.markerLat},${address.markerLng}`
+      + `&zoom=16`
+      + `&key=AIzaSyDBB7-jkE4MbAbC76s9abgdyk-UnD5gG6c`;
+  }
+
+  public routeActivated(componentRef: any): void {
     this.subPageComponent = componentRef;
   }
 
-  isActiveUri(currentUri: string): boolean {
+  public isActiveUri(currentUri: string): boolean {
     if (null === this.subPageComponent) {
       return false;
     }
