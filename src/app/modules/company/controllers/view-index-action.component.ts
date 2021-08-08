@@ -25,6 +25,7 @@ export class ViewIndexActionComponent implements OnInit {
   companyReviews: Array<Array<IReview>> = null;
   companyUsers: Array<IUser> = null;
   companyAddresses: Array<IAddress> = null;
+  companyAddressMaps: Array<Array<string>> = null;
   subPageComponent: any = null;
   mapUrl: string = null;
 
@@ -51,8 +52,7 @@ export class ViewIndexActionComponent implements OnInit {
         this.companyReviews = response.data.companyReviews;
         this.companyUsers = response.data.companyUsers;
         this.companyAddresses = response.data.companyAddresses;
-
-        this.generateStaticMapUrl();
+        this.companyAddressMaps = response.data.companyAddressMaps;
 
         this.viewDataRegistryService.next({
           company: this.company,
@@ -60,27 +60,11 @@ export class ViewIndexActionComponent implements OnInit {
           companyStatistic: this.companyStatistics,
           companyReviews: this.companyReviews,
           companyUsers: this.companyUsers,
-          companyAddresses: this.companyAddresses
+          companyAddresses: this.companyAddresses,
+          companyAddressMaps: this.companyAddressMaps
         });
       }
     );
-  }
-
-  private generateStaticMapUrl(): void {
-    if (!this.companyAddresses[0])
-    {
-      return;
-    }
-    const address = this.companyAddresses[0];
-
-    this.mapUrl = 'https://maps.googleapis.com/maps/api/staticmap'
-      + `?size=1300x220`
-      + `&scale=2`
-      + `&maptype=satellite`
-      + `&center=${address.markerLat},${address.markerLng}`
-      + `&markers=size:small%7Ccolor:red%7C${address.markerLat},${address.markerLng}`
-      + `&zoom=16`
-      + `&key=AIzaSyDBB7-jkE4MbAbC76s9abgdyk-UnD5gG6c`;
   }
 
   public routeActivated(componentRef: any): void {

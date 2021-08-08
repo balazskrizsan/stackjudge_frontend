@@ -12,4 +12,5 @@ export interface IGetResponse {
   companyReviews?: Array<Array<IReview>>;
   companyUsers?: Array<IUser>;
   companyAddresses?: Array<IAddress>;
+  companyAddressMaps?: Array<Array<string>>;
 }

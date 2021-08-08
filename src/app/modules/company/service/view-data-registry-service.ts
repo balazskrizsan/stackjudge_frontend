@@ -9,7 +9,8 @@ export class ViewDataRegistryService {
     companyStatistic: null,
     companyGroups: null,
     companyReviews: null,
-    companyAddresses: null
+    companyAddresses: null,
+    companyAddressMaps: null
   });
 
   next(data: IViewDataRegistry): void {

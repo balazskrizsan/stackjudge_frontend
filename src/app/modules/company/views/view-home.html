@@ -40,7 +40,9 @@
               #maps
               *ngFor="let address of companyAddresses"
             >
-              <div id="map-{{address.id}}" class="left-map-content-content"
+              <div
+                   [ngStyle]="{'background-image': 'url(' + getMapUrl(address.id) + ') '}"
+                   class="left-map-content-content"
               ></div>
               <div>
                 <span class="title">{{address.fullAddress}}</span>

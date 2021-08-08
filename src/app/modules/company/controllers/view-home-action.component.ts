@@ -9,8 +9,7 @@ import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {IAddress} from '../../address/interfaces/i-address';
 import {IReview} from '../../review/interfaces/i-review';
 import {IUser} from '../../account/interfaces/i-user';
-
-declare let google: any;
+import {environment} from '../../../../environments/environment';
 
 @Component(
   {
@@ -24,8 +23,9 @@ export class ViewHomeActionComponent {
   public companyStatistics: ICompanyStatistic = null;
   public companyGroups: Array<IRecursiveGroupTree> = null;
   public companyAddresses: Array<IAddress> = null;
-  companyReviews: Array<Array<IReview>> = null;
-  companyUsers: Array<IUser> = null;
+  public companyAddressMaps: Array<Array<string>> = null;
+  public companyReviews: Array<Array<IReview>> = null;
+  public companyUsers: Array<IUser> = null;
   @ViewChildren('maps')
   public maps!: QueryList<ElementRef<HTMLLIElement>>;
 
@@ -38,46 +38,13 @@ export class ViewHomeActionComponent {
       this.companyGroups = res.companyGroups;
       this.companyStatistics = res.companyStatistic;
       this.companyAddresses = res.companyAddresses;
+      this.companyAddressMaps = res.companyAddressMaps;
       this.companyReviews = res.companyReviews;
       this.companyUsers = res.companyUsers;
     });
-
-    // @todo: create listener for the ngif
-    setTimeout(() => {
-      this.initMaps();
-    }, 500);
   }
 
-  private initMaps(): void {
-    this.maps.forEach((map, i) => {
-      const address = this.companyAddresses[i];
-
-      const position = {lat: address.markerLat, lng: address.markerLng};
-      const mapOptions = {
-        center: position,
-        zoom: 16,
-        scrollwheel: false,
-        noClear: true,
-        mapTypeId: 'satellite',
-        streetViewControl: false,
-        rotateControl: false,
-        zoomControl: true,
-        mapTypeControl: true,
-        fullscreenControl: true,
-        disableDefaultUI: true,
-        mapTypeControlOptions: {mapTypeIds: []},
-        scaleControl: false,
-        keyboardShortcuts: false
-      };
-      const mapDiv = map.nativeElement.children.namedItem('map-' + address.id);
-
-      const googleMap = new google.maps.Map(mapDiv, mapOptions);
-      const marker = new google.maps.Marker({
-        position,
-        map,
-        title: 'Office'
-      });
-      marker.setMap(googleMap);
-    });
+  public getMapUrl(mapId: number): string {
+    return environment.cdn.host + this.companyAddressMaps[mapId];
   }
 }

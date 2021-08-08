@@ -11,5 +11,6 @@ export interface IViewDataRegistry {
   companyGroups?: Array<IRecursiveGroupTree>;
   companyReviews?: Array<Array<IReview>>;
   companyAddresses?: Array<IAddress>;
+  companyAddressMaps?: Array<Array<string>>;
   companyUsers?: Array<IUser>;
 }
