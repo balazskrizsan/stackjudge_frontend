@@ -4,6 +4,7 @@ import {IRecursiveGroupTree} from './i-recursive-group-tree';
 import {IReview} from '../../review/interfaces/i-review';
 import {IUser} from '../../account/interfaces/i-user';
 import {IAddress} from '../../address/interfaces/i-address';
+import {IStaticMapResponse} from '../../maps/interfaces/i-static-map-response';
 
 export interface IGetResponse {
   company: ICompany;
@@ -12,5 +13,5 @@ export interface IGetResponse {
   companyReviews?: Array<Array<IReview>>;
   companyUsers?: Array<IUser>;
   companyAddresses?: Array<IAddress>;
-  companyAddressMaps?: Array<Array<string>>;
+  companyAddressMaps?: Array<Array<IStaticMapResponse>>;
 }

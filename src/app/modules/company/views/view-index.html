@@ -3,7 +3,9 @@
     <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
       <div class="ui-block">
         <div class="top-header">
-          <div class="top-header-thumb" [ngStyle]="{'background-image': 'url(' + mapUrl + ') '}"></div>
+          <div
+            [ngStyle]="{'background-image': 'url(' + getHeaderMapUrl() + ') '}"
+            class="top-header-thumb"></div>
           <div class="profile-section">
             <div class="row">
               <div class="col col-lg-5 col-md-5 col-sm-12 col-12">

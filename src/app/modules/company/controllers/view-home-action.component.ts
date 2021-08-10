@@ -10,6 +10,8 @@ import {IAddress} from '../../address/interfaces/i-address';
 import {IReview} from '../../review/interfaces/i-review';
 import {IUser} from '../../account/interfaces/i-user';
 import {environment} from '../../../../environments/environment';
+import {IStaticMapResponse} from '../../maps/interfaces/i-static-map-response';
+import {MapPositionEnum} from '../../maps/enums/map-position-enum';
 
 @Component(
   {
@@ -23,7 +25,7 @@ export class ViewHomeActionComponent {
   public companyStatistics: ICompanyStatistic = null;
   public companyGroups: Array<IRecursiveGroupTree> = null;
   public companyAddresses: Array<IAddress> = null;
-  public companyAddressMaps: Array<Array<string>> = null;
+  public companyAddressMaps: Array<Array<IStaticMapResponse>> = null;
   public companyReviews: Array<Array<IReview>> = null;
   public companyUsers: Array<IUser> = null;
   @ViewChildren('maps')
@@ -44,7 +46,7 @@ export class ViewHomeActionComponent {
     });
   }
 
-  public getMapUrl(mapId: number): string {
-    return environment.cdn.host + this.companyAddressMaps[mapId];
+  public getLeftMapUrl(mapId: number): string {
+    return environment.cdn.host + this.companyAddressMaps[mapId][MapPositionEnum.COMPANY_LEFT].location;
   }
 }

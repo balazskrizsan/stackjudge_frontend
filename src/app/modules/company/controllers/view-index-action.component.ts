@@ -12,6 +12,9 @@ import {ViewDataRegistryService} from '../service/view-data-registry-service';
 import {IReview} from '../../review/interfaces/i-review';
 import {IUser} from '../../account/interfaces/i-user';
 import {IAddress} from '../../address/interfaces/i-address';
+import {IStaticMapResponse} from '../../maps/interfaces/i-static-map-response';
+import {environment} from '../../../../environments/environment';
+import {MapPositionEnum} from '../../maps/enums/map-position-enum';
 
 @Component({
   templateUrl: '../views/view-index.html',
@@ -25,7 +28,7 @@ export class ViewIndexActionComponent implements OnInit {
   companyReviews: Array<Array<IReview>> = null;
   companyUsers: Array<IUser> = null;
   companyAddresses: Array<IAddress> = null;
-  companyAddressMaps: Array<Array<string>> = null;
+  companyAddressMaps: Array<Array<IStaticMapResponse>>;
   subPageComponent: any = null;
   mapUrl: string = null;
 
@@ -77,5 +80,9 @@ export class ViewIndexActionComponent implements OnInit {
     }
 
     return this.subPageComponent.router.routerState.snapshot.url.split('/')[4] || '' === currentUri;
+  }
+
+  public getHeaderMapUrl(): string {
+    return environment.cdn.host + this.companyAddressMaps[this.company.id][MapPositionEnum.COMPANY_HEADER].location;
   }
 }

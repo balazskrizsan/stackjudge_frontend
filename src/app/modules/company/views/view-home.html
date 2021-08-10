@@ -41,7 +41,7 @@
               *ngFor="let address of companyAddresses"
             >
               <div
-                   [ngStyle]="{'background-image': 'url(' + getMapUrl(address.id) + ') '}"
+                   [ngStyle]="{'background-image': 'url(' + getLeftMapUrl(address.id) + ') '}"
                    class="left-map-content-content"
               ></div>
               <div>

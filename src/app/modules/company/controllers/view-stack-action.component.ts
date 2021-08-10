@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Forms} from '../forms';
 import {AddressForms} from '../../address/address-forms';
@@ -17,14 +17,14 @@ import {IAddress} from '../../address/interfaces/i-address';
   templateUrl: '../views/view-stack.html',
   providers: [Forms, AddressForms],
 })
-export class ViewStackActionComponent implements OnInit, OnDestroy {
-  company: ICompany = null;
-  companyStatistics: ICompanyStatistic = null;
-  companyGroups: Array<IRecursiveGroupTree> = null;
-  companyReviews: Array<Array<IReview>>;
-  companyUsers: Array<IUser>;
-  companyAddresses: Array<IAddress>;
-  user: ICurrentUser | null;
+export class ViewStackActionComponent implements OnInit {
+  public company: ICompany = null;
+  public companyStatistics: ICompanyStatistic = null;
+  public companyGroups: Array<IRecursiveGroupTree> = null;
+  public companyReviews: Array<Array<IReview>>;
+  public companyUsers: Array<IUser>;
+  public companyAddresses: Array<IAddress>;
+  public user: ICurrentUser | null;
 
   public constructor(
     private router: Router,
@@ -44,9 +44,5 @@ export class ViewStackActionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.accountService.getStateAsObservable$().subscribe(user => this.user = user);
-  }
-
-  ngOnDestroy(): void {
-    // @todo: do we need unsub?
   }
 }
