@@ -27,6 +27,7 @@ import {NotificationService} from './modules/notification/services/notification-
 import {NotificationRepository} from './modules/notification/repositories/notification-repository';
 import {GroupService} from './modules/group/services/group-service';
 import {GroupRepository} from './modules/group/repositories/group-repository';
+import {CommonsModule} from './modules/commons/commons.module';
 
 @NgModule(
   {
@@ -48,6 +49,7 @@ import {GroupRepository} from './modules/group/repositories/group-repository';
       LeftMenuModule,
       PaginatorModule,
       ModalsModule,
+      CommonsModule,
       ReviewModule,
       GroupModule,
       NotificationModule,

@@ -11,11 +11,12 @@ import {EnumService} from '../../services/enum-service';
 import {PeopleSizeEnum} from '../company/enums/people-size-enum';
 import {AddGroupTechnologyForm} from './forms/add-group-technology-form';
 import {GroupService} from '../group/services/group-service';
+import {IconViewComponent} from '../commons/icon-view.component';
 
 @Component({
   selector: 'app-add-group-technology-modal',
   templateUrl: './views/add-group-technology.html',
-  providers: [AddGroupTechnologyForm]
+  providers: [AddGroupTechnologyForm, IconViewComponent]
 })
 export class AddGroupTechnologyModelComponent implements IModal, OnInit {
   public id: number;
@@ -95,5 +96,9 @@ export class AddGroupTechnologyModelComponent implements IModal, OnInit {
     const field = this.addGroupTechnologyForm.getField(fieldName);
 
     return field.invalid && field.touched;
+  }
+
+  public getName(): string {
+    return this.addGroupTechnologyForm.getField('name').value;
   }
 }

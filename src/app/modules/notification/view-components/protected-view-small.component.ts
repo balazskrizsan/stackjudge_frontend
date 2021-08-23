@@ -9,25 +9,29 @@ import {INotification} from '../interfaces/i-notification';
   styleUrls: ['./styles/protected-view-small.scss']
 })
 export class NotificationProtectedViewSmallComponent implements OnInit {
-  @Output() markAsReadEvent = new EventEmitter<number>();
-  @Output() deleteEvent = new EventEmitter<number>();
-  @Input() notification: INotification;
-  @Input() users: Array<IUser>;
-  data: IDataProtectedReview = null;
-  viewUser: IUser = null;
+  @Output()
+  public markAsReadEvent = new EventEmitter<number>();
+  @Output()
+  public deleteEvent = new EventEmitter<number>();
+  @Input()
+  public notification: INotification;
+  @Input()
+  public users: Array<IUser>;
+  public data: IDataProtectedReview = null;
+  public viewUser: IUser = null;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.notification.data) {
       this.data = this.notification.data as IDataProtectedReview;
       this.viewUser = this.users[this.data.viewerUserId] || null;
     }
   }
 
-  markAsRead(id: number): void {
+  public markAsRead(id: number): void {
     this.markAsReadEvent.emit(id);
   }
 
-  delete(id: number): void {
+  public delete(id: number): void {
     this.deleteEvent.emit(id);
   }
 }

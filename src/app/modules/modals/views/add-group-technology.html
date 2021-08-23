@@ -29,8 +29,7 @@
           class="form-write-review"
         >
           <div class="row">
-            <div class="col col-xl-12 col-lg-12 col-md-12">
-
+            <div class="col col-xl-10 col-lg-10 col-md-10">
               <div
                 [ngClass]="{'has-error': hasValidationError('name')}"
                 class="form-group"
@@ -41,6 +40,15 @@
                   class="form-control" placeholder="" type="text"
                 >
               </div>
+            </div>
+            <div class="col col-xl-2 col-lg-2 col-md-2">
+              <label class="control-label" style="margin-bottom: 15px">&nbsp;</label>
+              <app-icon-view [partialIconName]="getName()" [squareSize]="40"></app-icon-view>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12">
 
               <div
                 [ngClass]="{'has-error': hasValidationError('groupSizeId')}"

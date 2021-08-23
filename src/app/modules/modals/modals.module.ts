@@ -8,9 +8,10 @@ import {ProtectedReviewModelComponent} from './protected-review-model.component'
 import {ReviewModule} from '../review/review-module';
 import {AddGroupModelComponent} from './add-group-model.component';
 import {AddGroupTechnologyModelComponent} from './add-group-technology-model.component';
+import {CommonsModule} from '../commons/commons.module';
 
 @NgModule({
-  imports: [CommonModule, RoutingModule, SharedModule, ReactiveFormsModule, ReviewModule],
+  imports: [CommonModule, RoutingModule, SharedModule, ReactiveFormsModule, ReviewModule, CommonsModule],
   exports: [
     ReactiveFormsModule,
     StackReviewModelComponent,
