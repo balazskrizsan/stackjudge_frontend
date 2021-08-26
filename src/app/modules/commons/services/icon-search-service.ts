@@ -8,9 +8,12 @@ export class IconSearchService {
   }
 
   public searchNLimited(partialName: string, limit: number): Array<IIcon> {
-    const testedName = new RegExp(partialName, 'i');
+    const testedName = new RegExp(partialName.trim(), 'i');
 
-    return iconMap.filter(i => testedName.test(i.displayName)).slice(0, limit);
+    return iconMap
+      .filter(i => testedName.test(i.displayName))
+      .filter(i => i.displayName !== partialName.trim())
+      .slice(0, limit);
   }
 
   public getAllIcons(): Array<IIcon> {

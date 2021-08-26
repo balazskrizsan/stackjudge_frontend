@@ -1,0 +1,7 @@
+<div *ngIf="listItems">
+  <ul>
+    <li *ngFor="let item of listItems" style="float: left; padding: 0 15px 10px 0" (click)="selectLogo(item)">
+      <app-icon-view [partialIconName]="item.displayName" [squareSize]="40"></app-icon-view>
+    </li>
+  </ul>
+</div>

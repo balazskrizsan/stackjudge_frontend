@@ -39,6 +39,7 @@
                   formControlName="name"
                   class="form-control" placeholder="" type="text"
                 >
+                <app-autocomplete [partialText]="getName()" (selectLogoEvent)="setName($event)"></app-autocomplete>
               </div>
             </div>
             <div class="col col-xl-2 col-lg-2 col-md-2">

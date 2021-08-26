@@ -1,10 +1,11 @@
 <div
   *ngIf="isClassNameValid"
-  class="{{className}}"
   [ngStyle]="{
     'width': squareSize + 'px',
     'height': squareSize + 'px',
     'mask-size': squareSize + 'px ' + squareSize + 'px',
     '-webkit-mask-size': squareSize + 'px ' + squareSize + 'px'
   }"
+  class="{{className}}"
+  title="{{displayName}}"
 ></div>
