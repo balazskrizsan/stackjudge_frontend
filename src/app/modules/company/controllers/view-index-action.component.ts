@@ -82,7 +82,14 @@ export class ViewIndexActionComponent implements OnInit {
     return this.subPageComponent.router.routerState.snapshot.url.split('/')[4] || '' === currentUri;
   }
 
-  public getHeaderMapUrl(): string {
-    return environment.cdn.host + this.companyAddressMaps[this.company.id][MapPositionEnum.COMPANY_HEADER].location;
-  }
+    public getHeaderMapUrl(): string
+    {
+        if (this.companyAddressMaps[this.company.id] && this.companyAddressMaps[this.company.id])
+        {
+            return environment.cdn.host
+              + this.companyAddressMaps[this.company.id][MapPositionEnum.COMPANY_HEADER].location;
+        }
+
+        return '';
+    }
 }
