@@ -1,0 +1,31 @@
+<!--<div class="fixed-sidebar fixed-sidebar-responsive">-->
+<!--&lt;!&ndash; ... end Fixed Sidebar Left &ndash;&gt;-->
+
+<!-- Fixed Sidebar Right -->
+<div class="fixed-sidebar right">
+    <div class="fixed-sidebar-right sidebar--small" id="sidebar-right">
+        <div class="mCustomScrollbar" data-mcs-theme="dark">
+            <ul
+                *ngIf="companies"
+                class="chat-users"
+            >
+                <li
+                    *ngFor="let company of companies"
+                    class="inline-items js-chat-open"
+                >
+                    <a routerLink="{{urlService.getCompanyHomeViewUri(company, true)}}" class="author-thumb">
+                        <img alt="author" src="{{getLogoFullPath(company)}}" class="avatar"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- /Fixed Sidebar Right -->
+
+
+<!-- Fixed Sidebar Right-Responsive -->
+<!--<div class="fixed-sidebar right fixed-sidebar-responsive" id="sidebar-right-responsive">-->
+<!--</div>-->
+<!-- /Fixed Sidebar Right-Responsive -->

@@ -148,7 +148,6 @@
   }
 
   .chat-users li {
-	padding: 13px 25px;
   }
 
   .chat-users .more-icons li {
@@ -338,44 +337,48 @@
 }
 
 .chat-users {
-  margin-bottom: 0;
+	margin-bottom: 0;
 
-  li {
-	padding: 13px 20px;
-	cursor: pointer;
-  }
-
-  .author-thumb {
-	margin-right: 8px;
-
-	.icon-status {
-	  border-color: $white-color;
+	li {
+		padding: 15px 5px;
 	}
-  }
 
-  .author-name {
-	font-size: 12px;
-  }
+	.author-thumb {
+		margin-right: 8px;
 
-  .status {
-	text-transform: uppercase;
-	font-size: 8px;
-	font-weight: 700;
-	display: block;
-  }
+		img {
+			width: 60px;
+			border-radius: 0;
+		}
 
-  .more {
-	float: right;
-	margin-top: 7px;
-
-	&:hover {
-	  .more-icons {
-		visibility: visible;
-		opacity: 1;
-		right: 100%;
-	  }
+		.icon-status {
+			border-color: $white-color;
+		}
 	}
-  }
+
+	.author-name {
+		font-size: 12px;
+	}
+
+	.status {
+		text-transform: uppercase;
+		font-size: 8px;
+		font-weight: 700;
+		display: block;
+	}
+
+	.more {
+		float: right;
+		margin-top: 7px;
+
+		&:hover {
+			.more-icons {
+				visibility: visible;
+				opacity: 1;
+				right: 100%;
+			}
+		}
+	}
 }
 
 .more-icons {
