@@ -35,7 +35,7 @@ export class HttpService {
     const result = {
       data: null,
       errorData: null,
-      success: true,
+      success: false,
       errorCode: 1,
       statusCode: 200,
     };
