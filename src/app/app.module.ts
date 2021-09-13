@@ -30,6 +30,9 @@ import {GroupRepository}                     from './modules/group/repositories/
 import {CommonsModule}                       from './modules/commons/commons.module';
 import {LayoutModule}                        from './modules/layout/layout-module';
 import {LayoutRightBlockComponent}           from './modules/layout/layout-right-block.component';
+import {FlashMessageModule}                  from './modules/flash-message/flash-message-module';
+import {FlashMessageState}                   from './modules/flash-message/states/flash-message-state';
+import {FlashMessageService}                 from './modules/flash-message/services/flash-message-service';
 
 @NgModule(
   {
@@ -62,6 +65,7 @@ import {LayoutRightBlockComponent}           from './modules/layout/layout-right
           GroupModule,
           NotificationModule,
           LayoutModule,
+          FlashMessageModule
       ],
       providers:    [
           HttpService,
@@ -78,6 +82,8 @@ import {LayoutRightBlockComponent}           from './modules/layout/layout-right
           GroupService,
           GroupRepository,
           ViewDataRegistryService,
+          FlashMessageState,
+          FlashMessageService,
           LayoutRightBlockComponent,
           {
               provide:  HTTP_INTERCEPTORS,

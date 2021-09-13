@@ -1,4 +1,5 @@
 $warning-color: #ff5e3a !default;
+$error-color: #ff2300 !default;
 
 a.highlighted-link {
   color: $primary-color;
@@ -42,6 +43,7 @@ a.link {
 .modal-close {
   cursor: pointer;
 }
+
 .modal-close svg {
   fill: $primary-color;
 }
@@ -53,6 +55,41 @@ a.link {
 
 .form-group.has-error label {
   color: #b94a48;
+}
+
+/* Flash message */
+.flash-message-container {
+  .more-dropdown {
+    padding: 0 !important;
+  }
+  .error {
+    color: $error-color;
+  }
+  .notice {
+    color: $orange;
+  }
+  .ok {
+    color: $green;
+  }
+}
+/* / Flash message */
+
+.sj-svg-thunder-icon {
+  background-color: $orange;
+  -webkit-mask-image: url("/assets/SVG/thunder-icon.svg");
+  mask-image: url("/assets/SVG/thunder-icon.svg");
+}
+
+.sj-svg-check-icon {
+  background-color: $green;
+  -webkit-mask-image: url("/assets/SVG/check-icon.svg");
+  mask-image: url("/assets/SVG/check-icon.svg");
+}
+
+.sj-svg-little-delete {
+  background-color: $error-color;
+  -webkit-mask-image: url("/assets/SVG/little-delete.svg");
+  mask-image: url("/assets/SVG/little-delete.svg");
 }
 
 .sj-icon-adobe {
