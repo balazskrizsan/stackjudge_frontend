@@ -10,16 +10,11 @@
                     [ngClass]="uiService.getClassByLevel(message.message.messageLevel)"
                 >
                     <div class="author-thumb">
-                        <div [ngStyle]="{
-                                'width': '25px',
-                                'height': '25px',
-                                'mask-size': '25px 25px',
-                                '-webkit-mask-size': '25px 25px'
-                            }"
-                            [ngClass]="uiService.getIconClassByLevel(message.message.messageLevel)"
-                        ></div>
+                        <app-png-view
+                            [class]="uiService.getIconClassByLevel(message.message.messageLevel)"
+                            [squareSize]="25"
+                        ></app-png-view>
                     </div>
-                    <app-icon-view partialIconName="ok"></app-icon-view>
                     <div class="notification-event">
                         <div>{{message.message.message}}</div>
                         <span
@@ -38,7 +33,9 @@
                         <svg
                             (click)="hide(message.id)"
                             class="olymp-little-delete"
-                        ><use xlink:href="#olymp-little-delete"></use></svg>
+                        >
+                            <use xlink:href="#olymp-little-delete"></use>
+                        </svg>
                     </div>
                 </li>
             </ul>
