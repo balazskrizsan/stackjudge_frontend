@@ -1,0 +1,64 @@
+<div
+    [style.display]="!isModalVisible ? 'none' : 'block'"
+    class="modal fade show"
+    id="popup-write-rewiev"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="popup-write-rewiev"
+    aria-hidden="true"
+>
+    <div class="modal-dialog window-popup popup-write-review" role="document">
+        <div class="modal-content">
+      <span
+          (click)="close()"
+          class="close icon-close modal-close" data-dismiss="modal" aria-label="Close"
+      >
+        <svg class="olymp-close-icon">
+          <use xlink:href="#olymp-close-icon"></use>
+        </svg>
+      </span>
+
+            <div class="modal-header">
+                <h6 class="title">Write a review</h6>
+            </div>
+
+            <div class="modal-body">
+                <form
+                    [formGroup]="form"
+                    (ngSubmit)="onSubmit()"
+                    class="form-write-review"
+                >
+                    <div class="row">
+                        <div class="col col-xl-6 col-lg-6 col-md-6">
+                            <div
+                                [ngClass]="{'has-error': hasValidationError('emailPart')}"
+                                class="form-group"
+                            >
+                                <label class="control-label">Name</label>
+                                <input
+                                    formControlName="emailPart"
+                                    class="form-control" placeholder="" type="text"
+                                >
+                            </div>
+                        </div>
+                        <div class="col col-xl-6 col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label">&nbsp;</div>
+                                <div class="control-label">&nbsp;</div>
+                                {{getCompanyDomainAsAddressPostfix()}}
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg full-width">Post your Review</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div
+    [style.display]="!isModalVisible ? 'none' : 'block'"
+    class="modal-backdrop fade show"
+></div>

@@ -33,6 +33,7 @@ import {LayoutRightBlockComponent}           from './modules/layout/layout-right
 import {FlashMessageModule}                  from './modules/flash-message/flash-message-module';
 import {FlashMessageState}                   from './modules/flash-message/states/flash-message-state';
 import {FlashMessageService}                 from './modules/flash-message/services/flash-message-service';
+import {OwnService}                          from "./modules/company/service/own-service";
 
 @NgModule(
   {
@@ -85,6 +86,8 @@ import {FlashMessageService}                 from './modules/flash-message/servi
           FlashMessageState,
           FlashMessageService,
           LayoutRightBlockComponent,
+          OwnService,
+          CompanyRepository,
           {
               provide:  HTTP_INTERCEPTORS,
               useClass: TokenInterceptorService,

@@ -15,6 +15,7 @@ import {IAddress}                    from '../../address/interfaces/i-address';
 import {IStaticMapResponse}          from '../../maps/interfaces/i-static-map-response';
 import {environment}                 from '../../../../environments/environment';
 import {MapPositionEnum}             from '../../maps/enums/map-position-enum';
+import {ModalService}                from '../../modals/model-service';
 
 @Component({
     templateUrl: '../views/view-index.html',
@@ -36,7 +37,8 @@ export class ViewIndexActionComponent implements OnInit
     public constructor(
       private route: ActivatedRoute,
       private companyService: CompanyService,
-      private viewDataRegistryService: ViewDataRegistryService
+      private viewDataRegistryService: ViewDataRegistryService,
+      private modalService: ModalService,
     )
     {
     }
@@ -98,5 +100,11 @@ export class ViewIndexActionComponent implements OnInit
         }
 
         return '';
+    }
+
+    public openOwnModal($event: MouseEvent, company: ICompany): void
+    {
+        $event.preventDefault();
+        this.modalService.openOwnCompany(company);
     }
 }

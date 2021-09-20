@@ -71,13 +71,7 @@
 
                 <ul class="more-dropdown more-with-triangle triangle-bottom-right">
                   <li>
-                    <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Profile Photo</a>
-                  </li>
-                  <li>
-                    <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header Photo</a>
-                  </li>
-                  <li>
-                    <a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+                    <a href="#" (click)="openOwnModal($event, company)" data-toggle="modal" data-target="#update-header-photo">Own the company</a>
                   </li>
                 </ul>
               </div>
@@ -105,5 +99,6 @@
 
 <app-tracked-review-display-modal></app-tracked-review-display-modal>
 <app-stack-review-modal></app-stack-review-modal>
+<app-own-company-modal></app-own-company-modal>
 <app-add-group-modal></app-add-group-modal>
 <app-add-group-technology-modal></app-add-group-technology-modal>

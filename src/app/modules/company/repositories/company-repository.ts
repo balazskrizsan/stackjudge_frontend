@@ -28,4 +28,14 @@ export class CompanyRepository extends AbstractApiRepository
           HttpHelperService.createHttpParams({})
         );
     }
+
+    public postOwnRequest(postData: {}): Observable<IResponseEntity<null>>
+    {
+        const controller = this.getController();
+
+        return this.httpService.post<null>(
+          `${environment.backend.api.host}${controller}/own-request`,
+          HttpHelperService.createFormData(postData)
+        );
+    }
 }

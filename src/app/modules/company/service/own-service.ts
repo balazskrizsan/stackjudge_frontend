@@ -14,4 +14,9 @@ export class OwnService
     {
         return this.companyRepository.getOwnComplete<null>(code);
     }
+
+    public request(postData: {}): Observable<IResponseEntity<null>>
+    {
+        return this.companyRepository.postOwnRequest(postData);
+    }
 }
