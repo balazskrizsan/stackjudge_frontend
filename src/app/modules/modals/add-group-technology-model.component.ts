@@ -1,60 +1,69 @@
-import {Component, OnInit}      from '@angular/core';
-import {EnumService}            from '../../services/enum-service';
-import {FormGroup}              from '@angular/forms';
-import {ICurrentUser}           from '../account/interfaces/i-current-user';
-import {AccountService}         from '../account/services/account-service';
-import {IconViewComponent}      from '../commons/icon-view.component';
-import {IIcon}                  from '../commons/interfaces/i-icon';
-import {PeopleSizeEnum}         from '../company/enums/people-size-enum';
-import {GroupTypeEnum}          from '../group/enums/group-type-enum';
-import {GroupService}           from '../group/services/group-service';
-import {ModalIdEnum}            from './enums/modal-id-enum';
-import {AddGroupTechnologyForm} from './forms/add-group-technology-form';
-import {IAddGroupConfig}        from './interfaces/i-add-group-config';
-import {IModal}                 from './interfaces/i-modal';
-import {ModalService}           from './model-service';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit
+}                                from '@angular/core';
+import {EnumService}             from '../../services/enum-service';
+import {FormGroup}               from '@angular/forms';
+import {ICurrentUser}            from '../account/interfaces/i-current-user';
+import {AccountService}          from '../account/services/account-service';
+import {IconViewComponent}       from '../commons/icon-view.component';
+import {IIcon}                   from '../commons/interfaces/i-icon';
+import {PeopleSizeEnum}          from '../company/enums/people-size-enum';
+import {GroupTypeEnum}           from '../group/enums/group-type-enum';
+import {GroupService}            from '../group/services/group-service';
+import {ModalIdEnum}             from './enums/modal-id-enum';
+import {AddGroupTechnologyForm}  from './forms/add-group-technology-form';
+import {IAddGroupModelComponent} from './interfaces/i-add-group-config';
+import {ModalService}            from './model-service';
+import {AbstractModalComponent}  from './abstract-modal.component';
 
 @Component({
-    selector:    'app-add-group-technology-modal',
-    templateUrl: './views/add-group-technology.html',
-    providers:   [AddGroupTechnologyForm, IconViewComponent]
+    selector:        'app-add-group-technology-modal',
+    templateUrl:     './views/add-group-technology.html',
+    providers:       [AddGroupTechnologyForm, IconViewComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddGroupTechnologyModelComponent implements IModal, OnInit
+export class AddGroupTechnologyModelComponent extends AbstractModalComponent implements OnInit, IAddGroupModelComponent
 {
-    public id: number;
     public isModalVisible            = false;
     public user: ICurrentUser | null = null;
-    private config: IAddGroupConfig;
+    private parentId: number;
+    private companyId: number;
     public form: FormGroup;
     public groupSizes                = EnumService.enumAsArrayKV(PeopleSizeEnum);
     public objectKeys                = Object.keys;
 
     public constructor(
-            private modalService: ModalService,
-            private accountService: AccountService,
-            private groupService: GroupService,
-            private addGroupTechnologyForm: AddGroupTechnologyForm
+      cdr: ChangeDetectorRef,
+      private modalService: ModalService,
+      private accountService: AccountService,
+      private groupService: GroupService,
+      private addGroupTechnologyForm: AddGroupTechnologyForm
     )
     {
-        this.id   = ModalIdEnum.ADD_GROUP_TECHNOLOGY;
+        super(cdr);
         this.form = addGroupTechnologyForm.createCruForm();
     }
 
     public ngOnInit(): void
     {
-        this.modalService.add(this);
+        this.modalService.register(ModalIdEnum.ADD_GROUP_TECHNOLOGY, this);
         this.accountService.getStateAsObservable$().subscribe(user => this.user = user);
     }
 
-    public open(config: IAddGroupConfig): void
+    public open(parentId: number, companyId: number): void
     {
+        this.cdrTick();
         if (!this.user)
         {
             console.error('AddGroupTechnologyModelComponent.open() without user');
 
             return;
         }
-        this.config         = config;
+        this.parentId       = parentId;
+        this.companyId      = companyId;
         this.isModalVisible = true;
     }
 
@@ -63,6 +72,7 @@ export class AddGroupTechnologyModelComponent implements IModal, OnInit
         this.isModalVisible = false;
         // @todo: reset form (view)
         this.form.reset();
+        this.cdrTick();
     }
 
     public onSubmit(): void
@@ -77,23 +87,23 @@ export class AddGroupTechnologyModelComponent implements IModal, OnInit
             const values = this.form.getRawValue();
 
             const formData = {
-                parentId:         this.config.groupId,
-                companyId:        this.config.companyId,
+                parentId:         this.parentId,
+                companyId:        this.companyId,
                 typeId:           GroupTypeEnum.TECHNOLOGY,
                 name:             values.name,
                 membersOnStackId: values.groupSizeId
             };
 
             this.groupService.create(formData).subscribe(
-                    response =>
-                    {
-                        if (response.success)
-                        {
-                            this.close();
-                            // @todo: handling page reload
-                        }
-                        // @todo: display unknown error
-                    }
+              response =>
+              {
+                  if (response.success)
+                  {
+                      this.close();
+                      // @todo: handling page reload
+                  }
+                  // @todo: display unknown error
+              }
             );
 
             return;

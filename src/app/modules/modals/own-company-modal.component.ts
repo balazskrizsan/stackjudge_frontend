@@ -1,33 +1,38 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {ModalService}                                                  from './model-service';
-import {IModal}                                                        from './interfaces/i-modal';
-import {ModalIdEnum}                                                   from './enums/modal-id-enum';
-import {AccountService}                                                from '../account/services/account-service';
-import {ICurrentUser}                                                  from '../account/interfaces/i-current-user';
-import {FormGroup}                                                     from '@angular/forms';
-import {OwnCompanyForm}                                                from './forms/own-company-form';
-import {IOwnCompanyModalComponent}                                     from './interfaces/i-own-company-modal-component';
-import {ICompany}                                                      from '../company/interfaces/i-company';
-import {OwnService}                                                    from '../company/service/own-service';
-import {FlashMessageService}                                           from '../flash-message/services/flash-message-service';
-import {FlashMessageLevelEnum}                                         from '../flash-message/enums/flash-message-level-enum';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit
+}                                  from '@angular/core';
+import {ModalService}              from './model-service';
+import {ModalIdEnum}               from './enums/modal-id-enum';
+import {AccountService}            from '../account/services/account-service';
+import {ICurrentUser}              from '../account/interfaces/i-current-user';
+import {FormGroup}                 from '@angular/forms';
+import {OwnCompanyForm}            from './forms/own-company-form';
+import {ICompany}                  from '../company/interfaces/i-company';
+import {OwnService}                from '../company/service/own-service';
+import {FlashMessageService}       from '../flash-message/services/flash-message-service';
+import {FlashMessageLevelEnum}     from '../flash-message/enums/flash-message-level-enum';
+import {AbstractModalComponent}    from './abstract-modal.component';
+import {IOwnCompanyModalComponent} from './interfaces/i-own-company-modal-component';
 
 @Component({
     selector:        'app-own-company-modal',
     templateUrl:     './views/own-company.html',
     providers:       [OwnCompanyForm],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OwnCompanyModalComponent implements IModal, OnInit, IOwnCompanyModalComponent
+export class OwnCompanyModalComponent extends AbstractModalComponent implements OnInit, IOwnCompanyModalComponent
 {
-    public id: number;
     public isModalVisible            = false;
     public user: ICurrentUser | null = null;
     public form: FormGroup;
+
     private company: ICompany;
 
     public constructor(
-      private cdr: ChangeDetectorRef,
+      cdr: ChangeDetectorRef,
       private modalService: ModalService,
       private accountService: AccountService,
       private ownService: OwnService,
@@ -35,25 +40,19 @@ export class OwnCompanyModalComponent implements IModal, OnInit, IOwnCompanyModa
       private flashMessageService: FlashMessageService
     )
     {
-        this.id   = ModalIdEnum.OWN_COMPANY;
+        super(cdr);
         this.form = ownCompanyForm.createCruForm();
-    }
-
-    private changePush(): void
-    {
-        setTimeout(() => this.cdr.detectChanges(), 100);
     }
 
     public ngOnInit(): void
     {
-        this.cdr.detectChanges();
-        this.modalService.addNew(ModalIdEnum.OWN_COMPANY, this);
+        this.modalService.register(ModalIdEnum.OWN_COMPANY, this);
         this.accountService.getStateAsObservable$().subscribe(user => this.user = user);
     }
 
     public open(company: ICompany): void
     {
-        this.changePush();
+        this.cdrTick();
         if (!this.user)
         {
             console.error('OwnCompanyModalComponent.open() without user');
@@ -69,7 +68,7 @@ export class OwnCompanyModalComponent implements IModal, OnInit, IOwnCompanyModa
         this.isModalVisible = false;
         // @todo: reset form (view)
         this.form.reset();
-        this.changePush();
+        this.cdrTick();
     }
 
     public onSubmit(): void

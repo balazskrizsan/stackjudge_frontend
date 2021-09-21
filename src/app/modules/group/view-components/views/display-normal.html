@@ -1,9 +1,6 @@
 <a
   *ngIf="isPopupsAvailable()"
-  (click)="openAddGroupModal({
-            groupId: null,
-            companyId: company.id
-          })"
+  (click)="openAddGroupModal(null, company.id)"
   style="padding-left: 25px"
   class="highlighted-link"
 >Add group</a>
@@ -23,23 +20,17 @@
           *ngIf="isPopupsAvailable()"
         >
           <a
-            (click)="openWriteStackReviewModal({groupId: recursiveGroupTree.recursiveGroup.id})"
+            (click)="openWriteGroupReviewModal(recursiveGroupTree.recursiveGroup.id)"
             class="highlighted-link"
           >Add a review</a>
           |
           <a
-            (click)="openAddGroupModal({
-              groupId: recursiveGroupTree.recursiveGroup.id,
-              companyId: company.id
-            })"
+            (click)="openAddGroupModal(recursiveGroupTree.recursiveGroup.id, company.id)"
             class="highlighted-link"
           >Add group</a>
           |
           <a
-            (click)="openAddTechnologyModal({
-              groupId: recursiveGroupTree.recursiveGroup.id,
-              companyId: company.id
-            })"
+            (click)="openAddGroupTechnologyModel(recursiveGroupTree.recursiveGroup.id, company.id)"
             class="highlighted-link"
           >Add technology</a>
         </span>

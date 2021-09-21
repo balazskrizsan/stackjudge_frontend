@@ -1,4 +1,4 @@
-export interface IAddGroupConfig {
-  companyId: number;
-  groupId: number;
+export interface IAddGroupModelComponent
+{
+    open(companyId: number, groupId: number): void;
 }
