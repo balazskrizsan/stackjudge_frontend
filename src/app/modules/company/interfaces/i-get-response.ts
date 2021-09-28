@@ -14,4 +14,5 @@ export interface IGetResponse {
   companyUsers?: Array<IUser>;
   companyAddresses?: Array<IAddress>;
   companyAddressMaps?: Array<Array<IStaticMapResponse>>;
+  companyOwners?: Array<number>;
 }

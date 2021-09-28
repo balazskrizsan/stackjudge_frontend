@@ -14,4 +14,5 @@ export interface IViewDataRegistry {
   companyAddresses?: Array<IAddress>;
   companyAddressMaps?: Array<Array<IStaticMapResponse>>;
   companyUsers?: Array<IUser>;
+  companyOwners?: Array<number>;
 }

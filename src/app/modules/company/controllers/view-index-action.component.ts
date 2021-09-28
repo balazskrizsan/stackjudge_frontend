@@ -1,4 +1,7 @@
-import {Component, OnInit}           from '@angular/core';
+import {
+    Component,
+    OnInit
+}                                    from '@angular/core';
 import {ActivatedRoute}              from '@angular/router';
 import {Forms}                       from '../forms';
 import {AddressForms}                from '../../address/address-forms';
@@ -19,20 +22,22 @@ import {ModalService}                from '../../modals/model-service';
 
 @Component({
     templateUrl: '../views/view-index.html',
+    styleUrls:   ['../styles/view-index.scss'],
     providers:   [Forms, AddressForms],
 })
 export class ViewIndexActionComponent implements OnInit
 {
-    urlGeneratorService                       = UrlService;
-    company: ICompany                         = null;
-    companyStatistics: ICompanyStatistic      = null;
-    companyGroups: Array<IRecursiveGroupTree> = null;
-    companyReviews: Array<Array<IReview>>     = null;
-    companyUsers: Array<IUser>                = null;
-    companyAddresses: Array<IAddress>         = null;
-    companyAddressMaps: Array<Array<IStaticMapResponse>>;
-    subPageComponent: any                     = null;
-    mapUrl: string                            = null;
+    urlGeneratorService                                  = UrlService;
+    company: ICompany                                    = null;
+    companyStatistics: ICompanyStatistic                 = null;
+    companyGroups: Array<IRecursiveGroupTree>            = null;
+    companyReviews: Array<Array<IReview>>                = null;
+    companyUsers: Array<IUser>                           = null;
+    companyAddresses: Array<IAddress>                    = null;
+    companyAddressMaps: Array<Array<IStaticMapResponse>> = null;
+    companyOwners: Array<number>                         = null;
+    subPageComponent: any                                = null;
+    mapUrl: string                                       = null;
 
     public constructor(
       private route: ActivatedRoute,
@@ -51,7 +56,8 @@ export class ViewIndexActionComponent implements OnInit
             CompanyRequestRelationsEnum.STATISTIC,
             CompanyRequestRelationsEnum.GROUP,
             CompanyRequestRelationsEnum.REVIEW,
-            CompanyRequestRelationsEnum.ADDRESS
+            CompanyRequestRelationsEnum.ADDRESS,
+            CompanyRequestRelationsEnum.OWNERS
         ]).subscribe(
           response =>
           {
@@ -61,6 +67,7 @@ export class ViewIndexActionComponent implements OnInit
               this.companyReviews     = response.data.companyReviews;
               this.companyUsers       = response.data.companyUsers;
               this.companyAddresses   = response.data.companyAddresses;
+              this.companyOwners      = response.data.companyOwners;
               this.companyAddressMaps = response.data.companyAddressMaps;
 
               this.viewDataRegistryService.next({
@@ -106,5 +113,15 @@ export class ViewIndexActionComponent implements OnInit
     {
         $event.preventDefault();
         this.modalService.openOwnCompany(company);
+    }
+
+    public hasOwner(): boolean
+    {
+        return null !== this.companyOwners;
+    }
+
+    public getOwners(): Array<IUser>
+    {
+        return this.companyOwners.map(o => this.companyUsers[o]);
     }
 }

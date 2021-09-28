@@ -52,10 +52,32 @@
             </div>
 
             <div class="control-block-button">
-              <a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
+              <a
+                  *ngIf="hasOwner()"
+                  id="owners-popup"
+                  href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue more"
+              >
                 <svg class="olymp-happy-face-icon">
                   <use xlink:href="#olymp-happy-face-icon"></use>
                 </svg>
+
+                <div
+                    class="more-dropdown more-with-triangle triangle-bottom-right"
+                    [style]="{width: '250px'}"
+                >
+                  <h4>Company owners</h4>
+                  <div
+                      *ngFor="let owner of getOwners()"
+                      class="birthday-item inline-items"
+                  >
+                    <div class="author-thumb">
+                      <img loading="lazy" src="{{owner.profilePictureUrl}}" alt="author">
+                    </div>
+                    <div class="birthday-author-name">
+                      <a href="#" class="h6 author-name">{{owner.username}}</a>
+                    </div>
+                  </div>
+                </div>
               </a>
 
               <a href="#" class="btn btn-control bg-purple">
