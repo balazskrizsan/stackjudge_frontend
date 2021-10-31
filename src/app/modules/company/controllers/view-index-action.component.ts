@@ -11,7 +11,7 @@ import {CompanyRequestRelationsEnum} from '../enums/company-request-relations-en
 import {ICompanyStatistic}           from '../interfaces/i-company-statistic';
 import {UrlService}                  from '../service/url-service';
 import {IRecursiveGroupTree}         from '../interfaces/i-recursive-group-tree';
-import {ViewDataRegistryService}     from '../service/view-data-registry-service';
+import {CurrentCompanyState}         from '../states/current-company-state.service';
 import {IReview}                     from '../../review/interfaces/i-review';
 import {IUser}                       from '../../account/interfaces/i-user';
 import {IAddress}                    from '../../address/interfaces/i-address';
@@ -42,7 +42,7 @@ export class ViewIndexActionComponent implements OnInit
     public constructor(
       private route: ActivatedRoute,
       private companyService: CompanyService,
-      private viewDataRegistryService: ViewDataRegistryService,
+      private viewDataRegistryService: CurrentCompanyState,
       private modalService: ModalService,
     )
     {
