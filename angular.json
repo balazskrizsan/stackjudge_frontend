@@ -96,7 +96,7 @@
                 }
               ]
             },
-            "local-vagrant": {
+            "localvagrant": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -134,6 +134,9 @@
           "configurations": {
             "production": {
               "browserTarget": "sj:build:production"
+            },
+            "localvagrant": {
+              "browserTarget": "sj:build:localvagrant"
             }
           }
         },
