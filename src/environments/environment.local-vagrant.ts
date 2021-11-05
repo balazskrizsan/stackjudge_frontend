@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   backend: {
     api: {
-      host: 'https://192.168.33.10:81'
+      host: 'https://192.168.33.10:81/'
     },
     account: {
       fbLoginAndRegistrationUrl: 'https://192.168.33.10:81/account/facebook/registration-and-login'
