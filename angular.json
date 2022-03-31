@@ -129,7 +129,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sj:build"
+            "browserTarget": "sj:build",
+            "ssl": true,
+            "sslKey": "ssl-dev/server.key",
+            "sslCert": "ssl-dev/server.crt"
           },
           "configurations": {
             "production": {
@@ -189,6 +192,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "sj"
 }
