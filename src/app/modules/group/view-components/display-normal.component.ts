@@ -1,7 +1,7 @@
 import {
-  Component,
-  Input,
-  OnInit
+    Component,
+    Input,
+    OnInit
 }                            from '@angular/core';
 import {IRecursiveGroupTree} from '../../company/interfaces/i-recursive-group-tree';
 import {IUser}               from '../../account/interfaces/i-user';
@@ -9,7 +9,6 @@ import {IReview}             from '../../review/interfaces/i-review';
 import {Router}              from '@angular/router';
 import {ModalService}        from '../../modals/model-service';
 import {AccountService}      from '../../account/services/account-service';
-import {ICurrentUser}        from '../../account/interfaces/i-current-user';
 import {ICompany}            from '../../company/interfaces/i-company';
 
 @Component({
@@ -31,7 +30,7 @@ export class DisplayNormalComponent implements OnInit
     @Input()
     public showReviews: boolean;
 
-    private user: ICurrentUser;
+    private user: IUser;
 
     public constructor(
       private router: Router,

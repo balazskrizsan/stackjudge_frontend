@@ -6,7 +6,6 @@ import {
 }                                from '@angular/core';
 import {EnumService}             from '../../services/enum-service';
 import {FormGroup}               from '@angular/forms';
-import {ICurrentUser}            from '../account/interfaces/i-current-user';
 import {AccountService}          from '../account/services/account-service';
 import {IconViewComponent}       from '../commons/icon-view.component';
 import {IIcon}                   from '../commons/interfaces/i-icon';
@@ -18,6 +17,7 @@ import {AddGroupTechnologyForm}  from './forms/add-group-technology-form';
 import {IAddGroupModelComponent} from './interfaces/i-add-group-config';
 import {ModalService}            from './model-service';
 import {AbstractModalComponent}  from './abstract-modal.component';
+import {IUser}                   from '../account/interfaces/i-user';
 
 @Component({
     selector:        'app-add-group-technology-modal',
@@ -27,13 +27,13 @@ import {AbstractModalComponent}  from './abstract-modal.component';
 })
 export class AddGroupTechnologyModelComponent extends AbstractModalComponent implements OnInit, IAddGroupModelComponent
 {
-    public isModalVisible            = false;
-    public user: ICurrentUser | null = null;
+    public isModalVisible     = false;
+    public user: IUser | null = null;
     private parentId: number;
     private companyId: number;
     public form: FormGroup;
-    public groupSizes                = EnumService.enumAsArrayKV(PeopleSizeEnum);
-    public objectKeys                = Object.keys;
+    public groupSizes         = EnumService.enumAsArrayKV(PeopleSizeEnum);
+    public objectKeys         = Object.keys;
 
     public constructor(
       cdr: ChangeDetectorRef,

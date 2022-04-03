@@ -1,28 +1,34 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {
+    Component,
+    OnInit
+}                       from '@angular/core';
+import {
+    ActivatedRoute,
+    Router
+}                       from '@angular/router';
 import {AccountService} from '../services/account-service';
 
 @Component(
   {
-    template: '',
-    styleUrls: [],
-    providers: [],
+      template:  '',
+      styleUrls: [],
+      providers: [],
   }
 )
-export class LoginActionComponent implements OnInit {
-  public constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private accountService: AccountService
-  ) {
-  }
+export class LoginActionComponent implements OnInit
+{
+    public constructor(
+      private router: Router,
+      private activatedRoute: ActivatedRoute,
+      private accountService: AccountService
+    )
+    {
+    }
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      // @todo: validate params.jwt
-      this.accountService.storeJwt(params.jwt);
+    ngOnInit(): void
+    {
+        this.accountService.loadUserData();
 
-      this.router.navigate(['/']);
-    });
-  }
+        this.router.navigate(['/']);
+    }
 }

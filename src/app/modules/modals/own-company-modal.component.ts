@@ -7,7 +7,6 @@ import {
 import {ModalService}              from './model-service';
 import {ModalIdEnum}               from './enums/modal-id-enum';
 import {AccountService}            from '../account/services/account-service';
-import {ICurrentUser}              from '../account/interfaces/i-current-user';
 import {FormGroup}                 from '@angular/forms';
 import {OwnCompanyForm}            from './forms/own-company-form';
 import {ICompany}                  from '../company/interfaces/i-company';
@@ -16,6 +15,7 @@ import {FlashMessageService}       from '../flash-message/services/flash-message
 import {FlashMessageLevelEnum}     from '../flash-message/enums/flash-message-level-enum';
 import {AbstractModalComponent}    from './abstract-modal.component';
 import {IOwnCompanyModalComponent} from './interfaces/i-own-company-modal-component';
+import {IUser}                     from '../account/interfaces/i-user';
 
 @Component({
     selector:        'app-own-company-modal',
@@ -25,8 +25,8 @@ import {IOwnCompanyModalComponent} from './interfaces/i-own-company-modal-compon
 })
 export class OwnCompanyModalComponent extends AbstractModalComponent implements OnInit, IOwnCompanyModalComponent
 {
-    public isModalVisible            = false;
-    public user: ICurrentUser | null = null;
+    public isModalVisible     = false;
+    public user: IUser | null = null;
     public form: FormGroup;
 
     private company: ICompany;

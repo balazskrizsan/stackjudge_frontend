@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {AccountService}    from './modules/account/services/account-service';
-import {environment}       from '../environments/environment';
-import {ICurrentUser}      from './modules/account/interfaces/i-current-user';
-import {UrlService}        from './modules/company/service/url-service';
+import {
+    Component,
+    OnInit
+}                       from '@angular/core';
+import {AccountService} from './modules/account/services/account-service';
+import {environment}    from '../environments/environment';
+import {UrlService}     from './modules/company/service/url-service';
+import {IUser}          from './modules/account/interfaces/i-user';
 
 @Component({
     selector:    'app-root',
@@ -13,7 +16,7 @@ import {UrlService}        from './modules/company/service/url-service';
 export class AppComponent implements OnInit
 {
     public fbLoginAndRegistrationUrl = environment.backend.account.fbLoginAndRegistrationUrl;
-    public user: ICurrentUser | null = null;
+    public user: IUser | null        = null;
     public urlService                = UrlService;
 
     public constructor(public accountService: AccountService)

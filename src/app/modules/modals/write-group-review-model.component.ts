@@ -7,12 +7,12 @@ import {
 import {ModalService}                    from './model-service';
 import {ModalIdEnum}                     from './enums/modal-id-enum';
 import {AccountService}                  from '../account/services/account-service';
-import {ICurrentUser}                    from '../account/interfaces/i-current-user';
 import {FormGroup}                       from '@angular/forms';
 import {StackReviewForm}                 from './forms/stack-review-form';
 import {ReviewService}                   from '../review/services/review-service';
 import {AbstractModalComponent}          from './abstract-modal.component';
 import {IWriteGroupReviewModelComponent} from './interfaces/i-write-group-review-model-component';
+import {IUser}                           from '../account/interfaces/i-user';
 
 @Component({
     selector:        'app-stack-review-modal',
@@ -24,8 +24,8 @@ export class WriteGroupReviewModelComponent
   extends AbstractModalComponent
   implements OnInit, IWriteGroupReviewModelComponent
 {
-    public isModalVisible            = false;
-    public user: ICurrentUser | null = null;
+    public isModalVisible     = false;
+    public user: IUser | null = null;
     public form: FormGroup;
 
     private groupId: number;

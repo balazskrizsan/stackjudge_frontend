@@ -1,39 +1,51 @@
-import {Injectable} from '@angular/core';
-import {LocalStorageService} from '../../../services/local-storage-services';
+import {Injectable}            from '@angular/core';
+import {LocalStorageService}   from '../../../services/local-storage-services';
 import {AbstractApiRepository} from '../../../repositories/abstract-api-repository';
-import {HttpService} from '../../../services/http-service';
-import {IUser} from '../interfaces/i-user';
-import {IResponseEntity} from '../../../interfaces/i-response-entity';
-import {Observable} from 'rxjs';
+import {HttpService}           from '../../../services/http-service';
+import {IUser}                 from '../interfaces/i-user';
+import {IResponseEntity}       from '../../../interfaces/i-response-entity';
+import {Observable}            from 'rxjs';
 
 @Injectable()
-export class AccountRepository extends AbstractApiRepository {
-  private static readonly jwtKey = 'jwt';
+export class AccountRepository extends AbstractApiRepository
+{
+    private static readonly USER_DATA_KEY = 'user-data-key';
 
-  public constructor(
-    httpService: HttpService,
-    private localStorageService: LocalStorageService
-  ) {
-    super(httpService);
-  }
+    public constructor(
+      httpService: HttpService,
+      private localStorageService: LocalStorageService
+    )
+    {
+        super(httpService);
+    }
 
-  public getController(): string {
-    return 'account';
-  }
+    public getController(): string
+    {
+        return 'account';
+    }
 
-  public storeJwt(token: string): void {
-    this.localStorageService.set(AccountRepository.jwtKey, token);
-  }
+    public storeJwt(user: IUser): void
+    {
+        this.localStorageService.set(AccountRepository.USER_DATA_KEY, user);
+    }
 
-  public getJwt(): string {
-    return this.localStorageService.get(AccountRepository.jwtKey) || '';
-  }
+    public getUserData(): IUser | null
+    {
+        return JSON.parse(this.localStorageService.get(AccountRepository.USER_DATA_KEY)) || null;
+    }
 
-  public removeJwt(): void {
-    this.localStorageService.delete(AccountRepository.jwtKey);
-  }
+    public removeJwt(): void
+    {
+        this.localStorageService.delete(AccountRepository.USER_DATA_KEY);
+    }
 
-  public getByReviewId(reviewId: number): Observable<IResponseEntity<IUser>> {
-    return this.abstractGet<IUser>(reviewId, 'get-by-review-id');
-  }
+    public getByReviewId(reviewId: number): Observable<IResponseEntity<IUser>>
+    {
+        return this.abstractGet<IUser>(reviewId, 'get-by-review-id');
+    }
+
+    public getMyUserData(): Observable<IResponseEntity<IUser>>
+    {
+        return this.abstractGet<IUser>(null, 'get-my-user-data');
+    }
 }

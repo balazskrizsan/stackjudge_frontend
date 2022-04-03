@@ -1,18 +1,25 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {ICurrentUser} from '../interfaces/i-current-user';
+import {
+    BehaviorSubject,
+    Observable
+}                   from 'rxjs';
+import {IUser}      from '../interfaces/i-user';
 
 @Injectable()
-export class AccountState {
-  private user: BehaviorSubject<ICurrentUser|null> = new BehaviorSubject(null);
+export class AccountState
+{
+    private user: BehaviorSubject<IUser | null> = new BehaviorSubject(null);
 
-  public getAsObservable$(): Observable<ICurrentUser|null> {
-    return this.user.asObservable();
-  }
+    public getAsObservable$(): Observable<IUser | null>
+    {
+        return this.user.asObservable();
+    }
 
-  public setState(user: ICurrentUser|null): void {
-    setTimeout(() => {
-      this.user.next(user);
-    }, 0);
-  }
+    public setState(user: IUser | null): void
+    {
+        setTimeout(() =>
+        {
+            this.user.next(user);
+        }, 0);
+    }
 }

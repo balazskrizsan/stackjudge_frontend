@@ -7,7 +7,6 @@ import {
 import {ModalService}            from './model-service';
 import {ModalIdEnum}             from './enums/modal-id-enum';
 import {AccountService}          from '../account/services/account-service';
-import {ICurrentUser}            from '../account/interfaces/i-current-user';
 import {FormGroup}               from '@angular/forms';
 import {AddGroupForm}            from './forms/add-group-form';
 import {GroupTypeEnum}           from '../group/enums/group-type-enum';
@@ -16,6 +15,7 @@ import {PeopleSizeEnum}          from '../company/enums/people-size-enum';
 import {GroupService}            from '../group/services/group-service';
 import {AbstractModalComponent}  from './abstract-modal.component';
 import {IAddGroupModelComponent} from './interfaces/i-add-group-config';
+import {IUser}                   from '../account/interfaces/i-user';
 
 @Component({
     selector:        'app-add-group-modal',
@@ -25,12 +25,12 @@ import {IAddGroupModelComponent} from './interfaces/i-add-group-config';
 })
 export class AddGroupModelComponent extends AbstractModalComponent implements OnInit, IAddGroupModelComponent
 {
-    public isModalVisible            = false;
-    public user: ICurrentUser | null = null;
+    public isModalVisible     = false;
+    public user: IUser | null = null;
     public form: FormGroup;
-    public groupTypeEnum             = GroupTypeEnum;
-    public groupSizes                = EnumService.enumAsArrayKV(PeopleSizeEnum);
-    public objectKeys                = Object.keys;
+    public groupTypeEnum      = GroupTypeEnum;
+    public groupSizes         = EnumService.enumAsArrayKV(PeopleSizeEnum);
+    public objectKeys         = Object.keys;
 
     private companyId: number;
     private groupId: number;

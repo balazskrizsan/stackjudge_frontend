@@ -1,6 +1,6 @@
 import {
-  Component,
-  OnInit
+    Component,
+    OnInit
 }                            from '@angular/core';
 import {Router}              from '@angular/router';
 import {Forms}               from '../forms';
@@ -10,7 +10,6 @@ import {ICompanyStatistic}   from '../interfaces/i-company-statistic';
 import {IRecursiveGroupTree} from '../interfaces/i-recursive-group-tree';
 import {CurrentCompanyState} from '../states/current-company-state.service';
 import {ModalService}        from '../../modals/model-service';
-import {ICurrentUser}        from '../../account/interfaces/i-current-user';
 import {AccountService}      from '../../account/services/account-service';
 import {IReview}             from '../../review/interfaces/i-review';
 import {IUser}               from '../../account/interfaces/i-user';
@@ -28,7 +27,7 @@ export class ViewStackActionComponent implements OnInit
     public companyReviews: Array<Array<IReview>>;
     public companyUsers: Array<IUser>;
     public companyAddresses: Array<IAddress>;
-    public user: ICurrentUser | null;
+    public user: IUser | null;
 
     public constructor(
       private router: Router,

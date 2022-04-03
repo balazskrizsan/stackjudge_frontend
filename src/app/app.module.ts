@@ -13,10 +13,7 @@ import {
 }                                   from '@angular/router';
 import {AddressFormComponentModule} from './modules/address/address-form.component.module';
 import {BrowserAnimationsModule}    from '@angular/platform-browser/animations';
-import {
-    HTTP_INTERCEPTORS,
-    HttpClientModule
-}                                   from '@angular/common/http';
+import {HttpClientModule}           from '@angular/common/http';
 import {HttpService}                from './services/http-service';
 import {LocalStorageService}        from './services/local-storage-services';
 import {LeftMenuModule}             from './modules/left-menu/left-menu.module';
@@ -24,7 +21,6 @@ import {PaginatorModule}            from './modules/paginator/paginator.module';
 import {CurrentCompanyState}        from './modules/company/states/current-company-state.service';
 import {AccountService}             from './modules/account/services/account-service';
 import {AccountRepository}          from './modules/account/repositories/account-repository';
-import {TokenInterceptorService}    from './services/token-interceptor-service';
 import {AccountState}               from './modules/account/states/account-state';
 import {ModalsModule}               from './modules/modals/modals.module';
 import {ReviewService}              from './modules/review/services/review-service';
@@ -96,12 +92,7 @@ import {OwnService}                 from './modules/company/service/own-service'
           FlashMessageService,
           LayoutRightBlockComponent,
           OwnService,
-          CompanyRepository,
-          {
-              provide:  HTTP_INTERCEPTORS,
-              useClass: TokenInterceptorService,
-              multi:    true
-          }
+          CompanyRepository
       ],
       bootstrap:    [AppComponent],
   }

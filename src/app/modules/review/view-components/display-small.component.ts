@@ -1,57 +1,68 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IReview} from '../interfaces/i-review';
-import {IUser} from '../../account/interfaces/i-user';
+import {
+    Component,
+    Input,
+    OnInit
+}                       from '@angular/core';
+import {IReview}        from '../interfaces/i-review';
+import {IUser}          from '../../account/interfaces/i-user';
 import {VisibilityEnum} from '../enums/visibility-enum';
-import {ICurrentUser} from '../../account/interfaces/i-current-user';
 import {AccountService} from '../../account/services/account-service';
-import {environment} from '../../../../environments/environment';
-import {ModalService} from '../../modals/model-service';
-import {ModalIdEnum} from '../../modals/enums/modal-id-enum';
+import {environment}    from '../../../../environments/environment';
+import {ModalService}   from '../../modals/model-service';
 
 @Component({
-  selector: 'app-review-display-small',
-  templateUrl: './views/display-small.html',
-  styleUrls: ['./styles/display-small.scss'],
+    selector:    'app-review-display-small',
+    templateUrl: './views/display-small.html',
+    styleUrls:   ['./styles/display-small.scss'],
 })
-export class DisplaySmallComponent implements OnInit {
-  @Input() review: IReview;
-  @Input() user: IUser;
+export class DisplaySmallComponent implements OnInit
+{
+    @Input() review: IReview;
+    @Input() user: IUser;
 
-  loginUrl = environment.backend.account.fbLoginAndRegistrationUrl;
+    loginUrl = environment.backend.account.fbLoginAndRegistrationUrl;
 
-  private currentUser: ICurrentUser = null;
+    private currentUser: IUser = null;
 
-  constructor(
-    private accountService: AccountService,
-    private modalService: ModalService
-  ) {
-  }
-
-  ngOnInit(): void {
-    this.accountService.getStateAsObservable$().subscribe(user => this.currentUser = user);
-  }
-
-  isCurrentUserLoggedIn(): boolean {
-    return null !== this.currentUser;
-  }
-
-  isReviewerVisible(): boolean {
-    if (this.review.visibility === VisibilityEnum.EVERYBODY) {
-      return true;
+    constructor(
+      private accountService: AccountService,
+      private modalService: ModalService
+    )
+    {
     }
 
-    if (this.review.visibility === VisibilityEnum.REGISTERED && this.isCurrentUserLoggedIn()) {
-      return true;
+    ngOnInit(): void
+    {
+        this.accountService.getStateAsObservable$().subscribe(user => this.currentUser = user);
     }
 
-    return false;
-  }
+    isCurrentUserLoggedIn(): boolean
+    {
+        return null !== this.currentUser;
+    }
 
-  hasReviewTrackedReviewer(): boolean {
-    return this.review.visibility === VisibilityEnum.PROTECTED;
-  }
+    isReviewerVisible(): boolean
+    {
+        if (this.review.visibility === VisibilityEnum.EVERYBODY)
+        {
+            return true;
+        }
 
-  showReviewer(): void {
-    this.modalService.openProtectedReview(this.review);
-  }
+        if (this.review.visibility === VisibilityEnum.REGISTERED && this.isCurrentUserLoggedIn())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    hasReviewTrackedReviewer(): boolean
+    {
+        return this.review.visibility === VisibilityEnum.PROTECTED;
+    }
+
+    showReviewer(): void
+    {
+        this.modalService.openProtectedReview(this.review);
+    }
 }
