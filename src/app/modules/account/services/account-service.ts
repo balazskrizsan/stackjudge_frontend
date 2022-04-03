@@ -20,12 +20,6 @@ export class AccountService
         return this.accountState.getAsObservable$();
     }
 
-    public storeJwt(user: IUser): void
-    {
-        this.accountRepository.storeJwt(user);
-        this.updateState(user);
-    }
-
     public refresh(): void
     {
         this.updateState(this.accountRepository.getUserData());
@@ -80,6 +74,7 @@ export class AccountService
     {
         this.accountRepository.getMyUserData().subscribe(res =>
         {
+            this.accountRepository.storeUserData(res.data);
             this.updateState(res.data);
         });
     }

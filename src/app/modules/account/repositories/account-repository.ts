@@ -24,7 +24,7 @@ export class AccountRepository extends AbstractApiRepository
         return 'account';
     }
 
-    public storeJwt(user: IUser): void
+    public storeUserData(user: IUser): void
     {
         this.localStorageService.set(AccountRepository.USER_DATA_KEY, user);
     }

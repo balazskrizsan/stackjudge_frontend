@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class LocalStorageService {
-  private prefix = 'ls';
+  private prefix = 'sj-';
 
   private deriveKey(key: string): string {
     return `${this.prefix}${key}`;
