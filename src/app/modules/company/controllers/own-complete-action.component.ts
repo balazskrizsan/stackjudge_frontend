@@ -1,5 +1,11 @@
-import {Component, OnInit}     from '@angular/core';
-import {ActivatedRoute}        from '@angular/router';
+import {
+    Component,
+    OnInit
+}                              from '@angular/core';
+import {
+    ActivatedRoute,
+    Router
+}                              from '@angular/router';
 import {Forms}                 from '../forms';
 import {AddressForms}          from '../../address/address-forms';
 import {OwnService}            from '../service/own-service';
@@ -17,6 +23,7 @@ export class OwnCompleteActionComponent implements OnInit
 {
     public constructor(
       private route: ActivatedRoute,
+      private router: Router,
       private ownService: OwnService,
       private flashMessageService: FlashMessageService
     )
@@ -36,6 +43,10 @@ export class OwnCompleteActionComponent implements OnInit
                 message:      res.errorData,
                 errorCode:    res.errorCode
             });
+
+            return;
         }
+
+        await this.router.navigate(['/company/display/' + companyId], {queryParams: {companyOwned: 'true'}});
     }
 }
