@@ -23,7 +23,8 @@
     "file-saver": "^2.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "stackjudge_frontend_ts_sdk": "git://github.com/balazskrizsan/stackjudge_frontend_ts_sdk.git"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.0",
