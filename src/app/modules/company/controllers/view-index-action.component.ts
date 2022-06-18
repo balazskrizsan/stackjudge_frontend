@@ -19,6 +19,7 @@ import {IStaticMapResponse}          from '../../maps/interfaces/i-static-map-re
 import {environment}                 from '../../../../environments/environment';
 import {MapPositionEnum}             from '../../maps/enums/map-position-enum';
 import {ModalService}                from '../../modals/model-service';
+import {ICompanyOwners}              from '../interfaces/i-company-owners';
 
 @Component({
     templateUrl: '../views/view-index.html',
@@ -35,7 +36,7 @@ export class ViewIndexActionComponent implements OnInit
     companyUsers: Array<IUser>                           = null;
     companyAddresses: Array<IAddress>                    = null;
     companyAddressMaps: Array<Array<IStaticMapResponse>> = null;
-    companyOwners: Array<number>                         = null;
+    companyOwners: ICompanyOwners                        = null;
     subPageComponent: any                                = null;
     mapUrl: string                                       = null;
 
@@ -122,6 +123,6 @@ export class ViewIndexActionComponent implements OnInit
 
     public getOwners(): Array<IUser>
     {
-        return this.companyOwners.map(o => this.companyUsers[o]);
+        return this.companyOwners.owners.map(o => this.companyUsers[o]);
     }
 }
