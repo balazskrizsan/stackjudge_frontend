@@ -194,5 +194,8 @@
       }
     }
   },
-  "defaultProject": "sj"
+  "defaultProject": "sj",
+  "cli": {
+    "analytics": false
+  }
 }
