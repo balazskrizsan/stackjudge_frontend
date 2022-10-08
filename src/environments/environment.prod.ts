@@ -5,7 +5,7 @@ export const environment = {
       host: 'https://stack-judge-prod.herokuapp.com/'
     },
     account: {
-      fbLoginAndRegistrationUrl: 'https://stackjudge-prod.herokuapp.com/account/facebook/registration-and-login'
+      identityServerUrl: 'https://localhost:5001'
     }
   },
   cdn: {

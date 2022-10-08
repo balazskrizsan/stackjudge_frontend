@@ -5,7 +5,7 @@ export const environment = {
       host: 'https://192.168.33.10:81/'
     },
     account: {
-      fbLoginAndRegistrationUrl: 'https://192.168.33.10:81/account/facebook/registration-and-login'
+      identityServerUrl: 'https://localhost:5001'
     }
   },
   cdn: {

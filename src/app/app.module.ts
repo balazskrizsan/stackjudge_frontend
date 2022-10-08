@@ -32,13 +32,18 @@ import {NotificationService}        from './modules/notification/services/notifi
 import {NotificationRepository}     from './modules/notification/repositories/notification-repository';
 import {GroupService}               from './modules/group/services/group-service';
 import {GroupRepository}            from './modules/group/repositories/group-repository';
-import {CommonsModule}              from './modules/commons/commons.module';
-import {LayoutModule}               from './modules/layout/layout-module';
-import {LayoutRightBlockComponent}  from './modules/layout/layout-right-block.component';
-import {FlashMessageModule}         from './modules/flash-message/flash-message-module';
-import {FlashMessageState}          from './modules/flash-message/states/flash-message-state';
-import {FlashMessageService}        from './modules/flash-message/services/flash-message-service';
-import {OwnService}                 from './modules/company/service/own-service';
+import {CommonsModule}             from './modules/commons/commons.module';
+import {LayoutModule}              from './modules/layout/layout-module';
+import {LayoutRightBlockComponent} from './modules/layout/layout-right-block.component';
+import {FlashMessageModule}        from './modules/flash-message/flash-message-module';
+import {FlashMessageState}         from './modules/flash-message/states/flash-message-state';
+import {FlashMessageService}       from './modules/flash-message/services/flash-message-service';
+import {OwnService}                from './modules/company/service/own-service';
+import {
+    AuthModule,
+    LogLevel
+}                                  from 'angular-auth-oidc-client';
+import {environment}               from "../environments/environment";
 
 @NgModule(
   {
@@ -71,7 +76,22 @@ import {OwnService}                 from './modules/company/service/own-service'
           GroupModule,
           NotificationModule,
           LayoutModule,
-          FlashMessageModule
+          FlashMessageModule,
+          AuthModule.forRoot({
+              config: {
+                  authority:               environment.backend.account.identityServerUrl,
+                  redirectUrl:             'https://localhost:4200',
+                  clientId:                'sj.frontend',
+                  postLogoutRedirectUri:   window.location.origin,
+                  scope:                   'openid profile sj sj.frontend',
+                  responseType:            'code',
+                  silentRenew:             true,
+                  useRefreshToken:         true,
+                  disablePkce:             true,
+                  logLevel:                LogLevel.Debug,
+                  customParamsAuthRequest: {"acr_values": "idp:Facebook"}
+              },
+          })
       ],
       providers:    [
           HttpService,

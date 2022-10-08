@@ -2,13 +2,14 @@ import {
     Component,
     Input,
     OnInit
-}                       from '@angular/core';
-import {IReview}        from '../interfaces/i-review';
-import {IUser}          from '../../account/interfaces/i-user';
-import {VisibilityEnum} from '../enums/visibility-enum';
-import {AccountService} from '../../account/services/account-service';
-import {environment}    from '../../../../environments/environment';
-import {ModalService}   from '../../modals/model-service';
+}                            from '@angular/core';
+import {IReview}             from '../interfaces/i-review';
+import {IUser}               from '../../account/interfaces/i-user';
+import {VisibilityEnum}      from '../enums/visibility-enum';
+import {AccountService}      from '../../account/services/account-service';
+import {environment}         from '../../../../environments/environment';
+import {ModalService}        from '../../modals/model-service';
+import {OidcSecurityService} from "angular-auth-oidc-client";
 
 @Component({
     selector:    'app-review-display-small',
@@ -20,13 +21,12 @@ export class DisplaySmallComponent implements OnInit
     @Input() review: IReview;
     @Input() user: IUser;
 
-    loginUrl = environment.backend.account.fbLoginAndRegistrationUrl;
-
     private currentUser: IUser = null;
 
     constructor(
       private accountService: AccountService,
-      private modalService: ModalService
+      private modalService: ModalService,
+      public oidcSecurityService: OidcSecurityService,
     )
     {
     }
@@ -34,6 +34,11 @@ export class DisplaySmallComponent implements OnInit
     ngOnInit(): void
     {
         this.accountService.getStateAsObservable$().subscribe(user => this.currentUser = user);
+    }
+
+    login()
+    {
+        this.oidcSecurityService.authorize();
     }
 
     isCurrentUserLoggedIn(): boolean
