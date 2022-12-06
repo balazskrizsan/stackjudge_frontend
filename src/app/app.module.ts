@@ -13,7 +13,10 @@ import {
 }                                   from '@angular/router';
 import {AddressFormComponentModule} from './modules/address/address-form.component.module';
 import {BrowserAnimationsModule}    from '@angular/platform-browser/animations';
-import {HttpClientModule}           from '@angular/common/http';
+import {
+    HTTP_INTERCEPTORS,
+    HttpClientModule
+} from '@angular/common/http';
 import {HttpService}                from './services/http-service';
 import {LocalStorageService}        from './services/local-storage-services';
 import {LeftMenuModule}             from './modules/left-menu/left-menu.module';
@@ -44,6 +47,7 @@ import {
     LogLevel
 }                                  from 'angular-auth-oidc-client';
 import {environment}               from "../environments/environment";
+import {TokenInterceptorService}   from "./services/token-interceptor-service";
 
 @NgModule(
   {
@@ -112,7 +116,12 @@ import {environment}               from "../environments/environment";
           FlashMessageService,
           LayoutRightBlockComponent,
           OwnService,
-          CompanyRepository
+          CompanyRepository,
+          {
+              provide:  HTTP_INTERCEPTORS,
+              useClass: TokenInterceptorService,
+              multi:    true
+          }
       ],
       bootstrap:    [AppComponent],
   }

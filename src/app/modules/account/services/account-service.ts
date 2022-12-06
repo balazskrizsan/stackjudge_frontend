@@ -70,6 +70,12 @@ export class AccountService
         return this.accountRepository.getByReviewId(reviewId);
     }
 
+    public localLogin(user: IUser): void
+    {
+        this.accountRepository.storeUserData(user);
+        this.updateState(user);
+    }
+
     public loadUserData(): void
     {
         this.accountRepository.getMyUserData().subscribe(res =>
