@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "~14.2.2",
     "@angular/router": "~14.2.2",
     "@types/google.maps": "^3.50.1",
-    "angular-auth-oidc-client": "^14.1.4",
+    "angular-auth-oidc-client": "^14.1.5",
     "file-saver": "^2.0.5",
     "rxjs": "^7.5.6",
     "stackjudge_frontend_ts_sdk": "git://github.com/balazskrizsan/stackjudge_frontend_ts_sdk.git#4500dc91a696f38b2177b106c83fa57279a49e47",
