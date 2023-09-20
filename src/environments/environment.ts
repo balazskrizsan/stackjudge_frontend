@@ -2,10 +2,10 @@ export const environment = {
   production: false,
   backend: {
     api: {
-      host: 'https://localhost:8181/'
+      host: 'https://localhost:41011/'
     },
     account: {
-      identityServerUrl: 'https://localhost:5001'
+      identityServerUrl: 'https://localhost:43011'
     }
   },
   cdn: {
