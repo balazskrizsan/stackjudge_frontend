@@ -20,6 +20,7 @@ export class LocalStorageService {
     } catch (e) {
       return false;
     }
+
     return true;
   }
 
