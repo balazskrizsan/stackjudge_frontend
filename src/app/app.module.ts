@@ -87,7 +87,7 @@ import {TokenInterceptorService}   from "./services/token-interceptor-service";
                   redirectUrl:             'https://localhost:4200',
                   clientId:                'sj.frontend',
                   postLogoutRedirectUri:   window.location.origin,
-                  scope:                   'openid profile sj sj.frontend',
+                  scope:                   'openid profile sj sj.frontend offline_access',
                   responseType:            'code',
                   silentRenew:             true,
                   useRefreshToken:         true,
